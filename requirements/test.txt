@@ -5,3 +5,4 @@ flake8-comprehensions==3.16.0
 flake8-import-order==0.18.2
 flake8-quotes==3.4.0
 pep8-naming==0.14.1
+black==25.1.0
