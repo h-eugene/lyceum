@@ -23,7 +23,7 @@ black:
     - pip install --upgrade pip
     - pip install black
   script:
-    - black --check --diff .
+    - black --check .
   only:
     - main
     - merge_requests
