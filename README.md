@@ -1,36 +1,25 @@
-# Проект Lyceum
-
-Данный проект создан на Django версии 5.2.* и содержит три приложения:
-- **homepage**
-- **catalog**
-- **about**
-
 ## Установка и запуск в dev-режиме
 
-Проект предназначен для запуска в режиме разработки (dev), который характеризуется расширенной отладочной информацией и пониженной безопасностью. Обратите внимание, что запуск проекта в dev-режиме **не рекомендуется** для продакшена.
-
-### Шаг 1. Клонирование репозитория
-
-```bash
-git clone https://gitlab.crja72.ru/django/2025/spring/course/students/307818-EugeneINNO-course-1340.git
+### 1. Клонирование репозитория
+```sh
+git clone https://gitlab.crja72.ru/django/2025/spring/course/students/175774-lntckkk-course-1340.git
 cd lyceum
 ```
-### Шаг 2. Создание и активация виртуального окружения
-```
+
+### 2. Создание и активация виртуального окружения
+```sh
 python3 -m venv venv
-source venv/bin/activate 
+source venv/bin/activate # linux/MacOS, for Windows venv/Scripts/activate.ps1 or venv/Scripts/activate.bat
 ```
-для Linux/MacOS; на Windows: 
-```
-venv\Scripts\activate.ps1 # для PowerShell 
-venv\Scripts\activate.bat # для CMD
-```
-### Шаг 3. Установка зависимостей
-```
+
+### 3. Установка зависимостей
+```sh
 pip install -r requirements.txt
 ```
-### Шаг 4. Запуск сервера разработки
-```
+
+### 4. Запуск dev-сервера
+Запускаем сервер Django в режиме разработки (**DEBUG=True** в `settings.py`):
+```sh
 python manage.py runserver
 ```
-После запуска сервер будет доступен по адресу http://127.0.0.1:8000/.
+Сервер будет доступен по адресу: **http://127.0.0.1:8000/**
