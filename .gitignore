@@ -1,0 +1,22 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Среда разработки
+venv/
+env/
+ENV/
+
+# Файлы настроек IDE
+.vscode/
+.idea/
+
+# Лог-файлы
+*.log
+
+# Файлы базы данных
+*.sqlite3
+
+# Секретные файлы
+*.env
