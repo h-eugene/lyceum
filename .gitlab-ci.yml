@@ -1,12 +1,29 @@
 stages:
+  - dependencies
   - lint
+  - test
 
+# Проверка зависимостей
+check_dependencies:
+  stage: dependencies
+  image: python:3.12
+  before_script:
+    - pip install --upgrade pip
+  script:
+    - pip install -r requirements/prod.txt
+    - pip install -r requirements/dev.txt
+    - pip install -r requirements/test.txt
+  only:
+    - main
+    - merge_requests
+
+# Линтинг кода с помощью flake8
 flake8:
   stage: lint
   image: python:3.12
   before_script:
     - pip install --upgrade pip
-    - pip install -r requirements/prod.txt  # Используем продовые зависимости
+    - pip install -r requirements/dev.txt
   script:
     - flake8 .
   only:
