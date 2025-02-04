@@ -24,7 +24,7 @@ precommit:
     - pip install --upgrade pip
     - pip install pre-commit
   script:
-    - pre-commit run --all-files
+    - pre-commit run --all-files --no-update
   only:
     - main
     - merge_requests
