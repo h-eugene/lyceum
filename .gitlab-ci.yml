@@ -1,7 +1,9 @@
 stages:
   - dependencies
-  - lint
+  - black
   - test
+  - flake8
+  - flake8_extended
 
 # Проверка зависимостей
 check_dependencies:
@@ -19,7 +21,7 @@ check_dependencies:
 
 # Линтинг кода с помощью flake8
 flake8:
-  stage: lint
+  stage: flake8
   image: python:3.12
   before_script:
     - pip install --upgrade pip
@@ -33,7 +35,7 @@ flake8:
 
 # Проверка Black (без изменения файлов, согласование с flake8)
 black:
-  stage: lint
+  stage: black
   image: python:3.12
   before_script:
     - pip install --upgrade pip
@@ -46,7 +48,7 @@ black:
 
 # Проверка порядка импортов, стиля имён
 flake8_extended:
-  stage: lint
+  stage: flake8_extended
   image: python:3.12
   before_script:
     - pip install --upgrade pip
