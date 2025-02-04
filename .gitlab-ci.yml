@@ -1,6 +1,5 @@
 stages:
   - dependencies
-  - black
   - lint
 
 check_dependencies:
@@ -17,7 +16,7 @@ check_dependencies:
     - merge_requests
 
 black:
-  stage: black
+  stage: lint
   image: python:3.12
   before_script:
     - pip install --upgrade pip
