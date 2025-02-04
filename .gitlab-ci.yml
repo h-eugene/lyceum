@@ -39,7 +39,7 @@ black:
     - pip install --upgrade pip
     - pip install black
   script:
-    - black --check --line-length=79 .
+    - black --check .
   only:
     - main
     - merge_requests
