@@ -15,7 +15,7 @@ SECRET_KEY = os.getenv("SECRET_KEY", "django-insecure-default-key")
 DEBUG = os.getenv("DEBUG", "False") == "True"
 
 # Разрешённые хосты (по умолчанию пустой список)
-ALLOWED_HOSTS = os.getenv("ALLOWED_HOSTS", "").split()
+ALLOWED_HOSTS = os.getenv("ALLOWED_HOSTS", "localhost,127.0.0.1").split(",")
 
 
 # Application definition
