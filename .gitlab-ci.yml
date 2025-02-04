@@ -24,9 +24,9 @@ flake8:
   before_script:
     - pip install --upgrade pip
     - pip install -r requirements/dev.txt
-    - pip install flake8 flake8-quotes flake8-import-order flake8-bugbear
+    - pip install flake8 flake8-quotes flake8-import-order flake8-bugbear flake8-comprehensions
   script:
-    - flake8 --ignore=Q000,Q001,Q002,Q003 .  # Отключаем проверку кавычек
+    - flake8 --max-line-length=88 --ignore=Q000,Q001,Q002,Q003 .  # Отключаем проверку кавычек
   only:
     - main
     - merge_requests
@@ -51,9 +51,9 @@ flake8_extended:
   before_script:
     - pip install --upgrade pip
     - pip install -r requirements/dev.txt
-    - pip install flake8 flake8-import-order flake8-quotes flake8-bugbear
+    - pip install flake8 flake8-import-order flake8-quotes flake8-bugbear flake8-comprehensions
   script:
-    - flake8 --ignore=Q000,Q001,Q002,Q003 .
+    - flake8 --max-line-length=88 --ignore=Q000,Q001,Q002,Q003 .
   only:
     - main
     - merge_requests
