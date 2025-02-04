@@ -23,7 +23,7 @@ black:
     - pip install --upgrade pip
     - pip install black
   script:
-    - black --check .
+    - black --check --diff --line-length=88 .
   only:
     - main
     - merge_requests
@@ -34,7 +34,7 @@ flake8:
   before_script:
     - pip install --upgrade pip
     - pip install -r requirements/dev.txt
-    - pip install flake8 flake8-quotes flake8-import-order flake8-bugbear flake8-comprehensions pep8-naming
+    - pip install flake8 flake8-quotes flake8-import-order flake8-bugbear flake8-comprehensions
   script:
     - flake8 --max-line-length=88 --ignore=Q000,Q001,Q002,Q003 .
   only:
