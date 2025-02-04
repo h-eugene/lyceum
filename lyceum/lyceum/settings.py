@@ -1,7 +1,9 @@
 import os
+from pathlib import Path
+
 from dotenv import load_dotenv
 
-from pathlib import Path
+
 
 # Загружаем переменные окружения из .env
 load_dotenv()
