@@ -29,3 +29,30 @@ flake8:
   only:
     - main
     - merge_requests
+
+# Проверка Black (без изменения файлов)
+black:
+  stage: lint
+  image: python:3.12
+  before_script:
+    - pip install --upgrade pip
+    - pip install black
+  script:
+    - black --check .
+  only:
+    - main
+    - merge_requests
+
+# Проверка порядка импортов, стиля имён и кавычек
+flake8_extended:
+  stage: lint
+  image: python:3.12
+  before_script:
+    - pip install --upgrade pip
+    - pip install -r requirements/dev.txt
+    - pip install flake8 flake8-quotes flake8-import-order
+  script:
+    - flake8 .
+  only:
+    - main
+    - merge_requests
