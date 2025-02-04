@@ -1,7 +1,7 @@
 stages:
   - dependencies
-  - lint
   - black
+  - lint
 
 check_dependencies:
   stage: dependencies
