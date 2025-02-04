@@ -22,7 +22,7 @@ precommit:
     - pip install --upgrade pip
     - pip install pre-commit
   script:
-    - pre-commit run --all-files --hook-stage=ci
+    - pre-commit run --all-files
   only:
     - main
     - merge_requests
