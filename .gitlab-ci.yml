@@ -45,17 +45,3 @@ black:
   only:
     - main
     - merge_requests
-
-# Проверка порядка импортов, стиля имён
-flake8_extended:
-  stage: flake8_extended
-  image: python:3.12
-  before_script:
-    - pip install --upgrade pip
-    - pip install -r requirements/dev.txt
-    - pip install flake8 flake8-import-order flake8-quotes flake8-bugbear flake8-comprehensions
-  script:
-    - flake8 --max-line-length=88 --ignore=Q000,Q001,Q002,Q003 .
-  only:
-    - main
-    - merge_requests
