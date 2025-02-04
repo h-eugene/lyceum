@@ -1,5 +1,5 @@
 # Lyceum
-
+![Pipeline Status](https://gitlab.crja72.ru/django/2025/spring/course/students/307818-EugeneINNO-course-1340/-/commits/main)
 ## Установка и запуск в dev-режиме
 
 ### **1️⃣ Клонирование репозитория**
