@@ -15,27 +15,14 @@ check_dependencies:
     - main
     - merge_requests
 
-black:
+precommit:
   stage: lint
   image: python:3.12
   before_script:
     - pip install --upgrade pip
-    - pip install black
+    - pip install pre-commit
   script:
-    - black --check --diff --line-length=88 .
-  only:
-    - main
-    - merge_requests
-
-flake8:
-  stage: lint
-  image: python:3.12
-  before_script:
-    - pip install --upgrade pip
-    - pip install -r requirements/dev.txt
-    - pip install flake8 flake8-quotes flake8-import-order flake8-bugbear flake8-comprehensions
-  script:
-    - flake8 --max-line-length=88 --ignore=Q000,Q001,Q002,Q003 .
+    - pre-commit run --all-files --hook-stage=ci
   only:
     - main
     - merge_requests
