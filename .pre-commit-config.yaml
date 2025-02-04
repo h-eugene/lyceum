@@ -1,6 +1,6 @@
 repos:
   - repo: https://github.com/psf/black
-    rev: 25.1.0  # укажите актуальную версию
+    rev: 23.3.0  # укажите актуальную версию
     hooks:
       - id: black
         args: [--check, --diff, --line-length=88]
