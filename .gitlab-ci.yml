@@ -1,6 +1,7 @@
 stages:
   - dependencies
-  - lint
+  - black
+  - flake8
   - test
 
 # Проверка зависимостей
@@ -19,7 +20,7 @@ check_dependencies:
 
 # Линтинг кода с помощью flake8
 flake8:
-  stage: lint
+  stage: flake8
   image: python:3.12
   before_script:
     - pip install --upgrade pip
@@ -32,13 +33,13 @@ flake8:
     - merge_requests
 
 black:
-  stage: lint    
+  stage: black   
   image: python:3.12
   before_script:
     - pip install --upgrade pip
     - pip install black
   script:
-    - black --check --diff --line-length=79 .
+    - black --check .
   only:
     - main
     - merge_requests

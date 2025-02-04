@@ -16,9 +16,7 @@ DEBUG = os.getenv("DEBUG", "False") == "True"
 
 # Разрешённые хосты (по умолчанию пустой список)
 if not DEBUG:
-    ALLOWED_HOSTS = os.getenv("ALLOWED_HOSTS", "localhost,127.0.0.1").split(
-        ","
-    )
+    ALLOWED_HOSTS = os.getenv("ALLOWED_HOSTS", "localhost,127.0.0.1").split(",")
 
 
 # Application definition
@@ -82,25 +80,17 @@ DATABASES = {
 
 AUTH_PASSWORD_VALIDATORS = [
     {
-        "NAME": (
-            "django.contrib.auth.password_validation."
-            "UserAttributeSimilarityValidator"
-        ),
+        "NAME": "django.contrib.auth.password_validation."
+        "UserAttributeSimilarityValidator",
     },
     {
-        "NAME": (
-            "django.contrib.auth.password_validation.MinimumLengthValidator"
-        ),
+        "NAME": "django.contrib.auth.password_validation." "MinimumLengthValidator",
     },
     {
-        "NAME": (
-            "django.contrib.auth.password_validation.CommonPasswordValidator"
-        ),
+        "NAME": "django.contrib.auth.password_validation." "CommonPasswordValidator",
     },
     {
-        "NAME": (
-            "django.contrib.auth.password_validation.NumericPasswordValidator"
-        ),
+        "NAME": "django.contrib.auth.password_validation." "NumericPasswordValidator",
     },
 ]
 
