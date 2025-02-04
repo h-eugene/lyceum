@@ -30,7 +30,7 @@ flake8:
     - main
     - merge_requests
 
-# Проверка Black (без изменения файлов)
+# Проверка Black (без изменения файлов, согласование с flake8)
 black:
   stage: lint
   image: python:3.12
@@ -38,7 +38,7 @@ black:
     - pip install --upgrade pip
     - pip install black
   script:
-    - black --check .
+    - black --check --line-length=79 .
   only:
     - main
     - merge_requests
