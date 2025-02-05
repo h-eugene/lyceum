@@ -15,16 +15,58 @@ check_dependencies:
     - main
     - merge_requests
 
-precommit:
+
+flake8:
+  stage: lint
+  image: python:3.12
+  before_script:
+    - pip install --upgrade pip
+    - pip install flake8 flake8-quotes flake8-import-order flake8-bugbear flake8-comprehensions
+  script:
+    - flake8 --max-line-length=88 --ignore=Q000,Q001,Q002,Q003 .
+  only:
+    - main
+    - merge_requests
+
+
+
+# Job для проверки форматирования кода с помощью Black
+black:
   stage: lint
   image: python:3.12
   variables:
-    GIT_TERMINAL_PROMPT: "0"
+    # Опции, которые будут переданы Black (по умолчанию: проверка с выводом diff)
+    BLACK_OPTIONS: "--check --diff --verbose"
+    # Путь, где будет запускаться Black (по умолчанию – корень репозитория)
+    BLACK_SRC: "."
+    # Если нужно, можно указать конкретную версию Black (например, "21.5b1" или с оператором, например, "~=22.0")
+    # Если переменная не задана, будет установлена последняя версия из PyPI.
+    BLACK_VERSION: ""
+    # Если true, устанавливаем Black с extra для поддержки Jupyter Notebook
+    BLACK_JUPYTER: "false"
+    # Если true, можно попробовать читать версию из pyproject.toml (только для документации – Black сам не выбирает версию)
+    USE_PYPROJECT: "false"
   before_script:
     - pip install --upgrade pip
-    - pip install pre-commit
+    # Устанавливаем Black – если указана версия, используем её; иначе устанавливаем без версии.
+    - |
+      if [ -n "$BLACK_VERSION" ]; then
+        if [ "$BLACK_JUPYTER" = "true" ]; then
+          pip install "black[jupyter]==$BLACK_VERSION"
+        else
+          pip install "black==$BLACK_VERSION"
+        fi
+      else
+        if [ "$BLACK_JUPYTER" = "true" ]; then
+          pip install "black[jupyter]"
+        else
+          pip install black
+        fi
+      fi
+    # Если нужно читать настройки (например, версию) из pyproject.toml, можно просто положиться на сам Black,
+    # поскольку он при запуске читает файл pyproject.toml для конфигурации.
   script:
-    - pre-commit run --all-files --no-update
+    - black $BLACK_OPTIONS $BLACK_SRC
   only:
     - main
     - merge_requests
