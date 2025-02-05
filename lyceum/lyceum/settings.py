@@ -3,18 +3,14 @@ from pathlib import Path
 
 from dotenv import load_dotenv
 
-# Загружаем переменные окружения из .env
 load_dotenv()
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-# Читаем SECRET_KEY из .env или устанавливаем безопасное значение по умолчанию
 SECRET_KEY = os.getenv("SECRET_KEY", "default")
 
-# Читаем DEBUG из .env (по умолчанию False)
 DEBUG = os.getenv("DEBUG", "False") == "True"
 
-# Разрешённые хосты (по умолчанию пустой список)
 if not DEBUG:
     ALLOWED_HOSTS = os.getenv("ALLOWED_HOSTS", "127.0.0.1").split(",")
 
