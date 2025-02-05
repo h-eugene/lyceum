@@ -10,6 +10,5 @@ db.sqlite3
 /static/
 .vscode/
 .idea/
-*.toml
 .flake8
 *.python-version

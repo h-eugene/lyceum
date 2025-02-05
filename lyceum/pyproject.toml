@@ -1,0 +1,16 @@
+[project]
+name = "lyceum"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = []
+
+[tool.black]
+line-length = 88
+target-version = ['py312']
+extend-exclude = '''
+(
+  migrations   # Django DB migrations
+)
+'''
