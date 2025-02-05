@@ -3,7 +3,6 @@ image: python:3.12
 stages:
   - dependencies
   - Lint
-  - Black
 
 check_dependencies:
   stage: dependencies
@@ -35,7 +34,7 @@ flake8:
 
 # Job для проверки форматирования кода с помощью Black
 Black:
-  stage: Black
+  stage: Lint
   image: registry.gitlab.com/pipeline-components/black:latest
   script:
     - black --check .
