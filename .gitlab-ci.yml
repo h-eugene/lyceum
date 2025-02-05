@@ -1,6 +1,7 @@
 stages:
   - dependencies
   - Lint
+  - Black
 
 check_dependencies:
   stage: dependencies
@@ -32,11 +33,11 @@ flake8:
 
 # Job для проверки форматирования кода с помощью Black
 Black:
-  stage: Lint
+  stage: Black
   image: python:3.12
   variables:
     # Опции, которые будут переданы Black (по умолчанию: проверка с выводом diff)
-    BLACK_OPTIONS: "--check --diff --verbose"
+    BLACK_OPTIONS: "--check"
     # Путь, где будет запускаться Black (по умолчанию – корень репозитория)
     BLACK_SRC: "."
     # Если нужно, можно указать конкретную версию Black (например, "21.5b1" или с оператором, например, "~=22.0")
