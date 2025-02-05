@@ -1,5 +1,5 @@
 -r prod.txt
-black==25.1.0ы
+black==25.1.0
 flake8==7.1.1
 flake8-bugbear==24.12.12
 flake8-comprehensions==3.16.0
