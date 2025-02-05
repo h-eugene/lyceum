@@ -31,7 +31,7 @@ flake8:
 
 
 # Job для проверки форматирования кода с помощью Black
-black:
+Black:
   stage: lint
   image: python:3.12
   variables:
