@@ -42,30 +42,14 @@ Black:
     BLACK_SRC: "."
     # Если нужно, можно указать конкретную версию Black (например, "21.5b1" или с оператором, например, "~=22.0")
     # Если переменная не задана, будет установлена последняя версия из PyPI.
-    BLACK_VERSION: ""
+    BLACK_VERSION: "24.10.0"
     # Если true, устанавливаем Black с extra для поддержки Jupyter Notebook
     BLACK_JUPYTER: "false"
     # Если true, можно попробовать читать версию из pyproject.toml (только для документации – Black сам не выбирает версию)
     USE_PYPROJECT: "false"
   before_script:
     - pip install --upgrade pip
-    # Устанавливаем Black – если указана версия, используем её; иначе устанавливаем без версии.
-    - |
-      if [ -n "$BLACK_VERSION" ]; then
-        if [ "$BLACK_JUPYTER" = "true" ]; then
-          pip install "black[jupyter]==$BLACK_VERSION"
-        else
-          pip install "black==$BLACK_VERSION"
-        fi
-      else
-        if [ "$BLACK_JUPYTER" = "true" ]; then
-          pip install "black[jupyter]"
-        else
-          pip install black
-        fi
-      fi
-    # Если нужно читать настройки (например, версию) из pyproject.toml, можно просто положиться на сам Black,
-    # поскольку он при запуске читает файл pyproject.toml для конфигурации.
+    - pip install black==24.10.0
   script:
     - black $BLACK_OPTIONS $BLACK_SRC
   only:
