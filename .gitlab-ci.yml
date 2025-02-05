@@ -1,3 +1,5 @@
+image: python:3.12
+
 stages:
   - dependencies
   - Lint
@@ -19,12 +21,12 @@ check_dependencies:
 
 flake8:
   stage: Lint
-  image: python:3.12
+  image: registry.gitlab.com/pipeline-components/flake8:latest
   before_script:
     - pip install --upgrade pip
-    - pip install flake8 flake8-quotes flake8-import-order flake8-bugbear flake8-comprehensions 
+    - pip install flake8 flake8-quotes flake8-import-order flake8-bugbear flake8-comprehensions pep8-naming
   script:
-    - flake8 --max-line-length=88 --ignore=Q000,Q001,Q002,Q003 .
+    - flake8 --verbose .
   only:
     - main
     - merge_requests
