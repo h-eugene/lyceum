@@ -22,9 +22,9 @@ check_dependencies:
 flake8:
   stage: Lint
   image: registry.gitlab.com/pipeline-components/flake8:latest
-  before_script:
-    - pip install --upgrade pip
-    - pip install flake8 flake8-quotes flake8-import-order flake8-bugbear flake8-comprehensions pep8-naming
+  # before_script:
+  #   - pip install --upgrade pip
+  #   - pip install flake8 flake8-quotes flake8-import-order flake8-bugbear flake8-comprehensions pep8-naming
   script:
     - flake8 --max-line-length=88 --ignore=Q000,Q001,Q002,Q003 .
   only:
@@ -36,10 +36,7 @@ flake8:
 # Job для проверки форматирования кода с помощью Black
 Black:
   stage: Black
-  image: python:3.12
-  before_script:
-    - pip install --upgrade pip
-    - pip install black==24.8.0
+  image: registry.gitlab.com/pipeline-components/black:latest
   script:
     - black --check .
   only:
