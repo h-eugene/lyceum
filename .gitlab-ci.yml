@@ -35,23 +35,11 @@ flake8:
 Black:
   stage: Black
   image: python:3.12
-  variables:
-    # Опции, которые будут переданы Black (по умолчанию: проверка с выводом diff)
-    BLACK_OPTIONS: "--check"
-    # Путь, где будет запускаться Black (по умолчанию – корень репозитория)
-    BLACK_SRC: "."
-    # Если нужно, можно указать конкретную версию Black (например, "21.5b1" или с оператором, например, "~=22.0")
-    # Если переменная не задана, будет установлена последняя версия из PyPI.
-    BLACK_VERSION: "24.10.0"
-    # Если true, устанавливаем Black с extra для поддержки Jupyter Notebook
-    BLACK_JUPYTER: "false"
-    # Если true, можно попробовать читать версию из pyproject.toml (только для документации – Black сам не выбирает версию)
-    USE_PYPROJECT: "false"
   before_script:
     - pip install --upgrade pip
     - pip install black==24.10.0
   script:
-    - black $BLACK_OPTIONS $BLACK_SRC
+    - black --check .
   only:
     - main
     - merge_requests
