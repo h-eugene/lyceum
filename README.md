@@ -1,5 +1,6 @@
 # Lyceum
 ![Pipeline Status](https://gitlab.crja72.ru/django/2025/spring/course/students/307818-EugeneINNO-course-1340/badges/main/pipeline.svg)
+[![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
 ## Установка и запуск в dev-режиме
 
 ### **1️⃣ Клонирование репозитория**
