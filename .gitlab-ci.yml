@@ -1,6 +1,6 @@
 stages:
   - dependencies
-  - lint
+  - Lint
 
 check_dependencies:
   stage: dependencies
@@ -17,7 +17,7 @@ check_dependencies:
 
 
 flake8:
-  stage: lint
+  stage: Lint
   image: python:3.12
   before_script:
     - pip install --upgrade pip
@@ -32,7 +32,7 @@ flake8:
 
 # Job для проверки форматирования кода с помощью Black
 Black:
-  stage: lint
+  stage: Lint
   image: python:3.12
   variables:
     # Опции, которые будут переданы Black (по умолчанию: проверка с выводом diff)
