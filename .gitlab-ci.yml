@@ -1,11 +1,11 @@
 image: python:3.12
 
 stages:
-  - CheckDependenciesInstallation
-  - CheckCodeStyle
+  - install
+  - linting
 
 check_dependencies:
-  stage: CheckDependenciesInstallation
+  stage: install
   image: python:3.12
   before_script:
     - pip install --upgrade pip
@@ -18,7 +18,7 @@ check_dependencies:
 
 
 flake8:
-  stage: CheckCodeStyle
+  stage: linting
   image: registry.gitlab.com/pipeline-components/flake8:latest
   script:
     - flake8 --max-line-length=88 --ignore=Q000,Q001,Q002,Q003 .
@@ -28,7 +28,7 @@ flake8:
 
 
 Black:
-  stage: CheckCodeStyle
+  stage: linting
   image: registry.gitlab.com/pipeline-components/black:latest
   script:
     - black --check .

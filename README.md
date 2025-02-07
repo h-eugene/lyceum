@@ -1,6 +1,6 @@
 # Lyceum
-![CI/CD: Установка зависимостей и проверка стиля](https://gitlab.crja72.ru/django/2025/spring/course/students/307818-EugeneINNO-course-1340/badges/main/pipeline.svg)
-
+![CI/CD: Установка зависимостей](https://gitlab.crja72.ru/django/2025/spring/course/students/307818-EugeneINNO-course-1340/badges/main/pipeline.svg?job=install&key_text=Install)
+![CI/CD: Проверка стиля](https://gitlab.crja72.ru/django/2025/spring/course/students/307818-EugeneINNO-course-1340/badges/main/pipeline.svg?job=lint&key_text=Lint)
 ## Установка и запуск в dev-режиме
 
 ### **1️⃣ Клонирование репозитория**
