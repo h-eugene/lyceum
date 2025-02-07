@@ -6,7 +6,11 @@
 ### **1️⃣ Клонирование репозитория**
 ```sh
 git clone https://gitlab.crja72.ru/django/2025/spring/course/students/307818-EugeneINNO-course-1340.git
-cd lyceum
+```
+
+Заходим в проект
+```sh
+cd 307818-EugeneINNO-course-1340
 ```
 
 ---
@@ -49,7 +53,7 @@ pip install -r requirements/test.txt
 ### **5️⃣ Запуск dev-сервера**
 Запускаем сервер Django в режиме разработки (**DEBUG=True** в `.env`):
 ```sh
-python manage.py runserver
+python3 .\lyceum\manage.py runserver
 ```
 Сервер будет доступен по адресу: **[http://127.0.0.1:8000/](http://127.0.0.1:8000/)**
 

@@ -9,7 +9,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 SECRET_KEY = os.getenv("SECRET_KEY", "default")
 
-DEBUG = os.getenv("DEBUG", "PROD_MOD")
+DEBUG = bool(os.getenv("DEBUG", "False"))
 
 if DEBUG == "PROD_MOD":
     ALLOWED_HOSTS = os.getenv("ALLOWED_HOSTS", "127.0.0.1").split(",")
