@@ -1,13 +1,11 @@
 # Lyceum
-![Pipeline Status](https://gitlab.crja72.ru/django/2025/spring/course/students/307818-EugeneINNO-course-1340/badges/main/pipeline.svg)
-
-[![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
+![Pipeline: Проверка корректного установления зависимостей, Проверка стиля кода](https://gitlab.crja72.ru/django/2025/spring/course/students/307818-EugeneINNO-course-1340/badges/main/pipeline.svg)
 
 ## Установка и запуск в dev-режиме
 
 ### **1️⃣ Клонирование репозитория**
 ```sh
-git clone https://gitlab.crja72.ru/django/2025/spring/course/students/175774-lntckkk-course-1340.git
+git clone https://gitlab.crja72.ru/django/2025/spring/course/students/307818-EugeneINNO-course-1340.git
 cd lyceum
 ```
 
@@ -25,16 +23,11 @@ source venv/bin/activate  # Linux/MacOS
 ---
 
 ### **3️⃣ Настройка `.env`**
-Создайте `.env` в корневой папке проекта:
-
-```ini
-SECRET_KEY=django-insecure-1234567890abcdef
-DEBUG=True
-ALLOWED_HOSTS=localhost 127.0.0.1
+Пропишите в командной строке следующий код для создания .env файла переменных окружения и копирования туда стандартных переменных:
+```sh
+copy .env.template .env # Windows
+cp .env.template .env # Linux / macOS
 ```
-
-⚠️ **Важно:** Файл `.env` **не должен попадать в репозиторий!** Он уже добавлен в `.gitignore`.
-
 ---
 
 ### **4️⃣ Установка зависимостей**
