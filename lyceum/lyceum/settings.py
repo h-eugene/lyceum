@@ -9,9 +9,11 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 SECRET_KEY = os.getenv("DJANGO_SECRET_KEY", "default")
 
-DEBUG = os.getenv("DJANGO_DEBUG", "PROD_MODE")
-if DEBUG == "PROD_MODE":
+DEBUG = os.getenv("DJANGO_DEBUG", "False").lower() in ("true", "1", "yes")
+
+if not DEBUG:
     ALLOWED_HOSTS = os.getenv("DJANGO_ALLOWED_HOSTS", "127.0.0.1").split(",")
+    print(ALLOWED_HOSTS)
 
 
 INSTALLED_APPS = [

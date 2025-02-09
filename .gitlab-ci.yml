@@ -16,7 +16,7 @@ black:
   stage: linting
   image: registry.gitlab.com/pipeline-components/black:latest
   script:
-    - black --check .
+    - black . --check --diff -l 79 --preview
   only:
     - main
     - merge_requests
@@ -27,10 +27,11 @@ django:
   before_script:
     - pip install --upgrade pip
     - pip install -r ./requirements/test.txt
+    - cd ./lyceum
   script:
-    - python3 ./lyceum/manage.py test about
-    - python3 ./lyceum/manage.py test catalog
-    - python3 ./lyceum/manage.py test homepage
+    - python3 manage.py test about
+    - python3 manage.py test catalog
+    - python3 manage.py test homepage
   only:
     - main
     - merge_requests
