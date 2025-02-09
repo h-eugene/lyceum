@@ -1,5 +1,6 @@
-import django.http
 from http import HTTPStatus
+
+import django.http
 
 
 def home(request):

@@ -1,5 +1,6 @@
-import django.test
 from http import HTTPStatus
+
+import django.test
 
 
 class TestStaticURL(django.test.TestCase):
