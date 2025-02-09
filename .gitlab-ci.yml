@@ -1,5 +1,6 @@
 stages:
   - linting
+  - test
 
 flake8:
   stage: linting
@@ -11,7 +12,7 @@ flake8:
     - merge_requests
 
 
-Black:
+black:
   stage: linting
   image: registry.gitlab.com/pipeline-components/black:latest
   script:
@@ -19,3 +20,15 @@ Black:
   only:
     - main
     - merge_requests
+
+django:
+  stage: test
+  before_script:
+    - pip install --upgrade pip
+    - pip install -r ./requirements/test.txt
+  script:
+    - python3 .\lyceum\manage.py test lyceum
+  only:
+    - main
+    - merge_requests
+  
