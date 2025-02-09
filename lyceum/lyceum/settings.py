@@ -9,9 +9,8 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 SECRET_KEY = os.getenv("SECRET_KEY", "default")
 
-DEBUG = os.getenv("DEBUG", "PROD_MOD")
-
-if DEBUG == "PROD_MOD":
+DEBUG = os.getenv("DJANGO_DEBUG", "PROD_MODE")
+if DEBUG == "PROD_MODE":
     ALLOWED_HOSTS = os.getenv("ALLOWED_HOSTS", "127.0.0.1").split(",")
 
 

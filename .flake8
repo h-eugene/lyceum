@@ -7,4 +7,4 @@ docstring-quotes = double
 
 
 # Порядок импортов
-import-order-style = google
+# import-order-style = google
