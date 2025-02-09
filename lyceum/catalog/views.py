@@ -7,3 +7,7 @@ def item_list(request):
 
 def item_detail(request, pk):
     return django.http.HttpResponse("<body>Подробно элемент</body>")
+
+
+def re_expression(request, pk):
+    return django.http.HttpResponse(pk)
