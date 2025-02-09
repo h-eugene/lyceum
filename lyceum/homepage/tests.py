@@ -11,6 +11,4 @@ class TestStaticURL(django.test.TestCase):
     def test_homepage_coffee_endpoint(self):
         response = django.test.Client().get("/coffee/")
         self.assertEqual(response.status_code, HTTPStatus.IM_A_TEAPOT)
-        self.assertEqual(
-            response.content.decode("utf-8"), "Я чайник"
-        )
+        self.assertEqual(response.content.decode("utf-8"), "Я чайник")
