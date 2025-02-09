@@ -1,4 +1,5 @@
--r dev.txt
+-r prod.txt
+django-debug-toolbar==5.0.1
 flake8==7.1.1
 flake8-bugbear==24.12.12
 flake8-comprehensions==3.16.0
