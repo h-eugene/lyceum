@@ -1,5 +1,4 @@
 import catalog.views
-
 import django.urls
 
 urlpatterns = [

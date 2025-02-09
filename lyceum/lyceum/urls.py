@@ -1,6 +1,6 @@
 import django
-import django.urls
 from django.contrib import admin
+import django.urls
 
 
 urlpatterns = [

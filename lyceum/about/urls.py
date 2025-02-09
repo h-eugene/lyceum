@@ -1,5 +1,4 @@
 import about.views
-
 import django.urls
 
 
