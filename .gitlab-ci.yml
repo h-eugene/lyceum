@@ -1,6 +1,6 @@
 stages:
   - linting
-  - test
+  - testing
 
 flake8:
   stage: linting
@@ -22,12 +22,12 @@ black:
     - merge_requests
 
 django:
-  stage: test
+  stage: testing
   before_script:
     - pip install --upgrade pip
     - pip install -r ./requirements/test.txt
   script:
-    - python3 .\lyceum\manage.py test lyceum
+    - python3 ./lyceum/manage.py test lyceum
   only:
     - main
     - merge_requests
