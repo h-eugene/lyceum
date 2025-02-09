@@ -9,23 +9,22 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 SECRET_KEY = os.getenv("SECRET_KEY", "default")
 
-DEBUG = bool(os.getenv("DEBUG", "False"))
+DEBUG = os.getenv("DEBUG", "PROD_MOD")
 
 if DEBUG == "PROD_MOD":
     ALLOWED_HOSTS = os.getenv("ALLOWED_HOSTS", "127.0.0.1").split(",")
 
 
 INSTALLED_APPS = [
+    "about.apps.AboutConfig",
+    "catalog.apps.CatalogConfig",
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
     "django.contrib.sessions",
-    "django.contrib.messages",
     "django.contrib.staticfiles",
-    # My apps
+    "django.contrib.messages",
     "homepage.apps.HomepageConfig",
-    "catalog.apps.CatalogConfig",
-    "about.apps.AboutConfig",
 ]
 
 MIDDLEWARE = [
