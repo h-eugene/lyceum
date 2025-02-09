@@ -28,7 +28,9 @@ django:
     - pip install --upgrade pip
     - pip install -r ./requirements/test.txt
   script:
-    - python3 ./lyceum/manage.py test lyceum
+    - python3 ./lyceum/manage.py test about
+    - python3 ./lyceum/manage.py test catalog
+    - python3 ./lyceum/manage.py test homepage
   only:
     - main
     - merge_requests
