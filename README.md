@@ -54,7 +54,7 @@ pip install -r requirements/test.txt
 ### **5️⃣ Запуск dev-сервера**
 Запускаем сервер Django в режиме разработки (**DEBUG=True** в `.env`):
 ```sh
-python3 .\lyceum\manage.py runserver
+python3 ./lyceum/manage.py runserver
 ```
 Сервер будет доступен по адресу: **[http://127.0.0.1:8000/](http://127.0.0.1:8000/)**
 

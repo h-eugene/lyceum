@@ -176,3 +176,5 @@ ruff.toml
 
 *.DS_Store
 thumbs.db
+
+.vscode/

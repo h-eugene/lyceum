@@ -1,7 +1,6 @@
 import django
-from django.contrib import admin
 import django.urls
-
+from django.contrib import admin
 
 urlpatterns = [
     django.urls.path("", django.urls.include("homepage.urls")),
@@ -14,5 +13,7 @@ if django.conf.settings.DEBUG:
     import debug_toolbar
 
     urlpatterns += (
-        django.urls.path("__debug__/", django.urls.include(debug_toolbar.urls)),
+        django.urls.path(
+            "__debug__/", django.urls.include(debug_toolbar.urls)
+        ),
     )
