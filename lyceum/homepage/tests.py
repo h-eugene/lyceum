@@ -1,4 +1,5 @@
 from http import HTTPStatus
+
 import django.test
 
 from lyceum.middleware import ReverseRussianWordsMiddleware
@@ -35,5 +36,5 @@ class TestStaticURL(django.test.TestCase):
 
             self.assertEqual(response.status_code, HTTPStatus.IM_A_TEAPOT)
             self.assertEqual(
-                response.content.decode("utf-8"), "<body>" + word + "</body>"
+                response.content.decode("utf-8"), word
             )
