@@ -48,9 +48,10 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
-    # Custom middleware
-    "lyceum.middleware.ReverseRussianWordsMiddleware",
 ]
+
+if ALLOW_REVERSE:
+    MIDDLEWARE.append("lyceum.middleware.ReverseRussianWordsMiddleware")
 
 if DEBUG:
     MIDDLEWARE.insert(0, "debug_toolbar.middleware.DebugToolbarMiddleware")
