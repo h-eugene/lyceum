@@ -16,7 +16,7 @@ class TestStaticURL(django.test.TestCase):
             word = "Список элементов"
             if i % 10 == 0:
                 # Переворачиваем каждое слово
-                word = ' '.join(map(lambda x: x[::-1], word.split()))
+                word = " ".join(map(lambda x: x[::-1], word.split()))
 
             self.assertEqual(response.status_code, HTTPStatus.OK)
             self.assertEqual(
@@ -31,7 +31,7 @@ class TestStaticURL(django.test.TestCase):
             word = "Подробно элемент"
             if i % 10 == 0:
                 # Переворачиваем каждое слово
-                word = ' '.join(map(lambda x: x[::-1], word.split()))
+                word = " ".join(map(lambda x: x[::-1], word.split()))
 
             self.assertEqual(response.status_code, HTTPStatus.OK)
             self.assertEqual(
