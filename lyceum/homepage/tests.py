@@ -35,6 +35,4 @@ class TestStaticURL(django.test.TestCase):
                 word = " ".join(i[::-1] for i in word.split())
 
             self.assertEqual(response.status_code, HTTPStatus.IM_A_TEAPOT)
-            self.assertEqual(
-                response.content.decode("utf-8"), word
-            )
+            self.assertEqual(response.content.decode("utf-8"), word)
