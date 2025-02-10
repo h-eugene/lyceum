@@ -30,6 +30,16 @@ INSTALLED_APPS = [
 if DEBUG:
     INSTALLED_APPS.append("debug_toolbar")
 
+ALLOW_REVERSE = os.getenv("DJANGO_ALLOW_REVERSE", "True") in (
+    "true",
+    "True",
+    "1",
+    "YES",
+    "yes",
+    "",
+    "y",
+)
+
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
@@ -38,6 +48,8 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
+    # Custom middleware
+    "lyceum.middleware.ReverseRussianWordsMiddleware",
 ]
 
 if DEBUG:

@@ -2,15 +2,42 @@ from http import HTTPStatus
 
 import django.test
 
+from lyceum.middleware import ReverseRussianWordsMiddleware
+
 
 class TestStaticURL(django.test.TestCase):
+    def setUp(self):
+        ReverseRussianWordsMiddleware.response_count = 0
+
     def test_default_catalog_endpoint(self):
-        response = django.test.Client().get("/catalog/")
-        self.assertEqual(response.status_code, HTTPStatus.OK)
+        client = django.test.Client()
+        for i in range(1, 21):
+            response = client.get("/catalog/")
+            word = "Список элементов"
+            if i % 10 == 0:
+                # Переворачиваем каждое слово
+                word = ' '.join(map(lambda x: x[::-1], word.split()))
+
+            self.assertEqual(response.status_code, HTTPStatus.OK)
+            self.assertEqual(
+                response.content.decode("utf-8"),
+                "<body>" + word + "</body>",
+            )
 
     def test_catalog_with_index_endpoint(self):
-        response = django.test.Client().get("/catalog/1/")
-        self.assertEqual(response.status_code, HTTPStatus.OK)
+        client = django.test.Client()
+        for i in range(1, 21):
+            response = client.get("/catalog/1/")
+            word = "Подробно элемент"
+            if i % 10 == 0:
+                # Переворачиваем каждое слово
+                word = ' '.join(map(lambda x: x[::-1], word.split()))
+
+            self.assertEqual(response.status_code, HTTPStatus.OK)
+            self.assertEqual(
+                response.content.decode("utf-8"),
+                "<body>" + word + "</body>",
+            )
 
     def test_valid_regex_positive_number(self):
         response = self.client.get("/catalog/re/123/")
