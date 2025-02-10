@@ -30,7 +30,7 @@ class TestStaticURL(django.test.TestCase):
             word = "Я чайник"
             if i % 10 == 0:
                 # Переворачиваем каждое слово
-                word = " ".join(map(lambda x: x[::-1], word.split()))
+                word = " ".join(i[::-1] for i in word.split())
 
             self.assertEqual(response.status_code, HTTPStatus.IM_A_TEAPOT)
             self.assertEqual(
