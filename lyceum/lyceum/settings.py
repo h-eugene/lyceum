@@ -32,6 +32,7 @@ if DEBUG:
 
 
 def get_allow_reverse():
+    load_dotenv(os.path.join(BASE_DIR, "../.env"), override=True)
     return os.getenv("DJANGO_ALLOW_REVERSE", "true") in {
         "true",
         "True",
