@@ -12,11 +12,8 @@ class ReverseRussianWordsMiddleware:
 
         response = self.get_response(request)
         ReverseRussianWordsMiddleware.response_count += 1
-
-        if (
-            get_allow_reverse()
-            and ReverseRussianWordsMiddleware.response_count % 10 == 0
-        ):
+        remainder = ReverseRussianWordsMiddleware.response_count % 10
+        if get_allow_reverse() and remainder == 0:
             self._reverse_content(response)
 
         return response
