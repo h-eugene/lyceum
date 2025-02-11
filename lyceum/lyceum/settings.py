@@ -30,15 +30,13 @@ INSTALLED_APPS = [
 if DEBUG:
     INSTALLED_APPS.append("debug_toolbar")
 
-ALLOW_REVERSE = os.getenv("DJANGO_ALLOW_REVERSE", "True") in (
+ALLOW_REVERSE = os.getenv("DJANGO_ALLOW_REVERSE", "true").lower() in {
     "true",
-    "True",
-    "1",
-    "YES",
     "yes",
-    "",
     "y",
-)
+    "1",
+    "",
+}
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
