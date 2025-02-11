@@ -30,11 +30,13 @@ INSTALLED_APPS = [
 if DEBUG:
     INSTALLED_APPS.append("debug_toolbar")
 
-ALLOW_REVERSE = os.getenv("DJANGO_ALLOW_REVERSE", "true").lower() in {
+ALLOW_REVERSE = os.getenv("DJANGO_ALLOW_REVERSE", "true") in {
     "true",
+    "True",
     "yes",
-    "y",
+    "YES",
     "1",
+    "y",
     "",
 }
 
