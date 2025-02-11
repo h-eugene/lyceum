@@ -48,5 +48,4 @@ class TestStaticURL(django.test.TestCase):
 
                 self.assertEqual(response.status_code, HTTPStatus.IM_A_TEAPOT)
                 self.assertEqual(response.content.decode("utf-8"), word)
-                self.assertNotIn('Я кинйач'.encode(), response.content)
-    
+                self.assertNotIn("Я кинйач".encode(), response.content)
