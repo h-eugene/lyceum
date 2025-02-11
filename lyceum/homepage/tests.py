@@ -4,6 +4,7 @@ import django.test
 
 from lyceum.middleware import ReverseRussianWordsMiddleware
 from lyceum.settings import ALLOW_REVERSE
+from unittest.mock import patch
 
 
 class TestStaticURL(django.test.TestCase):
@@ -36,3 +37,14 @@ class TestStaticURL(django.test.TestCase):
 
             self.assertEqual(response.status_code, HTTPStatus.IM_A_TEAPOT)
             self.assertEqual(response.content.decode("utf-8"), word)
+
+    def test_homepage_coffee(self):
+        client = django.test.Client()
+
+        with patch("lyceum.settings.ALLOW_REVERSE", False):
+            for i in range(1, 21):
+                response = client.get("/coffee/")
+                word = "Я чайник"
+
+                self.assertEqual(response.status_code, HTTPStatus.IM_A_TEAPOT)
+                self.assertEqual(response.content.decode("utf-8"), word)

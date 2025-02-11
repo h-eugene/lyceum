@@ -1,22 +1,22 @@
 import re
 
-from .settings import ALLOW_REVERSE
-
 
 class ReverseRussianWordsMiddleware:
     response_count = 0
 
     def __init__(self, get_response):
         self.get_response = get_response
-        self.allow_reverse = ALLOW_REVERSE
 
     def __call__(self, request):
+        from .settings import ALLOW_REVERSE
+
+        if not ALLOW_REVERSE:
+            return self.get_response(request)
+
         response = self.get_response(request)
         ReverseRussianWordsMiddleware.response_count += 1
 
-        if self.allow_reverse and (
-            ReverseRussianWordsMiddleware.response_count % 10 == 0
-        ):
+        if ReverseRussianWordsMiddleware.response_count % 10 == 0:
             content_type = response.get("Content-Type", "")
             if "text" in content_type or content_type == "":
                 content = response.content.decode("utf-8")
