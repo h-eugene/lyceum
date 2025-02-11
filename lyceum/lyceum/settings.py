@@ -3,9 +3,9 @@ from pathlib import Path
 
 from dotenv import load_dotenv
 
-load_dotenv(override=True)
-
 BASE_DIR = Path(__file__).resolve().parent.parent
+
+load_dotenv(os.path.join(BASE_DIR, "../.env"), override=True)
 
 SECRET_KEY = os.getenv("DJANGO_SECRET_KEY", "default")
 
@@ -30,15 +30,20 @@ INSTALLED_APPS = [
 if DEBUG:
     INSTALLED_APPS.append("debug_toolbar")
 
-ALLOW_REVERSE = os.getenv("DJANGO_ALLOW_REVERSE", "true") in {
-    "true",
-    "True",
-    "yes",
-    "YES",
-    "1",
-    "y",
-    "",
-}
+
+def get_allow_reverse():
+    return os.getenv("DJANGO_ALLOW_REVERSE", "true") in {
+        "true",
+        "True",
+        "yes",
+        "YES",
+        "1",
+        "y",
+        "",
+    }
+
+
+ALLOW_REVERSE = get_allow_reverse()
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
@@ -48,10 +53,9 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
+    "lyceum.middleware.ReverseRussianWordsMiddleware",
 ]
 
-if ALLOW_REVERSE:
-    MIDDLEWARE.append("lyceum.middleware.ReverseRussianWordsMiddleware")
 
 if DEBUG:
     MIDDLEWARE.insert(0, "debug_toolbar.middleware.DebugToolbarMiddleware")

@@ -8,9 +8,9 @@ class ReverseRussianWordsMiddleware:
         self.get_response = get_response
 
     def __call__(self, request):
-        from .settings import ALLOW_REVERSE
+        from .settings import get_allow_reverse
 
-        if not ALLOW_REVERSE:
+        if not get_allow_reverse():
             return self.get_response(request)
 
         response = self.get_response(request)
