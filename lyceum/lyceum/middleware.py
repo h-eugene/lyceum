@@ -21,11 +21,11 @@ class ReverseRussianWordsMiddleware:
     def _reverse_content(self, response):
         content_type = response.get("Content-Type", "")
         if "text" in content_type or content_type == "":
-            content = response.content.decode("utf-8")
+            content = response.content.decode()
 
             reversed_content = re.sub(
-                r"\b[а-яА-ЯёЁ]+\b",
+                r"[а-яА-ЯёЁ]",
                 lambda m: m.group(0)[::-1],
                 content,
             )
-            response.content = reversed_content.encode("utf-8")
+            response.content = reversed_content.encode()
