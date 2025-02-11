@@ -11,12 +11,13 @@ class ReverseRussianWordsMiddleware:
         from .settings import get_allow_reverse
 
         response = self.get_response(request)
+        ReverseRussianWordsMiddleware.response_count += 1
 
-        if get_allow_reverse():
-            ReverseRussianWordsMiddleware.response_count += 1
-
-            if ReverseRussianWordsMiddleware.response_count % 10 == 0:
-                self._reverse_content(response)
+        if (
+            get_allow_reverse()
+            and ReverseRussianWordsMiddleware.response_count % 10 == 0
+        ):
+            self._reverse_content(response)
 
         return response
 
