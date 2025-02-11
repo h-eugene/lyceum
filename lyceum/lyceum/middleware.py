@@ -14,8 +14,8 @@ class ReverseRussianWordsMiddleware:
         ReverseRussianWordsMiddleware.response_count += 1
 
         if (
-            get_allow_reverse()
-            and ReverseRussianWordsMiddleware.response_count % 10 == 0
+            get_allow_reverse() and
+            ReverseRussianWordsMiddleware.response_count % 10 == 0
         ):
             self._reverse_content(response)
 
