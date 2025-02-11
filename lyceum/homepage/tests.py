@@ -44,16 +44,18 @@ class TestStaticURL(django.test.TestCase):
         client = django.test.Client()
 
         with patch.dict(os.environ, {"DJANGO_ALLOW_REVERSE": "True"}):
+            print(get_allow_reverse())
             for i in range(1, 21):
                 response = client.get("/coffee/")
                 word = "Я чайник"
+                
                 if i % 10 == 0 and get_allow_reverse():
-                    # Переворачиваем каждое слово
                     word = " ".join(i[::-1] for i in word.split())
                 self.assertEqual(response.status_code, HTTPStatus.IM_A_TEAPOT)
                 self.assertEqual(response.content.decode("utf-8"), word)
 
         with patch.dict(os.environ, {"DJANGO_ALLOW_REVERSE": "False"}):
+            print(get_allow_reverse())
             for i in range(1, 21):
                 response = client.get("/coffee/")
                 word = "Я чайник"

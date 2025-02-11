@@ -1,31 +1,44 @@
 import re
+import threading
 
 
 class ReverseRussianWordsMiddleware:
     response_count = 0
+    lock = threading.Lock()  # Блокировка для потокобезопасности
 
     def __init__(self, get_response):
         self.get_response = get_response
 
     def __call__(self, request):
-        from .settings import get_allow_reverse
+        from .settings import get_allow_reverse  # Локальный импорт
 
-        if not get_allow_reverse():
-            return self.get_response(request)
-
+        # Получаем ответ ДО увеличения счетчика
         response = self.get_response(request)
-        ReverseRussianWordsMiddleware.response_count += 1
 
-        if ReverseRussianWordsMiddleware.response_count % 10 == 0:
-            content_type = response.get("Content-Type", "")
-            if "text" in content_type or content_type == "":
-                content = response.content.decode("utf-8")
-                pattern = r"([а-яА-ЯёЁ]+)"
+        # Увеличиваем счетчик только если ALLOW_REVERSE=True
+        if get_allow_reverse():
+            with self.lock:  # Атомарное увеличение
+                self.__class__.response_count += 1
+                current_count = self.__class__.response_count
 
-                def reverse_russian(match):
-                    word = match.group(0)
-                    return word[::-1]
+            # Переворачиваем слова каждые 10 запросов
+            if current_count % 10 == 0:
+                self._reverse_content(response)
 
-                new_content = re.sub(pattern, reverse_russian, content)
-                response.content = new_content.encode("utf-8")
         return response
+
+    def _reverse_content(self, response):
+        """Переворачивает русские слова в контенте."""
+        content_type = response.get("Content-Type", "")
+        if "text" in content_type or content_type == "":
+            try:
+                content = response.content.decode("utf-8")
+            except UnicodeDecodeError:
+                return
+
+            reversed_content = re.sub(
+                r"\b[а-яА-ЯёЁ]+\b",  # Только целые слова
+                lambda m: m.group(0)[::-1],
+                content,
+            )
+            response.content = reversed_content.encode("utf-8")
