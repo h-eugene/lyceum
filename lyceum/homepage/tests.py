@@ -40,28 +40,28 @@ class TestStaticURL(django.test.TestCase):
             self.assertEqual(response.status_code, HTTPStatus.IM_A_TEAPOT)
             self.assertEqual(response.content.decode("utf-8"), word)
 
-    # def test_homepage_coffee(self):
-    #     client2 = django.test.Client()
-    #     client = django.test.Client()
+    def test_homepage_coffee(self):
+        client2 = django.test.Client()
+        client = django.test.Client()
 
-    #     with patch.dict(os.environ, {"DJANGO_ALLOW_REVERSE": "True"}):
-    #         for i in range(1, 21):
-    #             response = client.get("/coffee/")
-    #             response2 = client2.get("/coffee/")
-    #             word = "Я чайник"
-    #             word2 = word
-    #             if i % 5 == 0 and get_allow_reverse():
-    #                 word2 = " ".join(i[::-1] for i in word.split())
-    #             self.assertEqual(response.status_code, HTTPStatus.IM_A_TEAPOT)
-    #             self.assertEqual(response.content.decode(), word)
-    #             self.assertEqual(response2.status_code, HTTPStatus.IM_A_TEAPOT)
-    #             self.assertEqual(response2.content.decode(), word2)
+        with patch.dict(os.environ, {"DJANGO_ALLOW_REVERSE": "True"}):
+            for i in range(1, 21):
+                response = client.get("/coffee/")
+                response2 = client2.get("/coffee/")
+                word = "Я чайник"
+                word2 = word
+                if i % 5 == 0 and get_allow_reverse():
+                    word2 = " ".join(i[::-1] for i in word.split())
+                self.assertEqual(response.status_code, HTTPStatus.IM_A_TEAPOT)
+                self.assertEqual(response.content.decode(), word)
+                self.assertEqual(response2.status_code, HTTPStatus.IM_A_TEAPOT)
+                self.assertEqual(response2.content.decode(), word2)
 
-    #     with patch.dict(os.environ, {"DJANGO_ALLOW_REVERSE": "False"}):
-    #         print(get_allow_reverse())
-    #         for i in range(1, 21):
-    #             response = client.get("/coffee/")
-    #             word = "Я чайник"
-    #             self.assertEqual(response.status_code, HTTPStatus.IM_A_TEAPOT)
-    #             self.assertEqual(response.content.decode("utf-8"), word)
-    #             self.assertNotIn("Я кинйач".encode(), response.content)
+        with patch.dict(os.environ, {"DJANGO_ALLOW_REVERSE": "False"}):
+
+            for i in range(1, 21):
+                response = client.get("/coffee/")
+                word = "Я чайник"
+                self.assertEqual(response.status_code, HTTPStatus.IM_A_TEAPOT)
+                self.assertEqual(response.content.decode("utf-8"), word)
+                self.assertNotIn("Я кинйач".encode(), response.content)

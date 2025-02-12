@@ -31,19 +31,15 @@ if DEBUG:
     INSTALLED_APPS.append("debug_toolbar")
 
 
-def get_allow_reverse():
-    return os.getenv("DJANGO_ALLOW_REVERSE", "true") in {
-        "true",
-        "True",
-        "yes",
-        "YES",
-        "1",
-        "y",
-        "",
-    }
-
-
-ALLOW_REVERSE = get_allow_reverse()
+ALLOW_REVERSE = os.getenv("DJANGO_ALLOW_REVERSE", "true") in {
+    "true",
+    "True",
+    "yes",
+    "YES",
+    "1",
+    "y",
+    "",
+}
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",

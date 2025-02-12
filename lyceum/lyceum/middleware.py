@@ -8,7 +8,9 @@ class ReverseRussianWordsMiddleware:
         self.get_response = get_response
 
     def __call__(self, request):
-        from .settings import ALLOW_REVERSE
+        from django.conf import settings
+
+        ALLOW_REVERSE = getattr(settings, "ALLOW_REVERSE", False)
 
         response = self.get_response(request)
         ReverseRussianWordsMiddleware.response_count += 1
