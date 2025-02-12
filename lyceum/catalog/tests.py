@@ -1,8 +1,7 @@
 from http import HTTPStatus
 
-import django.test
-
 from django.conf import settings
+import django.test
 
 from lyceum.middleware import ReverseRussianWordsMiddleware
 

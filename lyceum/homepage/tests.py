@@ -1,10 +1,8 @@
 from http import HTTPStatus
-
 from unittest.mock import patch
 
-import django.test
-
 from django.conf import settings
+import django.test
 
 from lyceum.middleware import ReverseRussianWordsMiddleware
 
