@@ -10,12 +10,10 @@ class ReverseRussianWordsMiddleware:
     def __call__(self, request):
         from django.conf import settings
 
-        ALLOW_REVERSE = getattr(settings, "ALLOW_REVERSE", False)
-
         response = self.get_response(request)
         ReverseRussianWordsMiddleware.response_count += 1
         remainder = ReverseRussianWordsMiddleware.response_count % 10
-        if ALLOW_REVERSE and remainder == 0:
+        if settings.ALLOW_REVERSE and remainder == 0:
             self._reverse_content(response)
 
         return response

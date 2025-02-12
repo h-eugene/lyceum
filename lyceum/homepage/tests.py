@@ -3,10 +3,8 @@ from http import HTTPStatus
 import django.test
 
 from lyceum.middleware import ReverseRussianWordsMiddleware
-from lyceum.settings import get_allow_reverse
 from unittest.mock import patch
-
-import os
+from django.conf import settings
 
 
 class TestStaticURL(django.test.TestCase):
@@ -19,7 +17,7 @@ class TestStaticURL(django.test.TestCase):
         for i in range(1, 21):
             response = client.get("/")
             word = "Главная"
-            if i % 10 == 0 and get_allow_reverse():
+            if i % 10 == 0 and settings.ALLOW_REVERSE:
                 word = word[::-1]
 
             self.assertEqual(response.status_code, HTTPStatus.OK)
@@ -33,7 +31,7 @@ class TestStaticURL(django.test.TestCase):
         for i in range(1, 21):
             response = client.get("/coffee/")
             word = "Я чайник"
-            if i % 10 == 0 and get_allow_reverse():
+            if i % 10 == 0 and settings.ALLOW_REVERSE:
                 # Переворачиваем каждое слово
                 word = " ".join(i[::-1] for i in word.split())
 
@@ -44,20 +42,20 @@ class TestStaticURL(django.test.TestCase):
         client2 = django.test.Client()
         client = django.test.Client()
 
-        with patch.dict(os.environ, {"DJANGO_ALLOW_REVERSE": "True"}):
+        with patch("django.conf.settings.ALLOW_REVERSE", True):
             for i in range(1, 21):
                 response = client.get("/coffee/")
                 response2 = client2.get("/coffee/")
                 word = "Я чайник"
                 word2 = word
-                if i % 5 == 0 and get_allow_reverse():
+                if i % 5 == 0 and settings.ALLOW_REVERSE:
                     word2 = " ".join(i[::-1] for i in word.split())
                 self.assertEqual(response.status_code, HTTPStatus.IM_A_TEAPOT)
                 self.assertEqual(response.content.decode(), word)
                 self.assertEqual(response2.status_code, HTTPStatus.IM_A_TEAPOT)
                 self.assertEqual(response2.content.decode(), word2)
 
-        with patch.dict(os.environ, {"DJANGO_ALLOW_REVERSE": "False"}):
+        with patch("django.conf.settings.ALLOW_REVERSE", False):
 
             for i in range(1, 21):
                 response = client.get("/coffee/")
