@@ -2,9 +2,9 @@ from http import HTTPStatus
 
 import django.test
 
-from lyceum.middleware import ReverseRussianWordsMiddleware
-
 from django.conf import settings
+
+from lyceum.middleware import ReverseRussianWordsMiddleware
 
 
 class TestStaticURL(django.test.TestCase):

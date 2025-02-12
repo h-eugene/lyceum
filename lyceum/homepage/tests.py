@@ -1,12 +1,12 @@
 from http import HTTPStatus
 
-import django.test
-
 from unittest.mock import patch
 
-from lyceum.middleware import ReverseRussianWordsMiddleware
+import django.test
 
 from django.conf import settings
+
+from lyceum.middleware import ReverseRussianWordsMiddleware
 
 
 class TestStaticURL(django.test.TestCase):
