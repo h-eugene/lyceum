@@ -33,7 +33,6 @@ class TestStaticURL(TestCase):
 class TestDynamicURL(TestCase):
     def setUp(self):
         ReverseRussianWordsMiddleware.response_count = 0
-        print("1")
 
     @parameterized.expand(
         [
