@@ -10,10 +10,12 @@ class TestMiddlware(django.test.TestCase):
     def setUp(self):
         ReverseRussianWordsMiddleware.response_count = 0
 
-    @parameterized.expand([
-        ("allow_reverse_true", True),
-        ("allow_reverse_false", False),
-    ])
+    @parameterized.expand(
+        [
+            ("allow_reverse_true", True),
+            ("allow_reverse_false", False),
+        ]
+    )
     def test_homepage_endpoint_content(self, test_name, allow_reverse):
         client = django.test.Client()
         with django.test.override_settings(ALLOW_REVERSE=allow_reverse):
@@ -28,10 +30,12 @@ class TestMiddlware(django.test.TestCase):
                     "<body>" + word + "</body>",
                 )
 
-    @parameterized.expand([
-        ("allow_reverse_true", True),
-        ("allow_reverse_false", False),
-    ])
+    @parameterized.expand(
+        [
+            ("allow_reverse_true", True),
+            ("allow_reverse_false", False),
+        ]
+    )
     def test_homepage_coffee_endpoint_content(self, test_name, allow_reverse):
         client = django.test.Client()
 
@@ -45,10 +49,12 @@ class TestMiddlware(django.test.TestCase):
 
                 self.assertEqual(response.content.decode("utf-8"), word)
 
-    @parameterized.expand([
-        ("allow_reverse_true", True),
-        ("allow_reverse_false", False),
-    ])
+    @parameterized.expand(
+        [
+            ("allow_reverse_true", True),
+            ("allow_reverse_false", False),
+        ]
+    )
     def test_homepage_coffee_endpoint_content_with_two_clients(
         self, test_name, allow_reverse
     ):
@@ -66,10 +72,12 @@ class TestMiddlware(django.test.TestCase):
                 self.assertEqual(response.content.decode(), word)
                 self.assertEqual(response2.content.decode(), word2)
 
-    @parameterized.expand([
-        ("allow_reverse_true", True),
-        ("allow_reverse_false", False),
-    ])
+    @parameterized.expand(
+        [
+            ("allow_reverse_true", True),
+            ("allow_reverse_false", False),
+        ]
+    )
     def test_about_endpoint_content(self, test_name, allow_reverse):
         client = django.test.Client()
 
@@ -86,10 +94,12 @@ class TestMiddlware(django.test.TestCase):
                     "<body>" + word + "</body>",
                 )
 
-    @parameterized.expand([
-        ("allow_reverse_true", True),
-        ("allow_reverse_false", False),
-    ])
+    @parameterized.expand(
+        [
+            ("allow_reverse_true", True),
+            ("allow_reverse_false", False),
+        ]
+    )
     def test_default_catalog_endpoint_content(self, test_name, allow_reverse):
         client = django.test.Client()
 
@@ -106,10 +116,12 @@ class TestMiddlware(django.test.TestCase):
                     "<body>" + word + "</body>",
                 )
 
-    @parameterized.expand([
-        ("allow_reverse_true", True),
-        ("allow_reverse_false", False),
-    ])
+    @parameterized.expand(
+        [
+            ("allow_reverse_true", True),
+            ("allow_reverse_false", False),
+        ]
+    )
     def test_catalog_with_index_endpoint_content(
         self, test_name, allow_reverse
     ):

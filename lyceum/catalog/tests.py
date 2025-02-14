@@ -34,13 +34,15 @@ class TestDinamicURL(django.test.TestCase):
     def setUp(self):
         ReverseRussianWordsMiddleware.response_count = 0
 
-    @parameterized.expand([
-        ("positive_number", 1, HTTPStatus.OK),
-        ("negative_number", -1, HTTPStatus.NOT_FOUND),
-        ("zero_number", 0, HTTPStatus.OK),
-        ("not_number", "dd", HTTPStatus.NOT_FOUND),
-        ("empty", "", HTTPStatus.NOT_FOUND),
-    ])
+    @parameterized.expand(
+        [
+            ("positive_number", 1, HTTPStatus.OK),
+            ("negative_number", -1, HTTPStatus.NOT_FOUND),
+            ("zero_number", 0, HTTPStatus.OK),
+            ("not_number", "dd", HTTPStatus.NOT_FOUND),
+            ("empty", "", HTTPStatus.NOT_FOUND),
+        ]
+    )
     def test_catalog_with_index_endpoint_status(
         self, test_name, index, status
     ):
@@ -60,13 +62,15 @@ class TestDinamicURL(django.test.TestCase):
             "<body>" + word + "</body>",
         )
 
-    @parameterized.expand([
-        ("positive_number", 1, HTTPStatus.OK),
-        ("negative_number", -1, HTTPStatus.NOT_FOUND),
-        ("zero_number", 0, HTTPStatus.NOT_FOUND),
-        ("not_number", "dd", HTTPStatus.NOT_FOUND),
-        ("empty", "", HTTPStatus.NOT_FOUND),
-    ])
+    @parameterized.expand(
+        [
+            ("positive_number", 1, HTTPStatus.OK),
+            ("negative_number", -1, HTTPStatus.NOT_FOUND),
+            ("zero_number", 0, HTTPStatus.NOT_FOUND),
+            ("not_number", "dd", HTTPStatus.NOT_FOUND),
+            ("empty", "", HTTPStatus.NOT_FOUND),
+        ]
+    )
     def test_catalog_with_not_negative_number_regex_status(
         self, test_name, index, status
     ):
@@ -81,13 +85,15 @@ class TestDinamicURL(django.test.TestCase):
         response = client.get("/catalog/re/123/")
         self.assertEqual(response.content.decode("utf-8"), "123")
 
-    @parameterized.expand([
-        ("positive_number", 1, HTTPStatus.OK),
-        ("negative_number", -1, HTTPStatus.NOT_FOUND),
-        ("zero_number", 0, HTTPStatus.NOT_FOUND),
-        ("not_number", "dd", HTTPStatus.NOT_FOUND),
-        ("empty", "", HTTPStatus.NOT_FOUND),
-    ])
+    @parameterized.expand(
+        [
+            ("positive_number", 1, HTTPStatus.OK),
+            ("negative_number", -1, HTTPStatus.NOT_FOUND),
+            ("zero_number", 0, HTTPStatus.NOT_FOUND),
+            ("not_number", "dd", HTTPStatus.NOT_FOUND),
+            ("empty", "", HTTPStatus.NOT_FOUND),
+        ]
+    )
     def test_catalog_with_converter_to_posint_status(
         self, test_name, index, status
     ):
