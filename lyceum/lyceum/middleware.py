@@ -9,9 +9,8 @@ class ReverseRussianWordsMiddleware:
         from django.conf import settings
 
         return (
-            settings.ALLOW_REVERSE
-            and ReverseRussianWordsMiddleware.response_count
-            == self.REVERSE_NUMBER
+            settings.ALLOW_REVERSE and
+            ReverseRussianWordsMiddleware.response_count == self.REVERSE_NUMBER
         )
 
     def __init__(self, get_response):
