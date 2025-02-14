@@ -24,7 +24,7 @@ class ReverseRussianWordsMiddleware:
             content = response.content.decode()
 
             reversed_content = re.sub(
-                r"[а-яА-ЯёЁ]+",
+                r"\b[а-яА-ЯёЁ]+\b",
                 lambda m: m.group(0)[::-1],
                 content,
             )
