@@ -5,14 +5,15 @@ from dotenv import load_dotenv
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-load_dotenv(os.path.join(BASE_DIR, "../.env"), override=True)
+load_dotenv(override=True)
 
 SECRET_KEY = os.getenv("DJANGO_SECRET_KEY", "default")
 
-DEBUG = os.getenv("DJANGO_DEBUG", "False").lower() in ("true", "1", "yes")
+DEBUG_TRUE_VALUES = {"true", "1", "yes"}
 
-if not DEBUG:
-    ALLOWED_HOSTS = os.getenv("DJANGO_ALLOWED_HOSTS", "127.0.0.1").split(",")
+DEBUG = os.getenv("DJANGO_DEBUG", "False").lower() in DEBUG_TRUE_VALUES
+
+ALLOWED_HOSTS = os.getenv("DJANGO_ALLOWED_HOSTS", "*").split(",")
 
 
 INSTALLED_APPS = [
@@ -30,16 +31,17 @@ INSTALLED_APPS = [
 if DEBUG:
     INSTALLED_APPS.append("debug_toolbar")
 
-
-ALLOW_REVERSE = os.getenv("DJANGO_ALLOW_REVERSE", "true") in {
+ALLOW_REVERSE_TRUE_VALUES = {
     "true",
-    "True",
     "yes",
-    "YES",
     "1",
     "y",
     "",
 }
+ALLOW_REVERSE = (
+    os.getenv("DJANGO_ALLOW_REVERSE", "true").lower()
+    in ALLOW_REVERSE_TRUE_VALUES
+)
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
@@ -87,20 +89,20 @@ DATABASES = {
 }
 
 
-valid = "django.contrib.auth.password_validation"
+AUTH_PASSWORD_VALID = "django.contrib.auth.password_validation"
 
 AUTH_PASSWORD_VALIDATORS = [
     {
-        "NAME": f"{valid}.UserAttributeSimilarityValidator",
+        "NAME": f"{AUTH_PASSWORD_VALID}.UserAttributeSimilarityValidator",
     },
     {
-        "NAME": f"{valid}.MinimumLengthValidator",
+        "NAME": f"{AUTH_PASSWORD_VALID}.MinimumLengthValidator",
     },
     {
-        "NAME": f"{valid}.CommonPasswordValidator",
+        "NAME": f"{AUTH_PASSWORD_VALID}.CommonPasswordValidator",
     },
     {
-        "NAME": f"{valid}.NumericPasswordValidator",
+        "NAME": f"{AUTH_PASSWORD_VALID}.NumericPasswordValidator",
     },
 ]
 
