@@ -21,13 +21,13 @@ class TestMiddlware(TestCase):
         with override_settings(ALLOW_REVERSE=allow_reverse):
             for i in range(1, 21):
                 response = client.get("/")
-                word = "Главная"
+                text = "Главная"
                 if i % 10 == 0 and settings.ALLOW_REVERSE:
-                    word = word[::-1]
+                    text = text[::-1]
 
                 self.assertEqual(
                     response.content.decode("utf-8"),
-                    "<body>" + word + "</body>",
+                    "<body>" + text + "</body>",
                 )
 
     @parameterized.expand(
@@ -42,12 +42,12 @@ class TestMiddlware(TestCase):
         with override_settings(ALLOW_REVERSE=allow_reverse):
             for i in range(1, 21):
                 response = client.get("/coffee/")
-                word = "Я чайник"
+                text = "Я чайник"
                 if i % 10 == 0 and settings.ALLOW_REVERSE:
                     # Переворачиваем каждое слово
-                    word = " ".join(i[::-1] for i in word.split())
+                    text = " ".join(i[::-1] for i in text.split())
 
-                self.assertEqual(response.content.decode("utf-8"), word)
+                self.assertEqual(response.content.decode("utf-8"), text)
 
     @parameterized.expand(
         [
@@ -65,12 +65,12 @@ class TestMiddlware(TestCase):
             for i in range(1, 21):
                 response = client.get("/coffee/")
                 response2 = client2.get("/coffee/")
-                word = "Я чайник"
-                word2 = word
+                text = "Я чайник"
+                text2 = text
                 if i % 5 == 0 and settings.ALLOW_REVERSE:
-                    word2 = " ".join(i[::-1] for i in word.split())
-                self.assertEqual(response.content.decode(), word)
-                self.assertEqual(response2.content.decode(), word2)
+                    text2 = " ".join(i[::-1] for i in text.split())
+                self.assertEqual(response.content.decode(), text)
+                self.assertEqual(response2.content.decode(), text2)
 
     @parameterized.expand(
         [
@@ -84,14 +84,14 @@ class TestMiddlware(TestCase):
         with override_settings(ALLOW_REVERSE=allow_reverse):
             for i in range(1, 21):
                 response = client.get("/about/")
-                word = "О проекте"
+                text = "О проекте"
 
                 if i % 10 == 0 and settings.ALLOW_REVERSE:
-                    word = " ".join(i[::-1] for i in word.split())
+                    text = " ".join(i[::-1] for i in text.split())
 
                 self.assertEqual(
                     response.content.decode("utf-8"),
-                    "<body>" + word + "</body>",
+                    "<body>" + text + "</body>",
                 )
 
     @parameterized.expand(
@@ -106,14 +106,14 @@ class TestMiddlware(TestCase):
         with override_settings(ALLOW_REVERSE=allow_reverse):
             for i in range(1, 21):
                 response = client.get("/catalog/")
-                word = "Список элементов"
+                text = "Список элементов"
 
                 if i % 10 == 0 and settings.ALLOW_REVERSE:
-                    word = " ".join(i[::-1] for i in word.split())
+                    text = " ".join(i[::-1] for i in text.split())
 
                 self.assertEqual(
                     response.content.decode("utf-8"),
-                    "<body>" + word + "</body>",
+                    "<body>" + text + "</body>",
                 )
 
     @parameterized.expand(
@@ -130,12 +130,12 @@ class TestMiddlware(TestCase):
         with override_settings(ALLOW_REVERSE=allow_reverse):
             for i in range(1, 21):
                 response = client.get("/catalog/1/")
-                word = "Подробно элемент"
+                text = "Подробно элемент"
 
                 if i % 10 == 0 and settings.ALLOW_REVERSE:
-                    word = " ".join(i[::-1] for i in word.split())
+                    text = " ".join(i[::-1] for i in text.split())
 
                 self.assertEqual(
                     response.content.decode("utf-8"),
-                    "<body>" + word + "</body>",
+                    "<body>" + text + "</body>",
                 )

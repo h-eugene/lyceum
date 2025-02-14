@@ -20,9 +20,9 @@ class TestStaticURL(TestCase):
         client = Client()
 
         response = client.get("/about/")
-        word = "О проекте"
+        text = "О проекте"
 
         self.assertEqual(
             response.content.decode("utf-8"),
-            "<body>" + word + "</body>",
+            "<body>" + text + "</body>",
         )

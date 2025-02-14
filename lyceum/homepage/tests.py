@@ -20,10 +20,10 @@ class TestStaticURL(TestCase):
         client = Client()
 
         response = client.get("/")
-        word = "Главная"
+        text = "Главная"
 
         self.assertEqual(
-            response.content.decode("utf-8"), "<body>" + word + "</body>"
+            response.content.decode("utf-8"), "<body>" + text + "</body>"
         )
 
     def test_homepage_coffee_endpoint_status(self):
@@ -37,6 +37,6 @@ class TestStaticURL(TestCase):
         client = Client()
 
         response = client.get("/coffee/")
-        word = "Я чайник"
+        text = "Я чайник"
 
-        self.assertEqual(response.content.decode("utf-8"), word)
+        self.assertEqual(response.content.decode("utf-8"), text)

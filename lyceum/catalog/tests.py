@@ -22,15 +22,15 @@ class TestStaticURL(TestCase):
         client = Client()
 
         response = client.get("/catalog/")
-        word = "Список элементов"
+        text = "Список элементов"
 
         self.assertEqual(
             response.content.decode("utf-8"),
-            "<body>" + word + "</body>",
+            "<body>" + text + "</body>",
         )
 
 
-class TestDinamicURL(TestCase):
+class TestDynamicURL(TestCase):
     def setUp(self):
         ReverseRussianWordsMiddleware.response_count = 0
 
@@ -55,11 +55,11 @@ class TestDinamicURL(TestCase):
         client = Client()
 
         response = client.get("/catalog/1/")
-        word = "Подробно элемент"
+        text = "Подробно элемент"
 
         self.assertEqual(
             response.content.decode("utf-8"),
-            "<body>" + word + "</body>",
+            "<body>" + text + "</body>",
         )
 
     @parameterized.expand(
