@@ -71,7 +71,7 @@ class TestDynamicURL(TestCase):
             ("empty", "", HTTPStatus.NOT_FOUND),
         ]
     )
-    def test_catalog_with_not_negative_number_regex_status(
+    def test_catalog_with_positive_number_regex_status(
         self, test_name, index, status
     ):
         client = Client()
