@@ -1,12 +1,12 @@
 from django.conf import settings
-import django.test
+from django.test import Client, TestCase, override_settings
 
 from lyceum.middleware import ReverseRussianWordsMiddleware
 
 from parameterized import parameterized
 
 
-class TestMiddlware(django.test.TestCase):
+class TestMiddlware(TestCase):
     def setUp(self):
         ReverseRussianWordsMiddleware.response_count = 0
 
@@ -17,8 +17,8 @@ class TestMiddlware(django.test.TestCase):
         ]
     )
     def test_homepage_endpoint_content(self, test_name, allow_reverse):
-        client = django.test.Client()
-        with django.test.override_settings(ALLOW_REVERSE=allow_reverse):
+        client = Client()
+        with override_settings(ALLOW_REVERSE=allow_reverse):
             for i in range(1, 21):
                 response = client.get("/")
                 word = "Главная"
@@ -37,9 +37,9 @@ class TestMiddlware(django.test.TestCase):
         ]
     )
     def test_homepage_coffee_endpoint_content(self, test_name, allow_reverse):
-        client = django.test.Client()
+        client = Client()
 
-        with django.test.override_settings(ALLOW_REVERSE=allow_reverse):
+        with override_settings(ALLOW_REVERSE=allow_reverse):
             for i in range(1, 21):
                 response = client.get("/coffee/")
                 word = "Я чайник"
@@ -58,10 +58,10 @@ class TestMiddlware(django.test.TestCase):
     def test_homepage_coffee_endpoint_content_with_two_clients(
         self, test_name, allow_reverse
     ):
-        client2 = django.test.Client()
-        client = django.test.Client()
+        client2 = Client()
+        client = Client()
 
-        with django.test.override_settings(ALLOW_REVERSE=allow_reverse):
+        with override_settings(ALLOW_REVERSE=allow_reverse):
             for i in range(1, 21):
                 response = client.get("/coffee/")
                 response2 = client2.get("/coffee/")
@@ -79,9 +79,9 @@ class TestMiddlware(django.test.TestCase):
         ]
     )
     def test_about_endpoint_content(self, test_name, allow_reverse):
-        client = django.test.Client()
+        client = Client()
 
-        with django.test.override_settings(ALLOW_REVERSE=allow_reverse):
+        with override_settings(ALLOW_REVERSE=allow_reverse):
             for i in range(1, 21):
                 response = client.get("/about/")
                 word = "О проекте"
@@ -101,9 +101,9 @@ class TestMiddlware(django.test.TestCase):
         ]
     )
     def test_default_catalog_endpoint_content(self, test_name, allow_reverse):
-        client = django.test.Client()
+        client = Client()
 
-        with django.test.override_settings(ALLOW_REVERSE=allow_reverse):
+        with override_settings(ALLOW_REVERSE=allow_reverse):
             for i in range(1, 21):
                 response = client.get("/catalog/")
                 word = "Список элементов"
@@ -125,9 +125,9 @@ class TestMiddlware(django.test.TestCase):
     def test_catalog_with_index_endpoint_content(
         self, test_name, allow_reverse
     ):
-        client = django.test.Client()
+        client = Client()
 
-        with django.test.override_settings(ALLOW_REVERSE=allow_reverse):
+        with override_settings(ALLOW_REVERSE=allow_reverse):
             for i in range(1, 21):
                 response = client.get("/catalog/1/")
                 word = "Подробно элемент"

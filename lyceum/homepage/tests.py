@@ -1,23 +1,23 @@
 from http import HTTPStatus
 
-import django.test
+from django.test import Client, TestCase
 
 from lyceum.middleware import ReverseRussianWordsMiddleware
 
 
-class TestStaticURL(django.test.TestCase):
+class TestStaticURL(TestCase):
     def setUp(self):
         ReverseRussianWordsMiddleware.response_count = 0
 
     def test_homepage_endpoint_status(self):
-        client = django.test.Client()
+        client = Client()
 
         response = client.get("/")
 
         self.assertEqual(response.status_code, HTTPStatus.OK)
 
     def test_homepage_endpoint_content(self):
-        client = django.test.Client()
+        client = Client()
 
         response = client.get("/")
         word = "Главная"
@@ -27,14 +27,14 @@ class TestStaticURL(django.test.TestCase):
         )
 
     def test_homepage_coffee_endpoint_status(self):
-        client = django.test.Client()
+        client = Client()
 
         response = client.get("/coffee/")
 
         self.assertEqual(response.status_code, HTTPStatus.IM_A_TEAPOT)
 
     def test_homepage_coffee_endpoint_content(self):
-        client = django.test.Client()
+        client = Client()
 
         response = client.get("/coffee/")
         word = "Я чайник"

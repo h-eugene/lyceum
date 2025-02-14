@@ -1,25 +1,25 @@
 from http import HTTPStatus
 
-import django.test
+from django.test import Client, TestCase
 
 from lyceum.middleware import ReverseRussianWordsMiddleware
 
 from parameterized import parameterized
 
 
-class TestStaticURL(django.test.TestCase):
+class TestStaticURL(TestCase):
     def setUp(self):
         ReverseRussianWordsMiddleware.response_count = 0
 
     def test_default_catalog_endpoint_status(self):
-        client = django.test.Client()
+        client = Client()
 
         response = client.get("/catalog/")
 
         self.assertEqual(response.status_code, HTTPStatus.OK)
 
     def test_default_catalog_endpoint_content(self):
-        client = django.test.Client()
+        client = Client()
 
         response = client.get("/catalog/")
         word = "Список элементов"
@@ -30,7 +30,7 @@ class TestStaticURL(django.test.TestCase):
         )
 
 
-class TestDinamicURL(django.test.TestCase):
+class TestDinamicURL(TestCase):
     def setUp(self):
         ReverseRussianWordsMiddleware.response_count = 0
 
@@ -46,13 +46,13 @@ class TestDinamicURL(django.test.TestCase):
     def test_catalog_with_index_endpoint_status(
         self, test_name, index, status
     ):
-        client = django.test.Client()
+        client = Client()
 
         response = client.get(f"/catalog/{index}/")
         self.assertEqual(response.status_code, status)
 
     def test_catalog_with_index_endpoint_content(self):
-        client = django.test.Client()
+        client = Client()
 
         response = client.get("/catalog/1/")
         word = "Подробно элемент"
@@ -74,13 +74,13 @@ class TestDinamicURL(django.test.TestCase):
     def test_catalog_with_not_negative_number_regex_status(
         self, test_name, index, status
     ):
-        client = django.test.Client()
+        client = Client()
 
         response = client.get(f"/catalog/re/{index}/")
         self.assertEqual(response.status_code, status)
 
     def test_catalog_with_positive_number_regex_content(self):
-        client = django.test.Client()
+        client = Client()
 
         response = client.get("/catalog/re/123/")
         self.assertEqual(response.content.decode("utf-8"), "123")
@@ -97,13 +97,13 @@ class TestDinamicURL(django.test.TestCase):
     def test_catalog_with_converter_to_posint_status(
         self, test_name, index, status
     ):
-        client = django.test.Client()
+        client = Client()
 
         response = client.get(f"/catalog/converter/{index}/")
         self.assertEqual(response.status_code, status)
 
     def test_catalog_with_converter_to_posint_content(self):
-        client = django.test.Client()
+        client = Client()
 
         response = client.get("/catalog/converter/123/")
         self.assertEqual(response.content.decode("utf-8"), "123")
