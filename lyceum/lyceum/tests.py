@@ -6,6 +6,7 @@ from lyceum.middleware import ReverseRussianWordsMiddleware
 
 class TestMiddlwareWithAllowReverse(TestCase):
     def setUp(self):
+        super().setUp()
         ReverseRussianWordsMiddleware.response_count = 0
 
     def test_homepage_endpoint_content(
