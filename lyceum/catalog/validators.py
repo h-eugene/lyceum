@@ -7,7 +7,7 @@ def has_prevoshodno_or_roskoshno_word(value):
     value_lower = value.lower()
     if not re.search(r"\b(превосходно|роскошно)\b", value_lower):
         raise ValidationError(
-            "Текст должен содержать слово 'превосходно' или 'роскошно'."
+            "Текст должен содержать слово 'превосходно' или 'роскошно'.",
         )
 
 

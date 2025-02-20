@@ -24,7 +24,8 @@ class TestStaticURL(TestCase):
         text = "Главная"
 
         self.assertEqual(
-            response.content.decode("utf-8"), "<body>" + text + "</body>"
+            response.content.decode("utf-8"),
+            "<body>" + text + "</body>",
         )
 
     def test_homepage_coffee_endpoint_status(self):

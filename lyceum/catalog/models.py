@@ -8,7 +8,7 @@ from catalog.validators import (
 from core.models import BaseModel
 
 
-class tag(BaseModel):
+class Tag(BaseModel):
     slug = models.CharField(
         max_length=200,
         unique=True,
@@ -28,7 +28,7 @@ class tag(BaseModel):
         return self.name[:15]
 
 
-class category(BaseModel):
+class Category(BaseModel):
     slug = models.CharField(
         max_length=200,
         unique=True,
@@ -56,7 +56,7 @@ class category(BaseModel):
         return self.name[:15]
 
 
-class item(BaseModel):
+class Item(BaseModel):
     text = models.TextField(
         validators=[has_prevoshodno_or_roskoshno_word],
         verbose_name="Текст",
@@ -67,14 +67,14 @@ class item(BaseModel):
         ),
     )
     category = models.ForeignKey(
-        category,
+        Category,
         on_delete=models.CASCADE,
         related_name="items",
         verbose_name="Категория",
         help_text="Выберите категорию, к которой относится товар.",
     )
     tags = models.ManyToManyField(
-        tag,
+        Tag,
         related_name="items",
         verbose_name="Теги",
         help_text="Выберите один или несколько тегов для этого товара.",
