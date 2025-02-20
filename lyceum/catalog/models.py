@@ -1,14 +1,14 @@
 from django.db import models
 
-from core.models import BaseModel
 from catalog.validators import (
+    has_prevoshodno_or_roskoshno_word,
     validate_slug,
     validate_weight,
-    has_prevoshodno_or_roskoshno_word,
 )
+from core.models import BaseModel
 
 
-class Tag(BaseModel):
+class tag(BaseModel):
     slug = models.CharField(
         max_length=200,
         unique=True,
@@ -21,14 +21,14 @@ class Tag(BaseModel):
     )
 
     class Meta:
-        verbose_name = "Тэг"
-        verbose_name_plural = "Тэги"
+        verbose_name = "Тег"
+        verbose_name_plural = "Теги"
 
     def __str__(self):
         return self.name[:15]
 
 
-class Category(BaseModel):
+class category(BaseModel):
     slug = models.CharField(
         max_length=200,
         unique=True,
@@ -56,7 +56,7 @@ class Category(BaseModel):
         return self.name[:15]
 
 
-class Item(BaseModel):
+class item(BaseModel):
     text = models.TextField(
         validators=[has_prevoshodno_or_roskoshno_word],
         verbose_name="Текст",
@@ -67,14 +67,14 @@ class Item(BaseModel):
         ),
     )
     category = models.ForeignKey(
-        Category,
+        category,
         on_delete=models.CASCADE,
         related_name="items",
         verbose_name="Категория",
         help_text="Выберите категорию, к которой относится товар.",
     )
     tags = models.ManyToManyField(
-        Tag,
+        tag,
         related_name="items",
         verbose_name="Теги",
         help_text="Выберите один или несколько тегов для этого товара.",

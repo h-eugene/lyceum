@@ -2,11 +2,11 @@ import django.contrib.admin
 
 import catalog.models
 
-django.contrib.admin.site.register(catalog.models.Category)
-django.contrib.admin.site.register(catalog.models.Tag)
+django.contrib.admin.site.register(catalog.models.category)
+django.contrib.admin.site.register(catalog.models.tag)
 
 
-@django.contrib.admin.register(catalog.models.Item)
+@django.contrib.admin.register(catalog.models.item)
 class ItemAdmin(django.contrib.admin.ModelAdmin):
     list_display = ("name", "is_published")
     list_editable = ("is_published",)

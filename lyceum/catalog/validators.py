@@ -6,7 +6,7 @@ from django.core.exceptions import ValidationError
 def has_prevoshodno_or_roskoshno_word(value):
     if not ("превосходно" in value or "роскошно" in value):
         raise ValidationError(
-            "Текст должен содержать слово 'превосходно' или 'роскошно'."
+            "Текст должен содержать слово 'превосходно' или 'роскошно'.",
         )
 
 
@@ -16,7 +16,10 @@ def validate_weight(value):
 
 
 def validate_slug(value):
-    if not re.match(r"^[a-zA-Z0-9-_]+$", value):
+    if not re.match(
+        r"^[a-zA-Z0-9-_]+$",
+        value,
+    ):
         raise ValidationError(
-            "Слаг может содержать только буквы, цифры, '-' и '_'"
+            "Слаг может содержать только буквы, цифры, '-' и '_'",
         )
