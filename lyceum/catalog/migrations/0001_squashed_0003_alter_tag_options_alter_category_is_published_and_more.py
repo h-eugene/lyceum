@@ -10,7 +10,10 @@ class Migration(migrations.Migration):
     replaces = [
         ("catalog", "0001_initial"),
         ("catalog", "0002_alter_category_options_alter_item_options_and_more"),
-        ("catalog", "0003_alter_tag_options_alter_category_is_published_and_more"),
+        (
+            "catalog",
+            "0003_alter_tag_options_alter_category_is_published_and_more",
+        ),
     ]
 
     initial = True
