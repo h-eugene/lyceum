@@ -3,9 +3,7 @@ from django.contrib import admin
 import django.urls
 
 urlpatterns = [
-    django.urls.re_path(
-        r"^(?:.*/)?coffee/", django.urls.include("core.urls")
-    ),
+    django.urls.re_path(r"^(?:.*/)?coffee/", django.urls.include("core.urls")),
     django.urls.path(
         "",
         django.urls.include("homepage.urls"),

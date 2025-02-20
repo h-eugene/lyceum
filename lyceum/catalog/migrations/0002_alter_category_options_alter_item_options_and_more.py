@@ -14,7 +14,10 @@ class Migration(migrations.Migration):
     operations = [
         migrations.AlterModelOptions(
             name="category",
-            options={"verbose_name": "Категория", "verbose_name_plural": "Категории"},
+            options={
+                "verbose_name": "Категория",
+                "verbose_name_plural": "Категории",
+            },
         ),
         migrations.AlterModelOptions(
             name="item",
@@ -71,7 +74,9 @@ class Migration(migrations.Migration):
             name="text",
             field=models.TextField(
                 help_text="Введите текст товара, который обязательно должен содержать слово 'превосходно' или 'роскошно'.",
-                validators=[catalog.validators.has_prevoshodno_or_roskoshno_word],
+                validators=[
+                    catalog.validators.has_prevoshodno_or_roskoshno_word
+                ],
                 verbose_name="Текст",
             ),
         ),
