@@ -1,6 +1,6 @@
 [flake8]
 max-line-length = 79
-exclude = venv/, .git/, __pycache__/, migrations/
+exclude = venv/, .git/, __pycache__/, */migrations/
 inline-quotes = double
 multiline-quotes = double 
 docstring-quotes = double
