@@ -5,6 +5,10 @@ from django.core.exceptions import ValidationError
 
 class ValidateMustContain:
     def __init__(self, *required_words):
+        if not required_words:
+            raise ValueError(
+                "Должно быть указано хотя бы одно обязательное слово."
+            )
         self.required_words = required_words
 
     def __call__(self, value):
@@ -19,7 +23,7 @@ class ValidateMustContain:
 
     def deconstruct(self):
         return (
-            "catalog.validators.MustContainValidator",
+            "catalog.validators.ValidateMustContain",
             self.required_words,
             {},
         )
