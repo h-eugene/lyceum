@@ -6,9 +6,9 @@ django.contrib.admin.site.register(catalog.models.Category)
 django.contrib.admin.site.register(catalog.models.Tag)
 
 
-NAME_FIELD = catalog.models.Item._meta.get_field("name").name
-IS_PUBLISHED_FIELD = catalog.models.Item._meta.get_field("is_published").name
-TAGS_FIELD = catalog.models.Item._meta.get_field("tags").name
+NAME_FIELD = catalog.models.Item.name.field.name
+IS_PUBLISHED_FIELD = catalog.models.Item.is_published.field.name
+TAGS_FIELD = catalog.models.Item.tags.field.name
 
 
 @django.contrib.admin.register(catalog.models.Item)
