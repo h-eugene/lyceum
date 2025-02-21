@@ -44,7 +44,7 @@ class Category(BaseModel):
         verbose_name="Вес",
         validators=[validate_weight],
         help_text=(
-            "Укажите вес категории (от 1 до 32767; значение по умолчанию 100)."
+            "Вес категории от 1 до 32767 (по умолчанию 100)."
         ),
     )
 
@@ -73,7 +73,7 @@ class Item(BaseModel):
         on_delete=models.CASCADE,
         related_name="items",
         verbose_name="Категория",
-        help_text="Выберите категорию, к которой относится товар.",
+        help_text="Выберите категорию для этого товара.",
     )
     tags = models.ManyToManyField(
         Tag,

@@ -14,7 +14,7 @@ class ValidateMustContain:
         ):
             raise ValidationError(
                 "Текст должен содержать хотя бы одно из слов: "
-                f"{', '.join(self.required_words)}."
+                f"{', '.join(self.required_words)}.",
             )
 
     def deconstruct(self):
