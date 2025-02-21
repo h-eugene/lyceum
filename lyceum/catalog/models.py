@@ -43,9 +43,7 @@ class Category(BaseModel):
         default=100,
         verbose_name="Вес",
         validators=[validate_weight],
-        help_text=(
-            "Вес категории от 1 до 32767 (по умолчанию 100)."
-        ),
+        help_text=("Вес категории от 1 до 32767 (по умолчанию 100)."),
     )
 
     class Meta:
