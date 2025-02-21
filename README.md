@@ -60,7 +60,8 @@ python manage.py migrate
 
 Для создания ER-диаграммы базы данных (файл `ER.jpg` в корне репозитория) выполните:
 ```sh
-python manage.py graph_models -a -g -o ER.jpg
+cd ..
+python ./lyceum/manage.py graph_models -a -g -o ER.jpg
 ```
 Убедитесь, что GraphViz и dev зависимости установлены.
 
