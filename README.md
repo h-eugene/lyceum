@@ -62,7 +62,7 @@ python manage.py migrate
 ```sh
 python manage.py graph_models -a -g -o ER.jpg
 ```
-Убедитесь, что GraphViz установлен.
+Убедитесь, что GraphViz и dev зависимости установлены.
 
 ---
 
