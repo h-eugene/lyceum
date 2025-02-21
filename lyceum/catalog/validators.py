@@ -3,11 +3,25 @@ import re
 from django.core.exceptions import ValidationError
 
 
-def has_prevoshodno_or_roskoshno_word(value):
-    value_lower = value.lower()
-    if not re.search(r"\b(превосходно|роскошно)\b", value_lower):
-        raise ValidationError(
-            "Текст должен содержать слово 'превосходно' или 'роскошно'.",
+class ValidateMustContain:
+    def __init__(self, *required_words):
+        self.required_words = required_words
+
+    def __call__(self, value):
+        value_lower = value.lower()
+        if not any(
+            word.lower() in value_lower for word in self.required_words
+        ):
+            raise ValidationError(
+                "Текст должен содержать хотя бы одно из слов: "
+                f"{', '.join(self.required_words)}."
+            )
+
+    def deconstruct(self):
+        return (
+            "catalog.validators.MustContainValidator",
+            self.required_words,
+            {},
         )
 
 

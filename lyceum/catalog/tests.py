@@ -154,7 +154,6 @@ class CatalogModelTests(TestCase):
         self.assertIn(self.tag, item.tags.all())
 
     def test_create_catalog_item_invalid_text(self):
-        # Негативный тест: текст без слов "превосходно" или "роскошно"
         item = catalog.models.Item(
             name="Тестовый товар",
             text="Этот товар просто хороший",
@@ -162,11 +161,10 @@ class CatalogModelTests(TestCase):
             category=self.category,
         )
         with self.assertRaises(ValidationError):
-            item.full_clean()  # Должен выбросить исключение из-за валидатора
+            item.full_clean()
             item.save()
 
     def test_catalog_item_text_with_luxury(self):
-        # Позитивный тест: текст с "роскошно"
         item = catalog.models.Item(
             name="Роскошный товар",
             text="Этот товар выглядит роскошно!",
@@ -178,7 +176,6 @@ class CatalogModelTests(TestCase):
         self.assertEqual(catalog.models.Item.objects.count(), 1)
 
     def test_catalog_tag_creation(self):
-        # Тест создания тега
         tag = catalog.models.Tag.objects.create(
             name="Новый тег",
             slug="new-tag",
@@ -187,12 +184,11 @@ class CatalogModelTests(TestCase):
         self.assertEqual(
             catalog.models.Tag.objects.count(),
             2,
-        )  # 1 из setUp + новый
+        )
         self.assertEqual(tag.name, "Новый тег")
         self.assertFalse(tag.is_published)
 
     def test_catalog_category_weight_validation(self):
-        # Тест ограничения веса (0 не входит, минимум 1)
         with self.assertRaises(ValidationError):
             category = catalog.models.Category(
                 name="Недопустимая категория",
@@ -203,7 +199,6 @@ class CatalogModelTests(TestCase):
             category.save()
 
     def test_catalog_category_default_weight(self):
-        # Тест значения веса по умолчанию
         category = catalog.models.Category(
             name="Категория по умолчанию",
             slug="default-category",

@@ -1,9 +1,9 @@
 from django.db import models
 
 from catalog.validators import (
-    has_prevoshodno_or_roskoshno_word,
     validate_slug,
     validate_weight,
+    ValidateMustContain,
 )
 from core.models import BaseModel
 
@@ -58,7 +58,9 @@ class Category(BaseModel):
 
 class Item(BaseModel):
     text = models.TextField(
-        validators=[has_prevoshodno_or_roskoshno_word],
+        validators=[
+            ValidateMustContain("Превосходно", "Роскошно"),
+        ],
         verbose_name="Текст",
         help_text=(
             "Введите текст товара, "
