@@ -1,14 +1,12 @@
 from http import HTTPStatus
 
-from django.test import Client, TestCase
-
 from django.core.exceptions import ValidationError
+from django.test import Client, TestCase
 
 from parameterized import parameterized
 
-from lyceum.middleware import ReverseRussianWordsMiddleware
-
 import catalog.models
+from lyceum.middleware import ReverseRussianWordsMiddleware
 
 
 class TestStaticURL(TestCase):

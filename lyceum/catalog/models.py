@@ -21,8 +21,8 @@ class Tag(BaseModel):
     )
 
     class Meta:
-        verbose_name = "Тег"
-        verbose_name_plural = "Теги"
+        verbose_name = "тег"
+        verbose_name_plural = "теги"
 
     def __str__(self):
         return self.name[:15]
@@ -49,8 +49,8 @@ class Category(BaseModel):
     )
 
     class Meta:
-        verbose_name = "Категория"
-        verbose_name_plural = "Категории"
+        verbose_name = "категория"
+        verbose_name_plural = "категории"
 
     def __str__(self):
         return self.name[:15]
@@ -81,8 +81,8 @@ class Item(BaseModel):
     )
 
     class Meta:
-        verbose_name = "Товар"
-        verbose_name_plural = "Товары"
+        verbose_name = "товар"
+        verbose_name_plural = "товары"
 
     def __str__(self):
         return self.name[:15]
