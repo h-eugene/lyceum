@@ -162,7 +162,6 @@ class CatalogModelTests(TestCase):
         )
         with self.assertRaises(ValidationError):
             item.full_clean()
-            item.save()
 
     def test_catalog_item_text_with_luxury(self):
         item = catalog.models.Item(
@@ -174,6 +173,36 @@ class CatalogModelTests(TestCase):
         item.full_clean()
         item.save()
         self.assertEqual(catalog.models.Item.objects.count(), 1)
+
+    def test_catalog_item_invalid_text_with_substring(self):
+        item = catalog.models.Item(
+            name="Недопустимый товар",
+            text="Этот товар неПревосходно работает!",
+            is_published=True,
+            category=self.category,
+        )
+        with self.assertRaises(ValidationError):
+            item.full_clean()
+
+    def test_catalog_item_invalid_text_with_partial_word(self):
+        item = catalog.models.Item(
+            name="Недопустимый товар",
+            text="Этот товар превосходный!",
+            is_published=True,
+            category=self.category,
+        )
+        with self.assertRaises(ValidationError):
+            item.full_clean()
+
+    def test_catalog_item_empty_text(self):
+        item = catalog.models.Item(
+            name="Пустой товар",
+            text="",
+            is_published=True,
+            category=self.category,
+        )
+        with self.assertRaises(ValidationError):
+            item.full_clean()
 
     def test_catalog_tag_creation(self):
         tag = catalog.models.Tag.objects.create(
@@ -188,6 +217,24 @@ class CatalogModelTests(TestCase):
         self.assertEqual(tag.name, "Новый тег")
         self.assertFalse(tag.is_published)
 
+    def test_catalog_tag_unique_slug(self):
+        with self.assertRaises(ValidationError):
+            tag = catalog.models.Tag(
+                name="Дубликат тег",
+                slug="test-tag",
+                is_published=True,
+            )
+            tag.full_clean()
+
+    def test_catalog_tag_invalid_slug(self):
+        with self.assertRaises(ValidationError):
+            tag = catalog.models.Tag(
+                name="Недопустимый тег",
+                slug="test@tag",
+                is_published=True,
+            )
+            tag.full_clean()
+
     def test_catalog_category_weight_validation(self):
         with self.assertRaises(ValidationError):
             category = catalog.models.Category(
@@ -196,7 +243,16 @@ class CatalogModelTests(TestCase):
                 weight=0,
             )
             category.full_clean()
-            category.save()
+
+    def test_catalog_category_weight_max(self):
+        category = catalog.models.Category(
+            name="Категория с максимальным весом",
+            slug="max-weight",
+            weight=32767,
+        )
+        category.full_clean()
+        category.save()
+        self.assertEqual(category.weight, 32767)
 
     def test_catalog_category_default_weight(self):
         category = catalog.models.Category(
@@ -206,3 +262,48 @@ class CatalogModelTests(TestCase):
         category.full_clean()
         category.save()
         self.assertEqual(category.weight, 100)
+
+    def test_catalog_category_unique_slug(self):
+        with self.assertRaises(ValidationError):
+            category = catalog.models.Category(
+                name="Дубликат категория",
+                slug="test-category",
+                weight=100,
+                is_published=True,
+            )
+            category.full_clean()
+
+    def test_item_category_relationship(self):
+        item = catalog.models.Item(
+            name="Товар с категорией",
+            text="Этот товар превосходно работает!",
+            is_published=True,
+            category=self.category,
+        )
+        item.full_clean()
+        item.save()
+        self.assertEqual(item.category, self.category)
+
+    def test_item_tags_relationship(self):
+        item = catalog.models.Item(
+            name="Товар с тегом",
+            text="Этот товар роскошно работает!",
+            is_published=True,
+            category=self.category,
+        )
+        item.full_clean()
+        item.save()
+        item.tags.add(self.tag)
+        self.assertIn(self.tag, item.tags.all())
+        self.assertEqual(item.tags.count(), 1)
+
+    def test_item_name_max_length(self):
+        long_name = "a" * 201
+        with self.assertRaises(ValidationError):
+            item = catalog.models.Item(
+                name=long_name,
+                text="Этот товар превосходно работает!",
+                is_published=True,
+                category=self.category,
+            )
+            item.full_clean()
