@@ -13,11 +13,10 @@ class ValidateMustContain:
 
     def __call__(self, value):
         value_lower = value.lower()
-        word_pattern = (
-            r"\b("
-            + "|".join(re.escape(word.lower()) for word in self.required_words)
-            + r")\b"
+        middle_part = "|".join(
+            re.escape(word.lower()) for word in self.required_words
         )
+        word_pattern = r"\b(" + middle_part + r")\b"
         if not re.search(word_pattern, value_lower):
             raise ValidationError(
                 "Текст должен содержать хотя бы одно из слов: "
