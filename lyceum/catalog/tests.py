@@ -307,3 +307,19 @@ class CatalogModelTests(TestCase):
                 category=self.category,
             )
             item.full_clean()
+
+    def test_tag_normalized_name_russian_english(self):
+        tag1 = catalog.models.Tag.objects.create(
+            name="Привет",
+            slug="privet",
+            is_published=True,
+        )
+        self.assertEqual(tag1.normalized_name, "privet")
+
+        with self.assertRaises(ValidationError):
+            tag2 = catalog.models.Tag(
+                name="привет!",
+                slug="privet2",
+                is_published=True,
+            )
+            tag2.full_clean()

@@ -1,11 +1,13 @@
 from django.db import models
 
+from catalog.normalization import normalize_name
 from catalog.validators import (
     validate_slug,
     validate_weight,
     ValidateMustContain,
 )
 from core.models import BaseModel
+from django.core.exceptions import ValidationError
 
 
 class Tag(BaseModel):
@@ -19,6 +21,13 @@ class Tag(BaseModel):
             "латинские буквы, цифры, '-' и '_'."
         ),
     )
+    normalized_name = models.CharField(
+        max_length=200,
+        unique=True,
+        editable=False,
+        verbose_name="Нормализованное имя",
+        help_text="Автоматически нормализованное имя для уникальности.",
+    )
 
     class Meta:
         verbose_name = "тег"
@@ -26,6 +35,21 @@ class Tag(BaseModel):
 
     def __str__(self):
         return self.name[:15]
+
+    def save(self, *args, **kwargs):
+        if not self.normalized_name or self.name != self.normalized_name:
+            self.normalized_name = normalize_name(self.name)
+        super().save(*args, **kwargs)
+
+    def clean(self):
+        if not self.pk:
+            normalized = normalize_name(self.name)
+            if Tag.objects.filter(normalized_name=normalized).exists():
+                raise ValidationError({
+                    "name": f"Тег с нормализованным именем '{normalized}'"
+                    " уже существует.",
+                })
+        super().clean()
 
 
 class Category(BaseModel):
@@ -45,6 +69,13 @@ class Category(BaseModel):
         validators=[validate_weight],
         help_text=("Вес категории от 1 до 32767 (по умолчанию 100)."),
     )
+    normalized_name = models.CharField(
+        max_length=200,
+        unique=True,
+        editable=False,
+        verbose_name="Нормализованное имя",
+        help_text="Автоматически нормализованное имя для уникальности.",
+    )
 
     class Meta:
         verbose_name = "категория"
@@ -52,6 +83,21 @@ class Category(BaseModel):
 
     def __str__(self):
         return self.name[:15]
+
+    def save(self, *args, **kwargs):
+        if not self.normalized_name or self.name != self.normalized_name:
+            self.normalized_name = normalize_name(self.name)
+        super().save(*args, **kwargs)
+
+    def clean(self):
+        if not self.pk:
+            normalized = normalize_name(self.name)
+            if Category.objects.filter(normalized_name=normalized).exists():
+                raise ValidationError({
+                    "name": "Категория с нормализованным "
+                    f"именем '{normalized}' уже существует.",
+                })
+        super().clean()
 
 
 class Item(BaseModel):
