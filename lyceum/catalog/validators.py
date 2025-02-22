@@ -7,15 +7,18 @@ class ValidateMustContain:
     def __init__(self, *required_words):
         if not required_words:
             raise ValueError(
-                "Должно быть указано хотя бы одно обязательное слово."
+                "Должно быть указано хотя бы одно обязательное слово.",
             )
         self.required_words = required_words
 
     def __call__(self, value):
         value_lower = value.lower()
-        if not any(
-            word.lower() in value_lower for word in self.required_words
-        ):
+        word_pattern = (
+            r"\b("
+            + "|".join(re.escape(word.lower()) for word in self.required_words)
+            + r")\b"
+        )
+        if not re.search(word_pattern, value_lower):
             raise ValidationError(
                 "Текст должен содержать хотя бы одно из слов: "
                 f"{', '.join(self.required_words)}.",
