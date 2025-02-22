@@ -1,2 +1,145 @@
 [
+{
+  "model": "catalog.tag",
+  "pk": 1,
+  "fields": {
+    "name": "Новый",
+    "is_published": true,
+    "slug": "New",
+    "normalized_name": "novyy"
+  }
+},
+{
+  "model": "catalog.tag",
+  "pk": 2,
+  "fields": {
+    "name": "Эксклюзивный",
+    "is_published": true,
+    "slug": "Exclusive",
+    "normalized_name": "eksklyuzivnyy"
+  }
+},
+{
+  "model": "catalog.tag",
+  "pk": 3,
+  "fields": {
+    "name": "Ограниченный",
+    "is_published": true,
+    "slug": "Limitted",
+    "normalized_name": "ogranichennyy"
+  }
+},
+{
+  "model": "catalog.tag",
+  "pk": 4,
+  "fields": {
+    "name": "Дешевый",
+    "is_published": true,
+    "slug": "Cheap",
+    "normalized_name": "deshevyy"
+  }
+},
+{
+  "model": "catalog.tag",
+  "pk": 5,
+  "fields": {
+    "name": "Умный",
+    "is_published": true,
+    "slug": "Smart",
+    "normalized_name": "umnyy"
+  }
+},
+{
+  "model": "catalog.category",
+  "pk": 1,
+  "fields": {
+    "name": "Электроника",
+    "is_published": true,
+    "slug": "Electronics",
+    "weight": 100,
+    "normalized_name": "elektronika"
+  }
+},
+{
+  "model": "catalog.category",
+  "pk": 2,
+  "fields": {
+    "name": "Еда",
+    "is_published": true,
+    "slug": "meal",
+    "weight": 100,
+    "normalized_name": "eda"
+  }
+},
+{
+  "model": "catalog.item",
+  "pk": 1,
+  "fields": {
+    "name": "Пицца",
+    "is_published": true,
+    "text": "Пицца которая превосходно разогревается",
+    "category": 2,
+    "tags": [
+      1,
+      2
+    ]
+  }
+},
+{
+  "model": "catalog.item",
+  "pk": 2,
+  "fields": {
+    "name": "Проеин",
+    "is_published": true,
+    "text": "Роскошно упакован",
+    "category": 2,
+    "tags": [
+      2,
+      5
+    ]
+  }
+},
+{
+  "model": "catalog.item",
+  "pk": 3,
+  "fields": {
+    "name": "Креатин",
+    "is_published": true,
+    "text": "Превосходно усваивается",
+    "category": 2,
+    "tags": [
+      3
+    ]
+  }
+},
+{
+  "model": "catalog.item",
+  "pk": 4,
+  "fields": {
+    "name": "Laptop",
+    "is_published": true,
+    "text": "Роскошно выглядит",
+    "category": 1,
+    "tags": [
+      5
+    ]
+  }
+},
+{
+  "model": "catalog.item",
+  "pk": 5,
+  "fields": {
+    "name": "Iphone",
+    "is_published": true,
+    "text": "Превосходно и роскошно",
+    "category": 1,
+    "tags": [
+      1,
+      2,
+      3,
+      4,
+      5
+    ]
+  }
+}
 ]
