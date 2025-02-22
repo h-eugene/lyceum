@@ -17,7 +17,6 @@ class ValidateMustContain:
             re.escape(word.lower()) for word in self.required_words
         )
         word_pattern = r"\b(" + middle_part + r")\b"
-        print(word_pattern)
         if not re.search(word_pattern, value_lower):
             raise ValidationError(
                 "Текст должен содержать хотя бы одно из слов: "
