@@ -1,4 +1,5 @@
 from django.db import models
+from django.core.exceptions import ValidationError
 
 from catalog.normalization import normalize_name
 from catalog.validators import (
@@ -7,7 +8,6 @@ from catalog.validators import (
     ValidateMustContain,
 )
 from core.models import BaseModel
-from django.core.exceptions import ValidationError
 
 
 class Tag(BaseModel):
@@ -51,7 +51,7 @@ class Tag(BaseModel):
                             f"Тег с нормализованным именем '{normalized}'"
                             " уже существует."
                         ),
-                    }
+                    },
                 )
         super().clean()
 
@@ -103,7 +103,7 @@ class Category(BaseModel):
                             "Категория с нормализованным "
                             f"именем '{normalized}' уже существует."
                         ),
-                    }
+                    },
                 )
         super().clean()
 
