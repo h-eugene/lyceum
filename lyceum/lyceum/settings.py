@@ -20,7 +20,6 @@ INSTALLED_APPS = [
     "about.apps.AboutConfig",
     "catalog.apps.CatalogConfig",
     "core.apps.CoreConfig",
-    "django_extensions",
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
@@ -32,6 +31,7 @@ INSTALLED_APPS = [
 
 if DEBUG:
     INSTALLED_APPS.append("debug_toolbar")
+    INSTALLED_APPS.append("django_extensions")
 
 ALLOW_REVERSE_TRUE_VALUES = {
     "true",
