@@ -45,10 +45,14 @@ class Tag(BaseModel):
         if not self.pk:
             normalized = normalize_name(self.name)
             if Tag.objects.filter(normalized_name=normalized).exists():
-                raise ValidationError({
-                    "name": f"Тег с нормализованным именем '{normalized}'"
-                    " уже существует.",
-                })
+                raise ValidationError(
+                    {
+                        "name": (
+                            f"Тег с нормализованным именем '{normalized}'"
+                            " уже существует."
+                        ),
+                    }
+                )
         super().clean()
 
 
@@ -93,10 +97,14 @@ class Category(BaseModel):
         if not self.pk:
             normalized = normalize_name(self.name)
             if Category.objects.filter(normalized_name=normalized).exists():
-                raise ValidationError({
-                    "name": "Категория с нормализованным "
-                    f"именем '{normalized}' уже существует.",
-                })
+                raise ValidationError(
+                    {
+                        "name": (
+                            "Категория с нормализованным "
+                            f"именем '{normalized}' уже существует."
+                        ),
+                    }
+                )
         super().clean()
 
 
