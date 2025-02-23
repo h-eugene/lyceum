@@ -31,11 +31,6 @@ class ValidateMustContain:
         )
 
 
-def validate_weight(value):
-    if value > 32767 or value < 1:
-        raise ValidationError("Вес должен быть от 1 до 32767.")
-
-
 def validate_slug(value):
     if not re.match(
         r"^[a-zA-Z0-9-_]+$",

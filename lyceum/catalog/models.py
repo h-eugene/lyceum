@@ -1,10 +1,10 @@
 from django.core.exceptions import ValidationError
+from django.core.validators import MinValueValidator, MaxValueValidator
 from django.db import models
 
 from catalog.normalization import normalize_name
 from catalog.validators import (
     validate_slug,
-    validate_weight,
     ValidateMustContain,
 )
 from core.models import BaseModel
@@ -70,7 +70,10 @@ class Category(BaseModel):
     weight = models.PositiveIntegerField(
         default=100,
         verbose_name="вес",
-        validators=[validate_weight],
+        validators=[
+            MinValueValidator(1, message="Вес должен быть не менее 1."),
+            MaxValueValidator(32767, message="Вес должен быть не более 32767."),
+        ],
         help_text=("Вес категории от 1 до 32767 (по умолчанию 100)."),
     )
     normalized_name = models.CharField(
