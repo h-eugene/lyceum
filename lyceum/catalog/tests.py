@@ -136,6 +136,11 @@ class CatalogModelTests(TestCase):
             is_published=True,
         )
 
+    def tearDown(self):
+        self.category.delete()
+        self.tag.delete()
+        super().tearDown()
+
     def test_create_catalog_item_valid_text(self):
         item = catalog.models.Item(
             name="Тестовый товар",
