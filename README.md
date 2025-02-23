@@ -86,7 +86,6 @@ python manage.py loaddata fixtures/data.json
 ### **7️⃣ Запуск тестов**
 Для проверки функциональности проекта выполните тесты:
 ```sh
-cd lyceum
 python manage.py test
 ```
 Тесты покрывают модели, валидаторы, уникальность данных и эндпоинты проекта. Убедитесь, что зависимости из `requirements/test.txt` установлены.
@@ -96,7 +95,6 @@ python manage.py test
 ### **8️⃣ Запуск dev-сервера**
 Запускаем сервер Django в режиме разработки (**DEBUG=True** в `.env`):
 ```sh
-cd lyceum
-python3 manage.py runserver
+python manage.py runserver
 ```
 Сервер будет доступен по адресу: **[http://127.0.0.1:8000/](http://127.0.0.1:8000/)**
