@@ -74,7 +74,7 @@ class Category(BaseModel):
         help_text=("Вес категории от 1 до 32767 (по умолчанию 100)."),
     )
     normalized_name = models.CharField(
-        max_length=200,
+        max_length=150,
         unique=True,
         editable=False,
         verbose_name="Нормализованное имя",

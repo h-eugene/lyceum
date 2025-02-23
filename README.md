@@ -2,6 +2,11 @@
 ![CI/CD: Проверка стиля](https://gitlab.crja72.ru/django/2025/spring/course/students/307818-EugeneINNO-course-1340/badges/main/pipeline.svg?stage=linting&key_text=Lint)
 ![CI/CD: Тестирование](https://gitlab.crja72.ru/django/2025/spring/course/students/307818-EugeneINNO-course-1340/badges/main/pipeline.svg?job=django&key_text=Test)
 
+## Описание проекта
+Этот проект представляет собой систему каталога товаров с категориями, тегами и валидацией данных. В корне репозитория находится ER-диаграмма базы данных (`ER.jpg`), которая иллюстрирует структуру базы данных.
+
+![ER Diagram](ER.jpg)
+
 ## Установка и запуск в dev-режиме
 
 ### **1️⃣ Клонирование репозитория**
@@ -33,6 +38,7 @@ source venv/bin/activate  # Linux/MacOS
 copy .env.template .env # Windows
 cp .env.template .env # Linux / macOS
 ```
+
 ---
 
 ### **4️⃣ Установка зависимостей**
@@ -67,7 +73,27 @@ python ./lyceum/manage.py graph_models -a -g -o ER.jpg
 
 ---
 
-### **6️⃣ Запуск dev-сервера**
+### **6️⃣ Загрузка тестовых данных (фикстуры)**
+Чтобы загрузить тестовые данные, используйте фикстуру `fixtures/data.json`:
+```sh
+cd lyceum
+python manage.py loaddata fixtures/data.json
+```
+Эта фикстура содержит начальные данные для тегов, категорий и товаров, соответствующие моделям проекта.
+
+---
+
+### **7️⃣ Запуск тестов**
+Для проверки функциональности проекта выполните тесты:
+```sh
+cd lyceum
+python manage.py test
+```
+Тесты покрывают модели, валидаторы, уникальность данных и эндпоинты проекта. Убедитесь, что зависимости из `requirements/test.txt` установлены.
+
+---
+
+### **8️⃣ Запуск dev-сервера**
 Запускаем сервер Django в режиме разработки (**DEBUG=True** в `.env`):
 ```sh
 cd lyceum
