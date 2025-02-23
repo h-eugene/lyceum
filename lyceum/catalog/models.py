@@ -72,7 +72,9 @@ class Category(BaseModel):
         verbose_name="вес",
         validators=[
             MinValueValidator(1, message="Вес должен быть не менее 1."),
-            MaxValueValidator(32767, message="Вес должен быть не более 32767."),
+            MaxValueValidator(
+                32767, message="Вес должен быть не более 32767."
+            ),
         ],
         help_text=("Вес категории от 1 до 32767 (по умолчанию 100)."),
     )

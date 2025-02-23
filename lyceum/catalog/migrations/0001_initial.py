@@ -62,7 +62,8 @@ class Migration(migrations.Migration):
                                 1, message="Вес должен быть не менее 1."
                             ),
                             django.core.validators.MaxValueValidator(
-                                32767, message="Вес должен быть не более 32767."
+                                32767,
+                                message="Вес должен быть не более 32767.",
                             ),
                         ],
                         verbose_name="вес",

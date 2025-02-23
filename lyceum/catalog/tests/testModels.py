@@ -26,36 +26,40 @@ class TagTests(TestCase):
             is_published=is_published,
         )
 
-    @parameterized.expand([
-        (
-            "Дубликат тег",
-            "test-tag",
-            "Тест уникальности slug для существующего тега",
-        ),
-        (
-            "Ещё один дубликат",
-            "test-tag",
-            "Повторная проверка уникальности slug",
-        ),
-    ])
+    @parameterized.expand(
+        [
+            (
+                "Дубликат тег",
+                "test-tag",
+                "Тест уникальности slug для существующего тега",
+            ),
+            (
+                "Ещё один дубликат",
+                "test-tag",
+                "Повторная проверка уникальности slug",
+            ),
+        ]
+    )
     def test_catalog_tag_unique_slug(self, name, slug, test_name):
         with self.subTest(msg=test_name):
             with self.assertRaises(ValidationError):
                 tag = self._create_tag(name, slug, True)
                 tag.full_clean()
 
-    @parameterized.expand([
-        (
-            "Недопустимый тег",
-            "test@tag",
-            "Тест недопустимых символов в slug (@)",
-        ),
-        (
-            "Недопустимый тег с пробелом",
-            "test tag",
-            "Тест недопустимых пробелов в slug",
-        ),
-    ])
+    @parameterized.expand(
+        [
+            (
+                "Недопустимый тег",
+                "test@tag",
+                "Тест недопустимых символов в slug (@)",
+            ),
+            (
+                "Недопустимый тег с пробелом",
+                "test tag",
+                "Тест недопустимых пробелов в slug",
+            ),
+        ]
+    )
     def test_catalog_tag_invalid_slug(self, name, slug, test_name):
         with self.subTest(msg=test_name):
             with self.assertRaises(ValidationError):
@@ -122,20 +126,22 @@ class CategoryTests(TestCase):
         category.save()
         self.assertEqual(category.weight, 100)
 
-    @parameterized.expand([
-        (
-            "Дубликат категория",
-            "test-category",
-            100,
-            "Тест уникальности slug для существующей категории",
-        ),
-        (
-            "Ещё один дубликат",
-            "test-category",
-            150,
-            "Повторная проверка уникальности slug",
-        ),
-    ])
+    @parameterized.expand(
+        [
+            (
+                "Дубликат категория",
+                "test-category",
+                100,
+                "Тест уникальности slug для существующей категории",
+            ),
+            (
+                "Ещё один дубликат",
+                "test-category",
+                150,
+                "Повторная проверка уникальности slug",
+            ),
+        ]
+    )
     def test_catalog_category_unique_slug(self, name, slug, weight, test_name):
         with self.subTest(msg=test_name):
             with self.assertRaises(ValidationError):
@@ -174,24 +180,26 @@ class ItemTests(TestCase):
             is_published=is_published,
         )
 
-    @parameterized.expand([
-        (
-            "Тестовый товар",
-            "Этот товар просто хороший",
-            "Тест недопустимого текста без ключевых слов",
-        ),
-        (
-            "Недопустимый товар",
-            "Этот товар неПревосходно работает!",
-            "Тест текста с подстрокой 'неПревосходно'",
-        ),
-        (
-            "Недопустимый товар",
-            "Этот товар превосходный!",
-            "Тест текста с частичным словом 'превосходный'",
-        ),
-        ("Пустой товар", "", "Тест пустого текста"),
-    ])
+    @parameterized.expand(
+        [
+            (
+                "Тестовый товар",
+                "Этот товар просто хороший",
+                "Тест недопустимого текста без ключевых слов",
+            ),
+            (
+                "Недопустимый товар",
+                "Этот товар неПревосходно работает!",
+                "Тест текста с подстрокой 'неПревосходно'",
+            ),
+            (
+                "Недопустимый товар",
+                "Этот товар превосходный!",
+                "Тест текста с частичным словом 'превосходный'",
+            ),
+            ("Пустой товар", "", "Тест пустого текста"),
+        ]
+    )
     def test_create_catalog_item_invalid_text(self, name, text, test_name):
         with self.subTest(msg=test_name):
             item = self._create_item(name, text, self.category, True)

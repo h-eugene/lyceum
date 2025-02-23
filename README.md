@@ -1,5 +1,6 @@
 # Lyceum
-![CI/CD: Проверка стиля](https://gitlab.crja72.ru/django/2025/spring/course/students/307818-EugeneINNO-course-1340/badges/main/pipeline.svg?stage=linting&key_text=Lint)
+![CI/CD: Проверка стиля (flake8)](https://gitlab.crja72.ru/django/2025/spring/course/students/307818-EugeneINNO-course-1340/badges/main/pipeline.svg?job=flake8&key_text=Flake8)
+![CI/CD: Проверка стиля (black)](https://gitlab.crja72.ru/django/2025/spring/course/students/307818-EugeneINNO-course-1340/badges/main/pipeline.svg?job=black&key_text=Black)
 ![CI/CD: Тестирование](https://gitlab.crja72.ru/django/2025/spring/course/students/307818-EugeneINNO-course-1340/badges/main/pipeline.svg?job=django&key_text=Test)
 
 ## Описание проекта
