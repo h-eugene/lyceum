@@ -10,6 +10,9 @@ class TestStaticURL(TestCase):
         super().setUp()
         ReverseRussianWordsMiddleware.response_count = 0
 
+    def tearDown(self):
+        super().tearDown()
+
     def test_about_endpoint_status(self):
         client = Client()
 

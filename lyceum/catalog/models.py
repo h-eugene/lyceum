@@ -11,11 +11,11 @@ from core.models import BaseModel
 
 
 class Tag(BaseModel):
-    slug = models.CharField(
+    slug = models.SlugField(
         max_length=200,
         unique=True,
         validators=[validate_slug],
-        verbose_name="Слаг",
+        verbose_name="слаг",
         help_text=(
             "Введите уникальный слаг. Допустимы "
             "латинские буквы, цифры, '-' и '_'."
@@ -25,7 +25,7 @@ class Tag(BaseModel):
         max_length=200,
         unique=True,
         editable=False,
-        verbose_name="Нормализованное имя",
+        verbose_name="нормализованное имя",
         help_text="Автоматически нормализованное имя для уникальности.",
     )
 
@@ -57,11 +57,11 @@ class Tag(BaseModel):
 
 
 class Category(BaseModel):
-    slug = models.CharField(
+    slug = models.SlugField(
         max_length=200,
         unique=True,
         validators=[validate_slug],
-        verbose_name="Слаг",
+        verbose_name="слаг",
         help_text=(
             "Введите уникальный слаг. Допустимы "
             "латинские буквы, цифры, '-' и '_'."
@@ -69,7 +69,7 @@ class Category(BaseModel):
     )
     weight = models.PositiveIntegerField(
         default=100,
-        verbose_name="Вес",
+        verbose_name="вес",
         validators=[validate_weight],
         help_text=("Вес категории от 1 до 32767 (по умолчанию 100)."),
     )
@@ -77,7 +77,7 @@ class Category(BaseModel):
         max_length=150,
         unique=True,
         editable=False,
-        verbose_name="Нормализованное имя",
+        verbose_name="нормализованное имя",
         help_text="Автоматически нормализованное имя для уникальности.",
     )
 
@@ -113,7 +113,7 @@ class Item(BaseModel):
         validators=[
             ValidateMustContain("Превосходно", "Роскошно"),
         ],
-        verbose_name="Текст",
+        verbose_name="текст",
         help_text=(
             "Введите текст товара, "
             "который обязательно должен содержать "
@@ -124,13 +124,13 @@ class Item(BaseModel):
         Category,
         on_delete=models.CASCADE,
         related_name="items",
-        verbose_name="Категория",
+        verbose_name="категория",
         help_text="Выберите категорию для этого товара.",
     )
     tags = models.ManyToManyField(
         Tag,
         related_name="items",
-        verbose_name="Теги",
+        verbose_name="теги",
         help_text="Выберите один или несколько тегов для этого товара.",
     )
 

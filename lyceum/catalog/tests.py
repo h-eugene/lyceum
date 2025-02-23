@@ -137,8 +137,11 @@ class CatalogModelTests(TestCase):
         )
 
     def tearDown(self):
-        self.category.delete()
-        self.tag.delete()
+        if hasattr(self, 'category') and self.category:
+            self.category.delete()
+        if hasattr(self, 'tag') and self.tag:
+            self.tag.delete()
+        catalog.models.Item.objects.all().delete()
         super().tearDown()
 
     def test_create_catalog_item_valid_text(self):
