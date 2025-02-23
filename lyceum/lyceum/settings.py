@@ -31,7 +31,6 @@ INSTALLED_APPS = [
 
 if DEBUG:
     INSTALLED_APPS.append("debug_toolbar")
-    INSTALLED_APPS.append("django_extensions")
 
 ALLOW_REVERSE_TRUE_VALUES = {
     "true",
