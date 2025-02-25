@@ -3,9 +3,5 @@ import django.shortcuts
 
 
 def home(request):
-    return django.http.HttpResponse("<body>Главная</body>")
-
-
-def index_render(request):
-    template = "homepage/home.html"
+    template = "homepage/main.html"
     return django.shortcuts.render(request, template)

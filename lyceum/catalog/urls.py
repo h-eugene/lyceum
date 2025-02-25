@@ -1,25 +1,21 @@
-import django.urls
+from django.urls import path, re_path, register_converter
 
 from catalog.converters import PositiveIntConverter
 import catalog.views
 
-django.urls.register_converter(PositiveIntConverter, "posint")
+register_converter(PositiveIntConverter, "posint")
 
 urlpatterns = [
-    django.urls.path("", catalog.views.item_list),
-    django.urls.path(
-        "<int:pk>/",
-        catalog.views.item_detail,
-        name="item",
-    ),
-    django.urls.re_path(
+    path("", catalog.views.item_list, name="item_list"),
+    path("<int:pk>/", catalog.views.item_detail, name="item_detail"),
+    re_path(
         r"^re/(?P<pk>0*[1-9]\d*)/$",
         catalog.views.reg_expression,
-        name="item",
+        name="item_detail_re",
     ),
-    django.urls.path(
+    path(
         "converter/<posint:pk>/",
         catalog.views.reg_expression,
-        name="item",
+        name="item_detail_converter",
     ),
 ]

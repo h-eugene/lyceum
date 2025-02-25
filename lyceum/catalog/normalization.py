@@ -1,5 +1,6 @@
-from transliterate import translit
 import re
+
+from transliterate import translit
 
 
 def normalize_name(name):

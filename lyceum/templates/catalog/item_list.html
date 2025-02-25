@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block title %}Список товаров{% endblock %}
+
+{% block content %}
+    <h1 class="text-center mb-4">Список товаров</h1>
+    <div class="row">
+        {% for card in cards %}
+            {{ card|safe }}
+        {% empty %}
+            <p>Нет доступных товаров.</p>
+        {% endfor %}
+    </div>
+{% endblock %}

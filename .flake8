@@ -6,5 +6,4 @@ multiline-quotes = double
 docstring-quotes = double
 
 
-# Порядок импортов
-# import-order-style = 
+import-order-style = 
