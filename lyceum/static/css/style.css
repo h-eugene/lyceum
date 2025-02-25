@@ -1,0 +1,51 @@
+/* Убедимся, что карточки выглядят стильно и ровные */
+.card {
+    background-color: #2d2d2d; /* Более глубокий тёмно-серый для фона */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+}
+
+.card-img-top {
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    object-fit: cover; /* Убедимся, что изображения обрезаются красиво */
+    margin: 0 auto; /* Центрируем изображение горизонтально */
+    display: block; /* Убедимся, что изображение ведёт себя как блок */
+}
+
+.card-body {
+    padding: 1rem; /* Равномерные внутренние отступы */
+    background-color: #2d2d2d; /* Сохраняем тёмный фон для тела */
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+}
+
+.btn-primary {
+    background-color: #ff6b6b;
+    border-color: #ff6b6b;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.btn-primary:hover {
+    background-color: #e65b5b;
+    border-color: #e65b5b;
+}
+
+/* Адаптивность для мобильных устройств */
+@media (max-width: 768px) {
+    .card-img-top {
+        width: 250px; /* Уменьшаем размер изображения на мобильных */
+        height: 250px;
+    }
+    .card-body {
+        max-width: 250px; /* Сужаем тело карточки на мобильных */
+        min-height: 180px; /* Уменьшаем минимальную высоту тела на мобильных */
+    }
+    .card {
+        margin-bottom: 1rem; /* Больший отступ между карточками на мобильных */
+    }
+}
