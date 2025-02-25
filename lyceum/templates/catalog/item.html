@@ -1,17 +1,28 @@
 {% extends 'base.html' %}
 {% load static %}
 
-{% block title %}Товар{% endblock %}
+{% block title %}FurFriends — {{ name }}{% endblock %}
 
 {% block content %}
-    <h1 class="text-center mb-4">Товар</h1>
-    <div class="row">
-        <div class="col-md-6">
-            <img src="{% static image %}" alt="Товар" class="img-fluid" style="max-width: 300px;">
-        </div>
-        <div class="col-md-6">
-            <h2>{{ name }}</h2>
-            <p>{{ description }}</p>
+    <div class="container py-4">
+        <h1 class="text-center mb-4" style="color: #ff6b6b;">{{ name }}</h1>
+        <div class="row row-cols-1 row-cols-md-2 g-4 justify-content-center align-items-center">
+            <div class="col">
+                <div class="card h-100 bg-dark text-light border-0 shadow-sm" style="border-radius: 10px;">
+                    <div class="row g-0">
+                        <div class="col-md-6 d-flex align-items-center justify-content-center" style="max-width: 300px;">
+                            <img src="{% static image %}" alt="{{ name }}" class="img-fluid" style="width: 300px; height: auto; object-fit: cover; border-top-left-radius: 10px; border-bottom-left-radius: 10px;">
+                        </div>
+                        <div class="col-md-6 d-flex flex-column justify-content-between p-3" style="min-height: 300px; background-color: #2d2d2d; border-top-right-radius: 10px; border-bottom-right-radius: 10px;">
+                            <div>
+                                <h2 class="card-title">{{ name }}</h2>
+                                <p class="card-text">{{ description }}</p>
+                            </div>
+                            <a href="{% url 'catalog:item_list' %}" class="btn btn-secondary mt-3">Вернуться к списку</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 {% endblock %}
