@@ -69,7 +69,7 @@ def item_list(request):
 
 
 def item_detail(request, pk):
-    return get_item_view(request, pk, "catalog/item_detail.html")
+    return get_item_view(request, pk, "catalog/item.html")
 
 
 def reg_expression(request, pk):
