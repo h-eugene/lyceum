@@ -5,8 +5,8 @@
 {% block content %}
     <h1 class="text-center mb-4">Список товаров</h1>
     <div class="row">
-        {% for card in cards %}
-            {{ card|safe }}
+        {% for item in items %}
+            {% include 'catalog/item_card.html' with item=item %}
         {% empty %}
             <p>Нет доступных товаров.</p>
         {% endfor %}

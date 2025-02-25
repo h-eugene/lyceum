@@ -1,11 +1,11 @@
 {% load static %}
 <div class="col-md-6 mb-4">
     <div class="card h-100">
-        <img src="{% static image %}" alt="{{ name }}" class="card-img-top" style="max-width: auto; height: auto;">
+        <img src="{% static item.image %}" alt="{{ item.name }}" class="card-img-top" style="max-width: auto; height: auto;">
         <div class="card-body">
-            <h5 class="card-title">{{ name }}</h5>
-            <p class="card-text">{{ description }}</p>
-            <a href="{% url 'item_detail' pk=pk %}" class="btn btn-primary">Подробнее</a>
+            <h5 class="card-title">{{ item.name }}</h5>
+            <p class="card-text">{{ item.description }}</p>
+            <a href="{% url 'item_detail' pk=item.pk %}" class="btn btn-primary">Подробнее</a>
         </div>
     </div>
 </div>
