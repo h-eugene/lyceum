@@ -10,7 +10,7 @@
     <link rel="icon" href="{% static 'images/favicon.png' %}" type="image/x-icon">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Poppins:wght@300;600&display=swap" rel="stylesheet">
 </head>
-<body class="d-flex flex-column bg-dark text-light min-vh-100">
+<body class="d-flex flex-column bg-dark text-light" style="height: 100vh;">
     {% include 'includes/header.html' %}
     <main class="container mt-1 py-1 flex-grow-1">
         {% block content %}{% endblock %}

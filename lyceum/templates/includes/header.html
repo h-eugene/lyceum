@@ -1,21 +1,23 @@
 {% load static %}
+
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container-fluid">
         <a class="navbar-brand" href="{% url 'main' %}">
-            <img src="{% static 'images/logo.png' %}" alt="FurFriends Logo" height="50" class="d-inline-block align-text-top">
+            <img src="{% static 'images/logo.png' %}" alt="FurFriends Logo" height="60" class="d-inline-block align-text-baseline">
+            FurFriends
         </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav ms-auto">
-                <li class="nav-item {% if request.path == '/' %}active{% endif %}">
+                <li class="nav-item">
                     <a class="nav-link {% if request.path == '/' %}active{% endif %}" href="{% url 'main' %}">Главная</a>
                 </li>
-                <li class="nav-item {% if request.path == '/about/' %}active{% endif %}">
+                <li class="nav-item">
                     <a class="nav-link {% if request.path == '/about/' %}active{% endif %}" href="{% url 'about' %}">О нас</a>
                 </li>
-                <li class="nav-item {% if request.path == '/items/' %}active{% endif %}">
+                <li class="nav-item">
                     <a class="nav-link {% if request.path == '/items/' %}active{% endif %}" href="{% url 'item_list' %}">Товары</a>
                 </li>
                 <li class="nav-item">
@@ -25,17 +27,3 @@
         </div>
     </div>
 </nav>
-
-<style>
-    .navbar-dark .navbar-nav .nav-link {
-        color: #fff;
-        transition: color 0.3s ease;
-    }
-    .navbar-dark .navbar-nav .nav-link:hover, 
-    .navbar-dark .navbar-nav .nav-link.active {
-        color: #ff6b6b !important;
-    }
-    .navbar-brand img {
-        filter: brightness(1.2);
-    }
-</style>

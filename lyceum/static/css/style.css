@@ -1,4 +1,42 @@
-.card {
+html {
+    font-size: 20px;
+}
+
+.navbar-dark .navbar-nav .nav-link {
+    color: #fff;
+    transition: color 0.3s ease;
+}
+
+.navbar-dark .navbar-nav .nav-link:hover, 
+.navbar-dark .navbar-nav .nav-link.active {
+    color: #ff6b6b !important;
+}
+
+.navbar-brand img {
+    filter: brightness(1.2);
+}
+
+.bg-dark a.text-light:hover {
+    color: #a4233d !important;
+}
+
+.title {
+    color: #ff6b6b;
+}
+
+.btn-primary {
+    background-color: #ff6b6b;
+    border-color: #ff6b6b;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.btn-primary:hover {
+    background-color: #d15353;
+    border-color: #d15353;
+}
+
+
+/* .card {
     background-color: #2d2d2d;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
@@ -6,19 +44,19 @@
 .card:hover {
     transform: translateY(-5px);
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+} */
+
+.item-card {
+    border-radius: 10px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    overflow: hidden;
+    height: 350px;
 }
 
-.card-img-top, .img-fluid {
+.item-image {
     object-fit: cover;
 }
 
-.card-body {
-    padding: 1rem;
+.item-info {
     background-color: #2d2d2d;
-}
-
-.btn-primary {
-    background-color: #ff6b6b;
-    border-color: #ff6b6b;
-    transition: background-color 0.3s ease, border-color 0.3s ease;
 }
