@@ -1,16 +1,16 @@
 {% load static %}
 <div class="col">
-    <div class="card text-light border-0 shadow-sm item-card">
+    <div class="card mx-auto text-light border-0 shadow-sm item-card">
         <div class="row g-0 h-100">
             <div class="col-md-6 d-flex item-image">
-                <img src="{% static item.image %}" alt="{{ item.name }}" class="img-fluid">
+                <img src="{% static item.image %}" alt="{{ item.name }}" class="img-fluid w-100">
             </div>
-            <div class="col-md-6 card-body d-flex flex-column p-3 item-info">
+            <div class="col-md-6 card-body h-100 d-flex flex-column p-3 item-info">
                 <div class="flex-grow-1 overflow-auto">
                     <h5 class="card-title">{{ item.name }}</h5>
                     <p class="card-text">{{ item.description }}</p>
                 </div>
-                <a href="{% url 'item_detail' pk=item.pk %}" class="btn btn-primary">Подробнее</a>
+                <a href="{% url 'item_detail' pk=item.pk %}" class="btn btn-primary mt-auto">Подробнее</a>
             </div>
         </div>
     </div>

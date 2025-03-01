@@ -2,6 +2,7 @@ html {
     font-size: 20px;
 }
 
+/* Navbar */
 .navbar-dark .navbar-nav .nav-link {
     color: #fff;
     transition: color 0.3s ease;
@@ -20,10 +21,7 @@ html {
     color: #a4233d !important;
 }
 
-.title {
-    color: #ff6b6b;
-}
-
+/* Buttons */
 .btn-primary {
     background-color: #ff6b6b;
     border-color: #ff6b6b;
@@ -35,17 +33,24 @@ html {
     border-color: #d15353;
 }
 
+/* Title */
+.title {
+    color: #ff6b6b;
+}
+
+
+/* Card */
 .card-body {
     background-color: #2d2d2d;
 }
 
+/* Card in item list */
 .item-card {
     border-radius: 10px;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     overflow: hidden;
     height: 350px;
     width: 620px;
-    margin: 0 auto;
 }
 
 @media (min-width: 1920px) {
@@ -62,17 +67,9 @@ html {
     }
 
 }
-.item-info .btn-primary {
-    margin-top: auto;
-}
 
 .item-image .img-fluid {
     object-fit: cover;
-    width: 100%;
-}
-
-.item-info {
-    height: 100%;
 }
 
 @media (max-width: 767px) {
@@ -84,6 +81,7 @@ html {
     }
 }
 
+/* Card in item */
 .item-detail-card .img-fluid,
 .item-detail-card .item-info {
     border-radius: 10px;
