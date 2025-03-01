@@ -6,7 +6,7 @@ import catalog.views
 register_converter(PositiveIntConverter, "posint")
 
 urlpatterns = [
-    path("", catalog.views.item_list, name="item_list"),
+    path("", catalog.views.item_list, name="catalog"),
     path("<int:pk>/", catalog.views.item_detail, name="item_detail"),
     re_path(
         r"^re/(?P<pk>0*[1-9]\d*)/$",

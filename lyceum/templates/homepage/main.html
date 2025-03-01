@@ -5,10 +5,14 @@
 
 {% block content %}
 <div class="row justify-content-center py-4">
-    <div class="col-md-6 col-lg-7 d-flex flex-column">
-        <h1 class="text-center mb-4 title">Добро пожаловать в FurFriends!</h1>
-        <p class="text-center mb-4">Откройте мир милых котиков и енотов! Наш магазин предлагает уникальных питомцев для вашего счастья.</p>
-        <a href="{% url 'item_list' %}" class="btn btn-primary btn-lg w-75 mx-auto">Выбрать питомца</a>
+    <h1 class="text-center mb-4 title">Добро пожаловать в FurFriends!</h1>
+    <p class="text-center mb-1">Откройте мир милых котиков и енотов! Наш магазин предлагает уникальных питомцев для вашего счастья.</p>
+    <div class="row row-cols-1 row-cols-xxl-2 g-4 justify-content-center mt-0">
+        {% for item in items %}
+            {% include 'catalog/item_card.html' with item=item %}
+        {% empty %}
+            <p class="text-center">Нет доступных товаров.</p>
+        {% endfor %}
     </div>
 </div>
 {% endblock %}

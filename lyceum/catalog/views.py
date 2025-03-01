@@ -42,7 +42,7 @@ def get_item_view(request, pk, template_name):
 
 
 def item_list(request):
-    template = "catalog/item_list.html"
+    template = "catalog/catalog.html"
     items = list(ITEMS.values())
     return render(request, template, {"items": items})
 
