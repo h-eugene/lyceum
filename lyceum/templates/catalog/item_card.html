@@ -10,7 +10,7 @@
                     <h5 class="card-title">{{ item.name }}</h5>
                     <p class="card-text">{{ item.description }}</p>
                 </div>
-                <a href="{% url 'item_detail' pk=item.pk %}" class="btn btn-primary mt-auto">Подробнее</a>
+                <a href="{% url 'catalog:item_detail' pk=item.pk %}" class="btn btn-primary mt-auto">Подробнее</a>
             </div>
         </div>
     </div>

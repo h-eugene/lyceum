@@ -1,6 +1,7 @@
 from django.core.exceptions import ValidationError
 from django.core.validators import MinValueValidator, MaxValueValidator
 from django.db import models
+from django.utils.safestring import mark_safe
 
 from catalog.normalization import normalize_name
 from catalog.validators import (
@@ -8,6 +9,8 @@ from catalog.validators import (
     ValidateMustContain,
 )
 from core.models import BaseModel
+
+from sorl.thumbnail import get_thumbnail
 
 
 class Tag(BaseModel):
@@ -111,6 +114,38 @@ class Category(BaseModel):
                     },
                 )
         super().clean()
+
+
+class ItemImage(models.Model):
+    item = models.ForeignKey(
+        "Item",
+        on_delete=models.CASCADE,
+        related_name="images",
+        verbose_name="товар",
+    )
+    image = models.ImageField(
+        upload_to="catalog/%Y/%m/%d/",
+        verbose_name="изображение",
+        help_text="Будет приведено к ширине 1280px",
+    )
+
+    def get_image_x1280(self):
+        return get_thumbnail(self.image, "1280", quality=51)
+
+    def get_image_300x300(self):
+        return get_thumbnail(self.image, "300x300", crop="center", quality=51)
+
+    def image_tmb(self):
+        if self.image:
+            return mark_safe(f'<img src="{self.image.url}" width="50">')
+        return "Нет изображения"
+    
+    image_tmb.short_description = "превью"
+    image_tmb.allow_tags = True
+
+    class Meta:
+        verbose_name = "изображение"
+        verbose_name_plural = "изображения"
 
 
 class Item(BaseModel):

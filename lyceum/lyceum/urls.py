@@ -2,6 +2,8 @@ import django
 from django.contrib import admin
 import django.urls
 
+app_name = "lyceum"
+
 urlpatterns = [
     django.urls.re_path(r"^(?:.*/)?coffee/", django.urls.include("core.urls")),
     django.urls.path(

@@ -1,8 +1,8 @@
 {% load static %}
-
+{% with request.resolver_match.view_name as view_name %}
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container-fluid">
-        <a class="navbar-brand" href="{% url 'main' %}">
+        <a class="navbar-brand" href="{% url 'homepage:main' %}">
             <img src="{% static 'images/logo.png' %}" alt="FurFriends Logo" height="60" class="d-inline-block align-text-baseline">
             FurFriends
         </a>
@@ -12,13 +12,22 @@
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav ms-auto">
                 <li class="nav-item">
-                    <a class="nav-link {% if request.path == '/' %}active{% endif %}" href="{% url 'main' %}">Главная</a>
+                    <a class="nav-link {% if view_name == 'homepage:main' %}active{% endif %}" 
+                    {% if view_name != 'homepage:main' %}href="{% url 'homepage:main' %}"{% endif %}>
+                        Главная
+                    </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link {% if request.path == '/about/' %}active{% endif %}" href="{% url 'about' %}">О нас</a>
+                    <a class="nav-link {% if view_name == 'about:about' %}active{% endif %}" 
+                    {% if view_name != 'about:about' %}href="{% url 'about:about' %}"{% endif %}>
+                    О нас
+                    </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link {% if request.path == '/items/' %}active{% endif %}" href="{% url 'catalog' %}">Питомцы</a>
+                    <a class="nav-link {% if view_name == 'catalog:item_list' %}active{% endif %}" 
+                    {% if view_name != 'catalog:item_list' %}href="{% url 'catalog:item_list' %}"{% endif %}>
+                    Питомцы
+                    </a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="">Корзина</a>
@@ -27,3 +36,4 @@
         </div>
     </div>
 </nav>
+{% endwith %}
