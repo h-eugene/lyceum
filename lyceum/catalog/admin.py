@@ -44,4 +44,5 @@ class ItemAdmin(admin.ModelAdmin):
     filter_horizontal = [TAGS_FIELD]
     inlines = [ItemMainImageInline, ItemImagesInline]
 
+
 __all__ = ["ItemAdmin"]
