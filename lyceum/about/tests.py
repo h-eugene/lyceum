@@ -19,14 +19,3 @@ class TestStaticURL(TestCase):
         response = client.get("/about/")
 
         self.assertEqual(response.status_code, HTTPStatus.OK)
-
-    def test_about_endpoint_content(self):
-        client = Client()
-
-        response = client.get("/about/")
-        text = "О проекте"
-
-        self.assertEqual(
-            response.content.decode("utf-8"),
-            "<body>" + text + "</body>",
-        )

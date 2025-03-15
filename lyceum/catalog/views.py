@@ -1,8 +1,5 @@
 from django.shortcuts import render
-from django.http import (
-    Http404,
-    HttpResponse,
-)
+from django.http import HttpResponse
 from http import HTTPStatus
 
 ITEMS = {
@@ -25,24 +22,11 @@ ITEMS = {
 }
 
 
-def get_item_data(pk):
-    try:
-        return ITEMS[int(pk)]
-    except (KeyError, ValueError):
-        raise Http404("Товар не найден")
-
-
 def get_item_view(request, pk, template_name):
-    try:
-        item_data = get_item_data(pk)
+    if int(pk) in ITEMS:
+        item_data = ITEMS[pk]
         return render(request, template_name, item_data)
-    except Http404:
-        return render(
-            request,
-            "404.html",
-            {"message": "Товар не найден"},
-            status=HTTPStatus.NOT_FOUND,
-        )
+    return HttpResponse("Товар не найден", status=HTTPStatus.NOT_FOUND)
 
 
 def item_list(request):
