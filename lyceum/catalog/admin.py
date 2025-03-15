@@ -43,3 +43,5 @@ class ItemAdmin(admin.ModelAdmin):
     list_display_links = [NAME_FIELD]
     filter_horizontal = [TAGS_FIELD]
     inlines = [ItemMainImageInline, ItemImagesInline]
+
+__all__ = ["ItemAdmin"]

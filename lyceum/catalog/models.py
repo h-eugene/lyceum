@@ -3,13 +3,13 @@ from django.core.validators import MaxValueValidator, MinValueValidator
 from django.db import models
 from django.utils.safestring import mark_safe
 
+from sorl.thumbnail import get_thumbnail
+
 from catalog.normalization import normalize_name
 from catalog.validators import (
     validate_slug,
     ValidateMustContain,
 )
-
-from sorl.thumbnail import get_thumbnail
 
 from core.models import BaseModel
 
@@ -129,7 +129,7 @@ class ItemMainImage(models.Model):
     image = models.ImageField(
         upload_to="catalog/%Y/%m/%d/",
         verbose_name="главное изображение",
-        help_text="Будет приведено к размерам 300x300px",
+        help_text="Будет приведено к размерам 300x300",
     )
 
     def get_image_300x300(self):
@@ -162,9 +162,6 @@ class ItemImages(models.Model):
         verbose_name="изображение",
         help_text="Будет приведено к размерам 300x300",
     )
-
-    def get_image_x1280(self):
-        return get_thumbnail(self.image, "1280", quality=51)
 
     def get_image_300x300(self):
         return get_thumbnail(self.image, "300x300", crop="center", quality=51)
