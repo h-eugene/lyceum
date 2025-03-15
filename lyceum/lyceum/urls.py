@@ -1,31 +1,25 @@
-import django
 from django.contrib import admin
-import django.urls
+from django.urls import re_path, path, include
+from django.conf import settings
 
 app_name = "lyceum"
 
 urlpatterns = [
-    django.urls.re_path(r"^(?:.*/)?coffee/", django.urls.include("core.urls")),
-    django.urls.path(
-        "",
-        django.urls.include("homepage.urls"),
-    ),
-    django.urls.path(
-        "about/",
-        django.urls.include("about.urls"),
-    ),
-    django.urls.path(
-        "catalog/",
-        django.urls.include("catalog.urls"),
-    ),
-    django.urls.path(
-        "admin/",
-        admin.site.urls,
-    ),
+    re_path(r"^(?:.*/)?coffee/", include("core.urls")),
+    path("", include("homepage.urls")),
+    path("about/", include("about.urls")),
+    path("catalog/", include("catalog.urls")),
+    path("admin/", admin.site.urls),
 ]
 
-if django.conf.settings.DEBUG:
+if settings.DEBUG:
     import debug_toolbar as toolbar
+    from django.conf.urls.static import static
 
-    path = (django.urls.path("__debug__/", django.urls.include(toolbar.urls)),)
+    path = (path("__debug__/", include(toolbar.urls)),)
     urlpatterns += path
+
+    urlpatterns += static(
+        settings.MEDIA_URL,
+        document_root=settings.MEDIA_ROOT,
+    )

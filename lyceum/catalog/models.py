@@ -116,7 +116,39 @@ class Category(BaseModel):
         super().clean()
 
 
-class ItemImage(models.Model):
+class ItemMainImage(models.Model):
+    item = models.OneToOneField(
+        "Item",
+        on_delete=models.CASCADE,
+        related_name="main_image",
+        verbose_name="товар",
+    )
+
+    image = models.ImageField(
+        upload_to="catalog/%Y/%m/%d/",
+        verbose_name="главное изображение",
+        help_text="Будет приведено к размерам 300x300px",
+    )
+
+    def get_image_300x300(self):
+        return get_thumbnail(self.image, "300x300", crop="center", quality=51)
+
+    def image_tmb(self):
+        if self.image:
+            return mark_safe(f'<img src="{self.image.url}" width="50">')
+        return "Нет изображения"
+
+    image_tmb.short_description = "превью"
+
+    def __str__(self):
+        return f"Главное изображение для {self.item}"
+
+    class Meta:
+        verbose_name = "главное изображение"
+        verbose_name_plural = "главные изображения"
+
+
+class ItemImages(models.Model):
     item = models.ForeignKey(
         "Item",
         on_delete=models.CASCADE,
@@ -126,7 +158,7 @@ class ItemImage(models.Model):
     image = models.ImageField(
         upload_to="catalog/%Y/%m/%d/",
         verbose_name="изображение",
-        help_text="Будет приведено к ширине 1280px",
+        help_text="Будет приведено к размерам 300x300",
     )
 
     def get_image_x1280(self):
@@ -137,11 +169,16 @@ class ItemImage(models.Model):
 
     def image_tmb(self):
         if self.image:
-            return mark_safe(f'<img src="{self.image.url}" width="50">')
+            return mark_safe(
+                f'<img src="{self.image.url}" width="50">',
+            )
         return "Нет изображения"
-    
+
     image_tmb.short_description = "превью"
     image_tmb.allow_tags = True
+
+    def __str__(self):
+        return f"Изображение для {self.item}"
 
     class Meta:
         verbose_name = "изображение"
