@@ -38,7 +38,7 @@ class TagTests(TestCase):
                 "test-tag",
                 "Повторная проверка уникальности slug",
             ),
-        ]
+        ],
     )
     def test_catalog_tag_unique_slug(self, name, slug, test_name):
         with self.subTest(msg=test_name):
@@ -58,7 +58,7 @@ class TagTests(TestCase):
                 "test tag",
                 "Тест недопустимых пробелов в slug",
             ),
-        ]
+        ],
     )
     def test_catalog_tag_invalid_slug(self, name, slug, test_name):
         with self.subTest(msg=test_name):
@@ -106,13 +106,19 @@ class CategoryTests(TestCase):
     def test_catalog_category_weight_validation(self):
         with self.assertRaises(ValidationError):
             category = self._create_category(
-                "Недопустимая категория", "invalid-category", 0, True
+                "Недопустимая категория",
+                "invalid-category",
+                0,
+                True,
             )
             category.full_clean()
 
     def test_catalog_category_weight_max(self):
         category = self._create_category(
-            "Категория с максимальным весом", "max-weight", 32767, True
+            "Категория с максимальным весом",
+            "max-weight",
+            32767,
+            True,
         )
         category.full_clean()
         category.save()
@@ -120,7 +126,8 @@ class CategoryTests(TestCase):
 
     def test_catalog_category_default_weight(self):
         category = self._create_category(
-            "Категория по умолчанию", "default-category"
+            "Категория по умолчанию",
+            "default-category",
         )
         category.full_clean()
         category.save()
@@ -140,7 +147,7 @@ class CategoryTests(TestCase):
                 150,
                 "Повторная проверка уникальности slug",
             ),
-        ]
+        ],
     )
     def test_catalog_category_unique_slug(self, name, slug, weight, test_name):
         with self.subTest(msg=test_name):
@@ -198,7 +205,7 @@ class ItemTests(TestCase):
                 "Тест текста с частичным словом 'превосходный'",
             ),
             ("Пустой товар", "", "Тест пустого текста"),
-        ]
+        ],
     )
     def test_create_catalog_item_invalid_text(self, name, text, test_name):
         with self.subTest(msg=test_name):

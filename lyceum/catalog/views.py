@@ -1,6 +1,8 @@
-from django.shortcuts import render
-from django.http import HttpResponse
 from http import HTTPStatus
+
+from django.http import HttpResponse
+from django.shortcuts import render
+
 
 ITEMS = {
     1: {

@@ -1,5 +1,5 @@
 from django.core.exceptions import ValidationError
-from django.core.validators import MinValueValidator, MaxValueValidator
+from django.core.validators import MaxValueValidator, MinValueValidator
 from django.db import models
 from django.utils.safestring import mark_safe
 
@@ -8,9 +8,10 @@ from catalog.validators import (
     validate_slug,
     ValidateMustContain,
 )
-from core.models import BaseModel
 
 from sorl.thumbnail import get_thumbnail
+
+from core.models import BaseModel
 
 
 class Tag(BaseModel):
@@ -76,7 +77,8 @@ class Category(BaseModel):
         validators=[
             MinValueValidator(1, message="Вес должен быть не менее 1."),
             MaxValueValidator(
-                32767, message="Вес должен быть не более 32767."
+                32767,
+                message="Вес должен быть не более 32767.",
             ),
         ],
         help_text=("Вес категории от 1 до 32767 (по умолчанию 100)."),
