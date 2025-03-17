@@ -46,7 +46,7 @@ def item_detail(request, pk):
 
 
 def reg_expression(request, pk):
-    return item_detail(request, pk)
+    return HttpResponse(pk)
 
 
 __all__ = [
