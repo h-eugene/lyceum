@@ -1,3 +1,5 @@
+from http import HTTPStatus
+
 import django.http
 import django.shortcuts
 
@@ -10,4 +12,8 @@ def home(request):
     return django.shortcuts.render(request, template, {"items": items})
 
 
-__all__ = ["home"]
+def coffee(request):
+    return django.http.HttpResponse("Я чайник", status=HTTPStatus.IM_A_TEAPOT)
+
+
+__all__ = ["home", "coffee"]

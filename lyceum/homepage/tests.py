@@ -27,5 +27,13 @@ class TestStaticURL(TestCase):
 
         self.assertEqual(response.status_code, HTTPStatus.IM_A_TEAPOT)
 
+    def test_homepage_coffee_endpoint_content(self):
+        client = Client()
+
+        response = client.get("/coffee/")
+        text = "Я чайник"
+
+        self.assertEqual(response.content.decode("utf-8"), text)
+
 
 __all__ = ["TestStaticURL"]
