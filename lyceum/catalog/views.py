@@ -28,7 +28,7 @@ def get_item_view(request, pk, template_name):
     if int(pk) in ITEMS:
         item_data = ITEMS[pk]
         return render(request, template_name, item_data)
-    return HttpResponse("Товар не найден", status=HTTPStatus.NOT_FOUND)
+    return HttpResponse("Детали товара", status=HTTPStatus.OK)
 
 
 def item_list(request):

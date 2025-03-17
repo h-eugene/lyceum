@@ -18,7 +18,7 @@ class TestDynamicURL(TestCase):
     test_cases = [
         ("positive_number", 1, HTTPStatus.OK),
         ("negative_number", -1, HTTPStatus.NOT_FOUND),
-        ("zero_number", 0, HTTPStatus.NOT_FOUND),
+        ("zero_number", 0, HTTPStatus.OK),
         ("not_number", "dd", HTTPStatus.NOT_FOUND),
         ("empty", "", HTTPStatus.NOT_FOUND),
     ]
@@ -34,6 +34,8 @@ class TestDynamicURL(TestCase):
         url = reverse("catalog:item_list") + f"{index}/"
         response = client.get(url)
         self.assertEqual(response.status_code, status)
+
+    test_cases[2] = ("zero_number", 0, HTTPStatus.NOT_FOUND)
 
     @parameterized.expand(test_cases)
     def test_catalog_with_positive_number_regex_status(
