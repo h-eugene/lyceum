@@ -15,7 +15,7 @@ class TestDynamicURL(TestCase):
     def tearDown(self):
         super().tearDown()
 
-    testCases = [
+    test_cases = [
         ("positive_number", 1, HTTPStatus.OK),
         ("negative_number", -1, HTTPStatus.NOT_FOUND),
         ("zero_number", 0, HTTPStatus.NOT_FOUND),
@@ -23,7 +23,7 @@ class TestDynamicURL(TestCase):
         ("empty", "", HTTPStatus.NOT_FOUND),
     ]
 
-    @parameterized.expand(testCases)
+    @parameterized.expand(test_cases)
     def test_catalog_with_index_endpoint_status(
         self,
         test_name,
@@ -35,7 +35,7 @@ class TestDynamicURL(TestCase):
         response = client.get(url)
         self.assertEqual(response.status_code, status)
 
-    @parameterized.expand(testCases)
+    @parameterized.expand(test_cases)
     def test_catalog_with_positive_number_regex_status(
         self,
         test_name,
@@ -47,7 +47,7 @@ class TestDynamicURL(TestCase):
         response = client.get(url)
         self.assertEqual(response.status_code, status)
 
-    @parameterized.expand(testCases)
+    @parameterized.expand(test_cases)
     def test_catalog_with_converter_to_posint_status(
         self,
         test_name,
