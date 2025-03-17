@@ -1,6 +1,7 @@
 from http import HTTPStatus
 
 from django.test import Client, TestCase
+from django.urls import reverse
 
 from lyceum.middleware import ReverseRussianWordsMiddleware
 
@@ -15,8 +16,8 @@ class TestStaticURL(TestCase):
 
     def test_default_catalog_endpoint_status(self):
         client = Client()
-
-        response = client.get("/catalog/")
+        url = reverse("catalog:item_list")
+        response = client.get(url)
 
         self.assertEqual(response.status_code, HTTPStatus.OK)
 
