@@ -26,3 +26,6 @@ class TestStaticURL(TestCase):
         response = client.get("/coffee/")
 
         self.assertEqual(response.status_code, HTTPStatus.IM_A_TEAPOT)
+
+
+__all__ = ["TestStaticURL"]

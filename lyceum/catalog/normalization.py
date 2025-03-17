@@ -10,3 +10,6 @@ def normalize_name(name):
     normalized = translit(name, "ru", reversed=True)
     name = re.sub(r"[^a-z0-9-]", "", normalized.strip())
     return name
+
+
+__all__ = ["normalize_name"]

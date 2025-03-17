@@ -16,3 +16,6 @@ class BaseModel(models.Model):
 
     class Meta:
         abstract = True
+
+
+__all__ = ["BaseModel"]

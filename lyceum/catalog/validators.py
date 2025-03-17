@@ -39,3 +39,6 @@ def validate_slug(value):
         raise ValidationError(
             "Слаг может содержать только буквы, цифры, '-' и '_'",
         )
+
+
+__all__ = ["ValidateMustContain"]

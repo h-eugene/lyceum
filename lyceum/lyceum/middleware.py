@@ -30,3 +30,6 @@ class ReverseRussianWordsMiddleware:
 
         reversed_content = self.regex.sub(lambda m: m.group(0)[::-1], content)
         response.content = reversed_content.encode()
+
+
+__all__ = ["ReverseRussianWordsMiddleware"]

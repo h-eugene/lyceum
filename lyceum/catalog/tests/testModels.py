@@ -307,3 +307,6 @@ class RelationshipTests(TestCase):
         item.tags.add(self.tag)
         self.assertIn(self.tag, item.tags.all())
         self.assertEqual(item.tags.count(), 1)
+
+
+__all__ = ["TagTests", "CategoryTests", "ItemTests", "RelationshipTests"]

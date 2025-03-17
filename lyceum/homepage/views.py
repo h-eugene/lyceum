@@ -8,3 +8,6 @@ def home(request):
     template = "homepage/main.html"
     items = list(ITEMS.values())
     return django.shortcuts.render(request, template, {"items": items})
+
+
+__all__ = ["home"]

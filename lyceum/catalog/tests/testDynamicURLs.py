@@ -73,3 +73,6 @@ class TestDynamicURL(TestCase):
 
         response = client.get(f"/catalog/converter/{index}/")
         self.assertEqual(response.status_code, status)
+
+
+__all__ = ["TestDynamicURL"]

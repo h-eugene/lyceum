@@ -47,3 +47,6 @@ class TestMiddlwareWithoutAllowReverse(TestCase):
                     text2 = " ".join(i[::-1] for i in text.split())
                 self.assertEqual(response.content.decode(), text)
                 self.assertEqual(response2.content.decode(), text2)
+
+
+__all__ = ["TestMiddlwareWithoutAllowReverse"]

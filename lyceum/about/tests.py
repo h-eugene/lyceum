@@ -19,3 +19,6 @@ class TestStaticURL(TestCase):
         response = client.get("/about/")
 
         self.assertEqual(response.status_code, HTTPStatus.OK)
+
+
+__all__ = ["TestStaticURL"]
