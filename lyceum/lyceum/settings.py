@@ -56,6 +56,7 @@ MIDDLEWARE = [
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
     "lyceum.middleware.ReverseRussianWordsMiddleware",
+    "django.middleware.locale.LocaleMiddleware",
 ]
 
 
@@ -112,6 +113,13 @@ AUTH_PASSWORD_VALIDATORS = [
 
 
 LANGUAGE_CODE = "ru"
+
+LANGUAGES = [
+    ('en', 'English'),
+    ('ru', 'Russian'),
+]
+
+LOCALE_PATHS = [BASE_DIR / 'locale']
 
 TIME_ZONE = "UTC"
 

@@ -77,7 +77,22 @@ python manage.py loaddata fixtures/data.json
 
 ---
 
-### **7️⃣ Запуск тестов**
+### **7️⃣ Настройка локализации**
+Проект поддерживает английский (en) и русский (ru) языки:
+
+Создайте файлы переводов:
+```sh
+mkdir locale
+python manage.py makemessages -l ru
+```
+
+Отредактируйте locale/ru/LC_MESSAGES/django.po, добавив переводы для меню и других статических элементов.
+
+Скомпилируйте переводы:
+```sh
+python manage.py compilemessages
+```
+### **8️⃣ Запуск тестов**
 Для проверки функциональности проекта выполните тесты:
 ```sh
 python manage.py test
@@ -86,7 +101,7 @@ python manage.py test
 
 ---
 
-### **8️⃣ Запуск dev-сервера**
+### **9️⃣ Запуск dev-сервера**
 Запускаем сервер Django в режиме разработки (**DEBUG=True** в `.env`):
 ```sh
 python manage.py runserver
