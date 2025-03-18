@@ -18,7 +18,9 @@ class Migration(migrations.Migration):
             field=tinymce.models.HTMLField(
                 help_text="Введите текст товара, который обязательно должен содержать слово 'превосходно' или 'роскошно'.",
                 validators=[
-                    catalog.validators.ValidateMustContain("Превосходно", "Роскошно")
+                    catalog.validators.ValidateMustContain(
+                        "Превосходно", "Роскошно"
+                    )
                 ],
                 verbose_name="текст",
             ),
