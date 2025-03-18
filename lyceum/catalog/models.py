@@ -1,9 +1,9 @@
-from tinymce.models import HTMLField
 from django.core.exceptions import ValidationError
 from django.core.validators import MaxValueValidator, MinValueValidator
 from django.db import models
 from django.utils.safestring import mark_safe
 from sorl.thumbnail import get_thumbnail
+from tinymce.models import HTMLField
 
 from catalog.normalization import normalize_name
 from catalog.validators import (
