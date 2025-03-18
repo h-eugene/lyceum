@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-03-19 01:38+0300\n"
+"POT-Creation-Date: 2025-03-19 02:00+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -35,7 +35,7 @@ msgid "About"
 msgstr ""
 
 #: .\templates\includes\header.html:31
-msgid "Pets"
+msgid "Items"
 msgstr ""
 
 #: .\templates\includes\header.html:35
