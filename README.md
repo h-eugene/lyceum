@@ -83,7 +83,7 @@ python manage.py loaddata fixtures/data.json
 Создайте файлы переводов:
 ```sh
 mkdir locale
-python manage.py makemessages -l ru
+python manage.py makemessages --all
 ```
 
 Отредактируйте locale/ru/LC_MESSAGES/django.po, добавив переводы для меню и других статических элементов.
