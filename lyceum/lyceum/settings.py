@@ -1,6 +1,8 @@
 import os
 from pathlib import Path
 
+from django.utils.translation import gettext_lazy as _
+
 from dotenv import load_dotenv
 
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -115,8 +117,8 @@ AUTH_PASSWORD_VALIDATORS = [
 LANGUAGE_CODE = "ru"
 
 LANGUAGES = [
-    ("en", "English"),
-    ("ru", "Russian"),
+    ("en", _("English")),
+    ("ru", _("Russian")),
 ]
 
 LOCALE_PATHS = [BASE_DIR / "locale"]
