@@ -20,7 +20,6 @@ INSTALLED_APPS = [
     "about.apps.AboutConfig",
     "catalog.apps.CatalogConfig",
     "core.apps.CoreConfig",
-    "ckeditor",
     "django_cleanup.apps.CleanupConfig",
     "django.contrib.admin",
     "django.contrib.auth",
@@ -30,6 +29,7 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "homepage.apps.HomepageConfig",
     "sorl.thumbnail",
+    "tinymce",
 ]
 
 if DEBUG:

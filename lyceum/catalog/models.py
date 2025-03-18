@@ -1,4 +1,4 @@
-from ckeditor.fields import RichTextField
+from tinymce.models import HTMLField
 from django.core.exceptions import ValidationError
 from django.core.validators import MaxValueValidator, MinValueValidator
 from django.db import models
@@ -185,7 +185,7 @@ class ItemImages(models.Model):
 
 class Item(BaseModel):
 
-    text = RichTextField(
+    text = HTMLField(
         validators=[
             ValidateMustContain("Превосходно", "Роскошно"),
         ],
