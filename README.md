@@ -83,14 +83,14 @@ python manage.py loaddata fixtures/data.json
 Создайте файлы переводов:
 ```sh
 mkdir locale
-django-admin.exe makemessages -all
+django-admin makemessages -all
 ```
 
 Отредактируйте locale/ru/LC_MESSAGES/django.po, добавив переводы для меню и других статических элементов.
 
 Скомпилируйте переводы:
 ```sh
-django-admin.exe compilemessages
+django-admin compilemessages
 ```
 ### **8️⃣ Запуск тестов**
 Для проверки функциональности проекта выполните тесты:
