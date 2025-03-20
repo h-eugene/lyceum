@@ -45,4 +45,4 @@ class ItemAdmin(admin.ModelAdmin):
     inlines = [ItemMainImageInline, ItemImagesInline]
 
 
-__all__ = ["ItemAdmin"]
+__all__ = []

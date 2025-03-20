@@ -18,4 +18,4 @@ class BaseModel(models.Model):
         abstract = True
 
 
-__all__ = ["BaseModel"]
+__all__ = []

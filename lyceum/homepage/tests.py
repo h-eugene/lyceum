@@ -38,4 +38,4 @@ class TestStaticURL(TestCase):
         self.assertEqual(response.content.decode("utf-8"), text)
 
 
-__all__ = ["TestStaticURL"]
+__all__ = []

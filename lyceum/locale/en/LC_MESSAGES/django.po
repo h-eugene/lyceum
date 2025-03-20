@@ -20,24 +20,24 @@ msgstr ""
 
 #: .\lyceum\settings.py:119
 msgid "English"
-msgstr ""
+msgstr "English"
 
 #: .\lyceum\settings.py:120
 msgid "Russian"
-msgstr ""
+msgstr "Russian"
 
 #: .\templates\includes\header.html:19
 msgid "Home"
-msgstr ""
+msgstr "Home"
 
 #: .\templates\includes\header.html:25
 msgid "About"
-msgstr ""
+msgstr "About"
 
 #: .\templates\includes\header.html:31
 msgid "Items"
-msgstr ""
+msgstr "Items"
 
 #: .\templates\includes\header.html:35
 msgid "Cart"
-msgstr ""
+msgstr "Cart"

@@ -4,6 +4,3 @@ exclude = venv/, .git/, __pycache__/, */migrations/
 inline-quotes = double
 multiline-quotes = double 
 docstring-quotes = double
-
-
-import-order-style = 

@@ -82,7 +82,4 @@ class TestMiddlwareWithoutAllowReverse(TestCase):
                 self.assertEqual(response2.content.decode(), text2)
 
 
-__all__ = [
-    "TestMiddlwareWithAllowReverse",
-    "TestMiddlwareWithoutAllowReverse",
-]
+__all__ = []

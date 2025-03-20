@@ -32,4 +32,4 @@ class ReverseRussianWordsMiddleware:
         response.content = reversed_content.encode()
 
 
-__all__ = ["ReverseRussianWordsMiddleware"]
+__all__ = []

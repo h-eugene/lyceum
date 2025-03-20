@@ -12,4 +12,4 @@ def normalize_name(name):
     return name
 
 
-__all__ = ["normalize_name"]
+__all__ = []

@@ -7,4 +7,4 @@ class CoreConfig(AppConfig):
     verbose_name = "Ядро"
 
 
-__all__ = ["CoreConfig"]
+__all__ = []

@@ -22,4 +22,4 @@ class TestStaticURL(TestCase):
         self.assertEqual(response.status_code, HTTPStatus.OK)
 
 
-__all__ = ["TestStaticURL"]
+__all__ = []
