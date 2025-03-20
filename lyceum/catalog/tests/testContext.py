@@ -1,3 +1,4 @@
+from django.db.models import QuerySet
 from django.test import Client, TestCase
 from django.urls import reverse
 
@@ -52,11 +53,35 @@ class TestContext(TestCase):
     def test_home_page_show_correct_context(self):
         response = Client().get(reverse("homepage:main"))
         self.assertIn("items", response.context)
+        self.assertIsInstance(response.context["items"], QuerySet)
+        for item in response.context["items"]:
+            self.assertIsInstance(item, Item)
 
     def test_home_count_item(self):
         response = Client().get(reverse("homepage:main"))
         items = response.context["items"]
-        self.assertEqual(len(items), 1)
+        self.assertEqual(items.count(), 1)
+        self.assertQuerysetEqual(
+            items,
+            [self.published_item],
+            ordered=False,
+        )
+
+        item = items[0]
+        tags = item.tags.all()
+        self.assertEqual(
+            tags.count(),
+            1,
+        )
+        self.assertQuerysetEqual(
+            tags,
+            [self.published_tag],
+            ordered=False,
+        )
+        self.assertContains(response, "Опубликованный товар")
+        self.assertContains(response, "Тестовая опубликованная категория")
+        self.assertContains(response, "Опубликованный тэг")
+        self.assertNotContains(response, "Непубликованный тэг")
 
 
 __all__ = []

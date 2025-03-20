@@ -14,7 +14,7 @@ def item_list(request):
             Prefetch(
                 "tags",
                 queryset=Tag.objects.filter(is_published=True).only("name"),
-            )
+            ),
         )
         .only("name", "text", "category", "main_image")
         .order_by("category__name")

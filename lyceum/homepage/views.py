@@ -1,8 +1,8 @@
 from http import HTTPStatus
 
+from django.db.models import Prefetch
 import django.http
 import django.shortcuts
-from django.db.models import Prefetch
 
 from catalog.models import Item, Tag
 
@@ -19,7 +19,7 @@ def home(request):
             Prefetch(
                 "tags",
                 queryset=Tag.objects.filter(is_published=True).only("name"),
-            )
+            ),
         )
         .only("name", "text", "category", "main_image")
     )
