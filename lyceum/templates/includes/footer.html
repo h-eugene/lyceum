@@ -1,14 +1,5 @@
+{% load static %}
 <footer class="bg-dark text-light text-center pt-1 mt-1">
-    <p>© <span id="year">{% now "Y" %}</span> FurFriends. Все права защищены. <a href="" class="text-light">Политика конфиденциальности</a></p>
-    <script>
-        var dateStr = "{% now \"Y-m-d\" %}T{% now \"H:i:s\" %}Z";
-        var serverDate = Date.parse(dateStr);
-        var now = Date.now();
-        var diffTime = Math.abs(serverDate - now);
-        var diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
-
-        var date = new Date(diffDays < 1 ? now : serverDate)
-
-        $("#year").text(date.getFullYear());
-    </script>
+    <p>© <span id="year">{{ "now"|date:"Y" }}</span> FurFriends. Все права защищены. <a href="" class="text-light">Политика конфиденциальности</a></p>
+    <script src="{% static 'js/footer-year.js' %}"></script>
 </footer>
