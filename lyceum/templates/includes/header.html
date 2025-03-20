@@ -16,23 +16,23 @@
                     <li class="nav-item">
                         <a class="nav-link {% if view_name == 'homepage:main' %}active{% endif %}" 
                         {% if view_name != 'homepage:main' %}href="{% url 'homepage:main' %}"{% endif %}>
-                        {% trans "Home" %}
+                        {% translate "Home" %}
                         </a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link {% if view_name == 'about:about' %}active{% endif %}" 
                         {% if view_name != 'about:about' %}href="{% url 'about:about' %}"{% endif %}>
-                        {% trans "About" %}
+                        {% translate "About" %}
                         </a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link {% if view_name == 'catalog:item_list' %}active{% endif %}" 
                         {% if view_name != 'catalog:item_list' %}href="{% url 'catalog:item_list' %}"{% endif %}>
-                        {% trans "Items" %}
+                        {% translate "Items" %}
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="">{% trans "Cart" %}</a>
+                        <a class="nav-link" href="">{% translate "Cart" %}</a>
                     </li>
                 </ul>
             </div>
