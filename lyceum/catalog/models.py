@@ -132,11 +132,18 @@ class ItemMainImage(models.Model):
     )
 
     def get_image_300x300(self):
-        return get_thumbnail(self.image, "300x300", crop="center", quality=51)
+        return get_thumbnail(
+            self.image,
+            "300x300",
+            crop="center",
+            quality=100,
+        )
 
     def image_tmb(self):
         if self.image:
-            return mark_safe(f'<img src="{self.image.url}" width="50">')
+            return mark_safe(
+                f'<img src="{self.get_image_300x300().url}" width="50">',
+            )
         return "Нет изображения"
 
     image_tmb.short_description = "превью"
@@ -163,7 +170,12 @@ class ItemImages(models.Model):
     )
 
     def get_image_300x300(self):
-        return get_thumbnail(self.image, "300x300", crop="center", quality=51)
+        return get_thumbnail(
+            self.image,
+            "300x300",
+            crop="center",
+            quality=100,
+        )
 
     def image_tmb(self):
         if self.image:
@@ -184,7 +196,6 @@ class ItemImages(models.Model):
 
 
 class Item(BaseModel):
-
     text = HTMLField(
         validators=[
             ValidateMustContain("Превосходно", "Роскошно"),
@@ -210,7 +221,14 @@ class Item(BaseModel):
         help_text="Выберите один или несколько тегов для этого товара.",
     )
 
+    is_on_main = models.BooleanField(
+        default=False,
+        verbose_name="на главной странице",
+        help_text="Если True, то товар отображается на главной странице",
+    )
+
     class Meta:
+        ordering = ("name",)
         verbose_name = "товар"
         verbose_name_plural = "товары"
 

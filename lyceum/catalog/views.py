@@ -1,48 +1,56 @@
-from http import HTTPStatus
-
+from django.db.models import Prefetch
 from django.http import HttpResponse
-from django.shortcuts import render
+from django.shortcuts import get_object_or_404, render
 
-ITEMS = {
-    1: {
-        "pk": 1,
-        "name": "Котик",
-        "description": (
-            "Милый котик для вашего дома. "
-            "Идеальный компаньон для любого любителя животных!"
-        ),
-        "image": "images/cat.jpg",
-    },
-    2: {
-        "pk": 2,
-        "name": "Енотик",
-        "description": (
-            "Игривый енот для радости. Отличный друг для весёлых моментов!"
-        ),
-        "image": "images/raccoon.jpg",
-    },
-}
-
-
-def get_item_view(request, pk, template_name):
-    if int(pk) in ITEMS:
-        item_data = ITEMS[pk]
-        return render(request, template_name, item_data)
-    return HttpResponse("Детали товара", status=HTTPStatus.OK)
+from catalog.models import Item, ItemImages, Tag
 
 
 def item_list(request):
     template = "catalog/catalog.html"
-    items = list(ITEMS.values())
-    return render(request, template, {"items": items})
+    items = (
+        Item.objects.filter(is_published=True)
+        .select_related("category", "main_image")
+        .prefetch_related(
+            Prefetch(
+                "tags",
+                queryset=Tag.objects.filter(is_published=True).only("name"),
+            )
+        )
+        .only("name", "text", "category", "main_image")
+        .order_by("category__name")
+    )
 
-
-def item_card(request, pk):
-    return get_item_view(request, pk, "catalog/item_card.html")
+    context = {
+        "items": items,
+    }
+    return render(request, template, context)
 
 
 def item_detail(request, pk):
-    return get_item_view(request, pk, "catalog/item.html")
+    template = "catalog/item.html"
+    item = get_object_or_404(
+        Item.objects.select_related(
+            "category",
+            "main_image",
+        )
+        .prefetch_related(
+            Prefetch(
+                "tags",
+                queryset=Tag.objects.filter(is_published=True).only("name"),
+            ),
+            Prefetch(
+                "images",
+                queryset=ItemImages.objects.only("image"),
+            ),
+        )
+        .only("name", "text", "main_image", "category"),
+        pk=pk,
+        is_published=True,
+    )
+    context = {
+        "item": item,
+    }
+    return render(request, template, context)
 
 
 def reg_expression(request, pk):

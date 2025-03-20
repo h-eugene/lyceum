@@ -1,44 +1,54 @@
 {% extends 'base.html' %}
 {% load static %}
 
-{% block title %}FurFriends — {{ name }}{% endblock %}
+{% block title %}FurFriends — {{ item.name }}{% endblock %}
 
 {% block content %}
 <div class="row justify-content-center py-4">
-    <h1 class="text-center mb-4 title">{{ name }}</h1>
+    <h1 class="text-center mb-4 title">{{ item.name }}</h1>
     <div class="card h-100 bg-dark text-light shadow-lg border-0 item-detail-card">
         <div class="row h-100 g-4">
             <div class="col-md-6 d-flex item-image">
-                <img src="{% static image %}" alt="{{ name }}" class="img-fluid">
+                <img src="{{ item.main_image.get_image_300x300.url }}" alt="{{ name }}" class="img-fluid w-100">
             </div>
             <div class="col-md-6 card-body d-flex flex-column p-4 item-info">
                 <div class="flex-grow-1">
-                    <h5 class="card-title mb-1">Описание</h5>
-                    <p class="card-text mb-2">{{ description }}</p>
-                    <form method="post" class="mb-0">
-                        {% csrf_token %}
-                        <div class="mb-3">
-                            <label for="gender" class="form-label text-light">Пол:</label>
-                            <select name="gender" id="gender" class="form-select bg-dark text-light border-0">
-                                {% for choice in gender_choices %}
-                                    <option value="{{ choice.0 }}" {% if choice.0 == gender %}selected{% endif %}>
-                                        {{ choice.1 }}
-                                    </option>
+                    <div class="card-text">
+                        <p class="item-category"><strong>Категория:</strong> {{ item.category.name }}</p>
+                        <p class="item-tags"><strong>Теги:</strong> {% for tag in item.tags.all %}
+                            <span class="fw-normal fst-italic">{{ tag.name }}</span>{% if not forloop.last %}, {% endif %}
+                        {% endfor %}</p>
+
+                        <p class="mb-0"><strong>Описание:</strong> </p>
+                        {{ item.text|safe }}
+
+                        <p class="item-images"><strong>Фото:</strong></p>
+                        {% if item.images.all %}
+                        <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+                            <div class="carousel-inner">
+                                {% for image in item.images.all %}
+                                    {% if forloop.first %}
+                                    <div class="carousel-item active">
+                                    {% else %}
+                                    <div class="carousel-item">
+                                    {% endif %}
+                                        <img src="{{ image.get_image_300x300.url }}" alt="{{ item.name }} - Additional Image" class="d-block mx-auto">
+                                    </div>
                                 {% endfor %}
-                            </select>
+                            </div>
+                            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                <span class="visually-hidden">Previous</span>
+                            </button>
+                            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                <span class="visually-hidden">Next</span>
+                            </button>
                         </div>
-                        <div class="mb-3">
-                            <label for="breed" class="form-label text-light">Порода:</label>
-                            <select name="breed" id="breed" class="form-select bg-dark text-light border-0">
-                                {% for choice in breed_choices %}
-                                    <option value="{{ choice.0 }}" {% if choice.0 == breed %}selected{% endif %}>
-                                        {{ choice.1 }}
-                                    </option>
-                                {% endfor %}
-                            </select>
-                        </div>
-                        <button type="submit" class="btn btn-primary w-100 mt-3">Добавить в корзину</button>
-                    </form>
+                        {% else %}
+                            <p>No additional images available.</p>
+                        {% endif %}
+                    </div>
                 </div>
                 <a href="{% url 'catalog:item_list' %}" class="btn btn-secondary mt-1">Вернуться к списку</a>
             </div>
