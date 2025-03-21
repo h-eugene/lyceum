@@ -9,7 +9,7 @@
     <div class="card h-100 bg-dark text-light shadow-lg border-0 item-detail-card">
         <div class="row h-100 g-4">
             <div class="col-md-6 d-flex item-image">
-                <img src="{{ item.main_image.get_image_300x300.url }}" alt="{{ name }}" class="img-fluid w-100">
+                <img src="{{ item.main_image.get_image_300x300.url }}" alt="{{ name }}" class="img-fluid">
             </div>
             <div class="col-md-6 card-body d-flex flex-column p-4 item-info">
                 <div class="flex-grow-1">
@@ -32,7 +32,9 @@
                                     {% else %}
                                     <div class="carousel-item">
                                     {% endif %}
-                                        <img src="{{ image.get_image_300x300.url }}" alt="{{ item.name }} - Additional Image" class="d-block mx-auto">
+                                        <img src="{{ image.get_image_300x300.url }}" 
+                                        alt="{{ item.name }} - Additional Image" 
+                                        class="d-block mx-auto img-fluid">
                                     </div>
                                 {% endfor %}
                             </div>

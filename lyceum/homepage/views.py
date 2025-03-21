@@ -21,7 +21,7 @@ def home(request):
                 queryset=Tag.objects.filter(is_published=True).only("name"),
             ),
         )
-        .only("name", "text", "category", "main_image")
+        .only("name", "text", "category__name", "main_image")
     )
 
     context = {

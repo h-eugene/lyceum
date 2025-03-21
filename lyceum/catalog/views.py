@@ -8,7 +8,7 @@ from catalog.models import Item, ItemImages, Tag
 def item_list(request):
     template = "catalog/catalog.html"
     items = (
-        Item.objects.filter(is_published=True)
+        Item.objects.filter(is_published=True, category__is_published=True)
         .select_related("category", "main_image")
         .prefetch_related(
             Prefetch(
@@ -16,7 +16,12 @@ def item_list(request):
                 queryset=Tag.objects.filter(is_published=True).only("name"),
             ),
         )
-        .only("name", "text", "category", "main_image")
+        .only(
+            "name",
+            "text",
+            "category__name",
+            "main_image__image",
+        )
         .order_by("category__name")
     )
 
@@ -46,6 +51,7 @@ def item_detail(request, pk):
         .only("name", "text", "main_image", "category"),
         pk=pk,
         is_published=True,
+        category__is_published=True,
     )
     context = {
         "item": item,

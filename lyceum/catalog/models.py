@@ -174,7 +174,7 @@ class ItemImages(models.Model):
             self.image,
             "300x300",
             crop="center",
-            quality=100,
+            quality=51,
         )
 
     def image_tmb(self):
