@@ -26,7 +26,7 @@ class Tag(BaseModel):
     )
     normalized_name = models.CharField(
         max_length=200,
-        unique=True,
+        unique=False,
         editable=False,
         verbose_name="нормализованное имя",
         help_text="Автоматически нормализованное имя для уникальности.",
