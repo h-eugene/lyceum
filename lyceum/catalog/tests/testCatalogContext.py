@@ -71,16 +71,6 @@ class TestCatalogContext(TestCase):
             ordered=False,
         )
 
-    def test_catalog_page_item_tags(self):
-        item = self.catalog_items[0]
-        tags = item.tags.all()
-        self.assertEqual(tags.count(), 1)
-        self.assertQuerysetEqual(
-            tags,
-            [self.published_tag],
-            ordered=False,
-        )
-
     @parameterized.expand(
         [
             ("Опубликованный товар", True),

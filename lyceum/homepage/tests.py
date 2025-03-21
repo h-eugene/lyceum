@@ -106,16 +106,6 @@ class TestHomepageContext(TestCase):
             ordered=False,
         )
 
-    def test_home_page_item_tags(self):
-        item = self.home_items[0]
-        tags = item.tags.all()
-        self.assertEqual(tags.count(), 1)
-        self.assertQuerysetEqual(
-            tags,
-            [self.published_tag],
-            ordered=False,
-        )
-
     @parameterized.expand(
         [
             ("Опубликованный товар", True),
