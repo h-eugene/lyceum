@@ -81,14 +81,16 @@ class TestCatalogContext(TestCase):
             ordered=False,
         )
 
-    @parameterized.expand([
-        ("Опубликованный товар", True),
-        ("Тестовая опубликованная категория", True),
-        ("Опубликованный тэг", True),
-        ("Непубликованный товар", False),
-        ("Тестовая неопубликованная категория", False),
-        ("Непубликованный тэг", False),
-    ])
+    @parameterized.expand(
+        [
+            ("Опубликованный товар", True),
+            ("Тестовая опубликованная категория", True),
+            ("Опубликованный тэг", True),
+            ("Непубликованный товар", False),
+            ("Тестовая неопубликованная категория", False),
+            ("Непубликованный тэг", False),
+        ]
+    )
     def test_catalog_page_content(self, text, should_contain):
         if should_contain:
             self.assertContains(self.catalog_response, text)
