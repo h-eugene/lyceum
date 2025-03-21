@@ -73,42 +73,34 @@
 },
 {
     "model": "catalog.itemmainimage",
-    "pk": 1,
-    "fields": {
-        "item": 5,
-        "image": "catalog/2025/03/20/6420515142.jpg"
-    }
-},
-{
-    "model": "catalog.itemimages",
-    "pk": 1,
-    "fields": {
-        "item": 5,
-        "image": "catalog/2025/03/20/6420515142_LptASLY.jpg"
-    }
-},
-{
-    "model": "catalog.itemimages",
     "pk": 2,
     "fields": {
-        "item": 5,
-        "image": "catalog/2025/03/20/i_1.webp"
+        "item": 7,
+        "image": "catalog/2025/03/21/6420515142.jpg"
     }
 },
 {
     "model": "catalog.itemimages",
-    "pk": 3,
+    "pk": 5,
     "fields": {
-        "item": 5,
-        "image": "catalog/2025/03/20/i_2.webp"
+        "item": 7,
+        "image": "catalog/2025/03/21/i_2.webp"
     }
 },
 {
     "model": "catalog.itemimages",
-    "pk": 4,
+    "pk": 6,
     "fields": {
-        "item": 5,
-        "image": "catalog/2025/03/20/i.webp"
+        "item": 7,
+        "image": "catalog/2025/03/21/i_1.webp"
+    }
+},
+{
+    "model": "catalog.itemimages",
+    "pk": 7,
+    "fields": {
+        "item": 7,
+        "image": "catalog/2025/03/21/i.webp"
     }
 },
 {
@@ -171,24 +163,6 @@
 },
 {
     "model": "catalog.item",
-    "pk": 5,
-    "fields": {
-        "name": "Iphone",
-        "is_published": true,
-        "text": "<p>Превосходно и роскошно</p>",
-        "category": 1,
-        "is_on_main": true,
-        "tags": [
-            1,
-            2,
-            3,
-            4,
-            5
-        ]
-    }
-},
-{
-    "model": "catalog.item",
     "pk": 6,
     "fields": {
         "name": "Earphone",
@@ -198,6 +172,20 @@
         "is_on_main": true,
         "tags": [
             2
+        ]
+    }
+},
+{
+    "model": "catalog.item",
+    "pk": 7,
+    "fields": {
+        "name": "Iphone",
+        "is_published": true,
+        "text": "<p>Превосходно стоит</p>",
+        "category": 1,
+        "is_on_main": true,
+        "tags": [
+            1
         ]
     }
 },
@@ -316,6 +304,32 @@
         "object_repr": "Iphone",
         "action_flag": 2,
         "change_message": "[{\"added\": {\"name\": \"\\u0438\\u0437\\u043e\\u0431\\u0440\\u0430\\u0436\\u0435\\u043d\\u0438\\u0435\", \"object\": \"\\u0418\\u0437\\u043e\\u0431\\u0440\\u0430\\u0436\\u0435\\u043d\\u0438\\u0435 \\u0434\\u043b\\u044f Iphone\"}}, {\"added\": {\"name\": \"\\u0438\\u0437\\u043e\\u0431\\u0440\\u0430\\u0436\\u0435\\u043d\\u0438\\u0435\", \"object\": \"\\u0418\\u0437\\u043e\\u0431\\u0440\\u0430\\u0436\\u0435\\u043d\\u0438\\u0435 \\u0434\\u043b\\u044f Iphone\"}}, {\"added\": {\"name\": \"\\u0438\\u0437\\u043e\\u0431\\u0440\\u0430\\u0436\\u0435\\u043d\\u0438\\u0435\", \"object\": \"\\u0418\\u0437\\u043e\\u0431\\u0440\\u0430\\u0436\\u0435\\u043d\\u0438\\u0435 \\u0434\\u043b\\u044f Iphone\"}}, {\"changed\": {\"name\": \"\\u0438\\u0437\\u043e\\u0431\\u0440\\u0430\\u0436\\u0435\\u043d\\u0438\\u0435\", \"object\": \"\\u0418\\u0437\\u043e\\u0431\\u0440\\u0430\\u0436\\u0435\\u043d\\u0438\\u0435 \\u0434\\u043b\\u044f Iphone\", \"fields\": [\"\\u0418\\u0437\\u043e\\u0431\\u0440\\u0430\\u0436\\u0435\\u043d\\u0438\\u0435\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 10,
+    "fields": {
+        "action_time": "2025-03-21T09:52:05.157Z",
+        "user": 1,
+        "content_type": 5,
+        "object_id": "5",
+        "object_repr": "Iphone",
+        "action_flag": 3,
+        "change_message": ""
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 11,
+    "fields": {
+        "action_time": "2025-03-21T09:54:06.287Z",
+        "user": 1,
+        "content_type": 5,
+        "object_id": "7",
+        "object_repr": "Iphone",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}, {\"added\": {\"name\": \"\\u0433\\u043b\\u0430\\u0432\\u043d\\u043e\\u0435 \\u0438\\u0437\\u043e\\u0431\\u0440\\u0430\\u0436\\u0435\\u043d\\u0438\\u0435\", \"object\": \"\\u0413\\u043b\\u0430\\u0432\\u043d\\u043e\\u0435 \\u0438\\u0437\\u043e\\u0431\\u0440\\u0430\\u0436\\u0435\\u043d\\u0438\\u0435 \\u0434\\u043b\\u044f Iphone\"}}, {\"added\": {\"name\": \"\\u0438\\u0437\\u043e\\u0431\\u0440\\u0430\\u0436\\u0435\\u043d\\u0438\\u0435\", \"object\": \"\\u0418\\u0437\\u043e\\u0431\\u0440\\u0430\\u0436\\u0435\\u043d\\u0438\\u0435 \\u0434\\u043b\\u044f Iphone\"}}, {\"added\": {\"name\": \"\\u0438\\u0437\\u043e\\u0431\\u0440\\u0430\\u0436\\u0435\\u043d\\u0438\\u0435\", \"object\": \"\\u0418\\u0437\\u043e\\u0431\\u0440\\u0430\\u0436\\u0435\\u043d\\u0438\\u0435 \\u0434\\u043b\\u044f Iphone\"}}, {\"added\": {\"name\": \"\\u0438\\u0437\\u043e\\u0431\\u0440\\u0430\\u0436\\u0435\\u043d\\u0438\\u0435\", \"object\": \"\\u0418\\u0437\\u043e\\u0431\\u0440\\u0430\\u0436\\u0435\\u043d\\u0438\\u0435 \\u0434\\u043b\\u044f Iphone\"}}]"
     }
 },
 {
@@ -895,6 +909,20 @@
 },
 {
     "model": "thumbnail.kvstore",
+    "pk": "sorl-thumbnail||image||099382e7625e3250b721bb98c9f50d1d",
+    "fields": {
+        "value": "{\"name\": \"cache/1a/7a/1a7a914895621cfb01cf884659b3946f.jpg\", \"storage\": \"django.core.files.storage.filesystem.FileSystemStorage\", \"size\": [300, 300]}"
+    }
+},
+{
+    "model": "thumbnail.kvstore",
+    "pk": "sorl-thumbnail||image||0f6af09496d22bec9726f1cc1b6a8320",
+    "fields": {
+        "value": "{\"name\": \"catalog/2025/03/21/i.webp\", \"storage\": \"django.core.files.storage.filesystem.FileSystemStorage\", \"size\": [3000, 1688]}"
+    }
+},
+{
+    "model": "thumbnail.kvstore",
     "pk": "sorl-thumbnail||image||160c5743cd34c5433602c6d5dd0265c7",
     "fields": {
         "value": "{\"name\": \"cache/5b/9a/5b9a9470356117e6ffe09f9d4b2826a5.jpg\", \"storage\": \"django.core.files.storage.filesystem.FileSystemStorage\", \"size\": [300, 300]}"
@@ -909,6 +937,13 @@
 },
 {
     "model": "thumbnail.kvstore",
+    "pk": "sorl-thumbnail||image||1b7c180e85bb24fd26696e275f05337e",
+    "fields": {
+        "value": "{\"name\": \"catalog/2025/03/21/i_1.webp\", \"storage\": \"django.core.files.storage.filesystem.FileSystemStorage\", \"size\": [922, 500]}"
+    }
+},
+{
+    "model": "thumbnail.kvstore",
     "pk": "sorl-thumbnail||image||1f79f42a00cc935a2b3401b976117b6f",
     "fields": {
         "value": "{\"name\": \"cache/10/6e/106e55d81d7fd4a097ba7dac526d0ae6.jpg\", \"storage\": \"django.core.files.storage.filesystem.FileSystemStorage\", \"size\": [300, 300]}"
@@ -919,6 +954,13 @@
     "pk": "sorl-thumbnail||image||2ab4a521d4925861925d0a4964756ac0",
     "fields": {
         "value": "{\"name\": \"cache/c6/37/c637db006204b89f57296234dd70fbb7.jpg\", \"storage\": \"django.core.files.storage.filesystem.FileSystemStorage\", \"size\": [300, 300]}"
+    }
+},
+{
+    "model": "thumbnail.kvstore",
+    "pk": "sorl-thumbnail||image||341e9c33f46950e610866ca6aafc1d24",
+    "fields": {
+        "value": "{\"name\": \"cache/13/3b/133bd55ffaa8f6b55487d036a695d9b0.jpg\", \"storage\": \"django.core.files.storage.filesystem.FileSystemStorage\", \"size\": [300, 300]}"
     }
 },
 {
@@ -951,6 +993,13 @@
 },
 {
     "model": "thumbnail.kvstore",
+    "pk": "sorl-thumbnail||image||4f6f64ae86b31eddc3b191f59b348290",
+    "fields": {
+        "value": "{\"name\": \"cache/7b/e0/7be05108845817684fd78eff3d0899e8.jpg\", \"storage\": \"django.core.files.storage.filesystem.FileSystemStorage\", \"size\": [300, 300]}"
+    }
+},
+{
+    "model": "thumbnail.kvstore",
     "pk": "sorl-thumbnail||image||664d75a3cf54c1cd379d3798f05d0ea3",
     "fields": {
         "value": "{\"name\": \"cache/d8/d1/d8d1bb875f940e9e4f72dff48659b02a.jpg\", \"storage\": \"django.core.files.storage.filesystem.FileSystemStorage\", \"size\": [300, 300]}"
@@ -975,6 +1024,13 @@
     "pk": "sorl-thumbnail||image||934bf05e94bcc8b8042cd3ebe6043a61",
     "fields": {
         "value": "{\"name\": \"cache/cf/ba/cfbac61a6b7a67a934e4ad49ce038e83.jpg\", \"storage\": \"django.core.files.storage.filesystem.FileSystemStorage\", \"size\": [300, 300]}"
+    }
+},
+{
+    "model": "thumbnail.kvstore",
+    "pk": "sorl-thumbnail||image||a12ba74d8ed43681f84c786fc291867b",
+    "fields": {
+        "value": "{\"name\": \"catalog/2025/03/21/i_2.webp\", \"storage\": \"django.core.files.storage.filesystem.FileSystemStorage\", \"size\": [2400, 1600]}"
     }
 },
 {
@@ -1007,9 +1063,37 @@
 },
 {
     "model": "thumbnail.kvstore",
+    "pk": "sorl-thumbnail||image||d2ef299982d43e997585c8a14639f93f",
+    "fields": {
+        "value": "{\"name\": \"catalog/2025/03/21/6420515142.jpg\", \"storage\": \"django.core.files.storage.filesystem.FileSystemStorage\", \"size\": [2001, 2000]}"
+    }
+},
+{
+    "model": "thumbnail.kvstore",
+    "pk": "sorl-thumbnail||image||d83da117921456c81f23f192ec951d27",
+    "fields": {
+        "value": "{\"name\": \"cache/be/76/be76a2bd8b87db3cec1c6236a3ab0ecd.jpg\", \"storage\": \"django.core.files.storage.filesystem.FileSystemStorage\", \"size\": [300, 300]}"
+    }
+},
+{
+    "model": "thumbnail.kvstore",
     "pk": "sorl-thumbnail||thumbnails||01b806e0709484a9c69f766fdb02b38b",
     "fields": {
         "value": "[\"2ab4a521d4925861925d0a4964756ac0\", \"664d75a3cf54c1cd379d3798f05d0ea3\"]"
+    }
+},
+{
+    "model": "thumbnail.kvstore",
+    "pk": "sorl-thumbnail||thumbnails||0f6af09496d22bec9726f1cc1b6a8320",
+    "fields": {
+        "value": "[\"341e9c33f46950e610866ca6aafc1d24\"]"
+    }
+},
+{
+    "model": "thumbnail.kvstore",
+    "pk": "sorl-thumbnail||thumbnails||1b7c180e85bb24fd26696e275f05337e",
+    "fields": {
+        "value": "[\"4f6f64ae86b31eddc3b191f59b348290\"]"
     }
 },
 {
@@ -1028,6 +1112,13 @@
 },
 {
     "model": "thumbnail.kvstore",
+    "pk": "sorl-thumbnail||thumbnails||a12ba74d8ed43681f84c786fc291867b",
+    "fields": {
+        "value": "[\"d83da117921456c81f23f192ec951d27\"]"
+    }
+},
+{
+    "model": "thumbnail.kvstore",
     "pk": "sorl-thumbnail||thumbnails||ba58cfa698545eca3602ba08b72e62bf",
     "fields": {
         "value": "[\"43cf20172c2922863324d0439c1f4b15\", \"48c0749a94955e6ddaa908b6589cd1fc\"]"
@@ -1038,6 +1129,13 @@
     "pk": "sorl-thumbnail||thumbnails||c0e60adf888944ff64950a4da8180939",
     "fields": {
         "value": "[\"038a4cc72756df910e11dcc83b51825b\", \"8447b14ca234e7b2ec27355c70d33f36\", \"49846a1f0ca5200e72db6e845658212f\", \"c3a4f9c9dcabd3bb3059eee6837d28cb\", \"160c5743cd34c5433602c6d5dd0265c7\", \"1f79f42a00cc935a2b3401b976117b6f\"]"
+    }
+},
+{
+    "model": "thumbnail.kvstore",
+    "pk": "sorl-thumbnail||thumbnails||d2ef299982d43e997585c8a14639f93f",
+    "fields": {
+        "value": "[\"099382e7625e3250b721bb98c9f50d1d\"]"
     }
 }
 ]
