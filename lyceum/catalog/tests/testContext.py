@@ -1,6 +1,7 @@
 from django.db.models import QuerySet
 from django.test import Client, TestCase
 from django.urls import reverse
+from parameterized import parameterized
 
 from catalog.models import Category, Item, Tag
 
@@ -50,38 +51,46 @@ class TestContext(TestCase):
         cls.published_item.tags.add(cls.published_tag.pk)
         cls.published_item.tags.add(cls.unpublished_tag.pk)
 
+    def setUp(self):
+        super().setUp()
+        self.response = Client().get(reverse("homepage:main"))
+        self.items = self.response.context["items"]
+
     def test_home_page_show_correct_context(self):
-        response = Client().get(reverse("homepage:main"))
-        self.assertIn("items", response.context)
-        self.assertIsInstance(response.context["items"], QuerySet)
-        for item in response.context["items"]:
+        self.assertIn("items", self.response.context)
+        self.assertIsInstance(self.response.context["items"], QuerySet)
+        for item in self.response.context["items"]:
             self.assertIsInstance(item, Item)
 
-    def test_home_count_item(self):
-        response = Client().get(reverse("homepage:main"))
-        items = response.context["items"]
-        self.assertEqual(items.count(), 1)
+    def test_home_page_items_count_and_content(self):
+        self.assertEqual(len(self.items), 1)
         self.assertQuerysetEqual(
-            items,
+            self.items,
             [self.published_item],
             ordered=False,
         )
 
-        item = items[0]
+    def test_home_page_item_tags(self):
+        item = self.items[0]
         tags = item.tags.all()
-        self.assertEqual(
-            tags.count(),
-            1,
-        )
+        self.assertEqual(tags.count(), 1)
         self.assertQuerysetEqual(
             tags,
             [self.published_tag],
             ordered=False,
         )
-        self.assertContains(response, "Опубликованный товар")
-        self.assertContains(response, "Тестовая опубликованная категория")
-        self.assertContains(response, "Опубликованный тэг")
-        self.assertNotContains(response, "Непубликованный тэг")
+
+    @parameterized.expand([
+        ("Опубликованный товар", True),
+        ("Тестовая опубликованная категория", True),
+        ("Опубликованный тэг", True),
+        ("Непубликованный тэг", False),
+    ])
+    def test_home_page_content(self, text, should_contain):
+        if should_contain:
+            self.assertContains(self.response, text)
+        else:
+            self.assertNotContains(self.response, text)
 
 
 __all__ = []
