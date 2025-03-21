@@ -211,12 +211,14 @@ class Item(BaseModel):
         Category,
         on_delete=models.CASCADE,
         related_name="items",
+        related_query_name="item",
         verbose_name="категория",
         help_text="Выберите категорию для этого товара.",
     )
     tags = models.ManyToManyField(
         Tag,
         related_name="items",
+        related_query_name="item",
         verbose_name="теги",
         help_text="Выберите один или несколько тегов для этого товара.",
     )

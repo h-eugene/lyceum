@@ -9,7 +9,9 @@
     <div class="card h-100 bg-dark text-light shadow-lg border-0 item-detail-card">
         <div class="row h-100 g-4">
             <div class="col-md-6 d-flex item-image">
-                <img src="{{ item.main_image.get_image_300x300.url }}" alt="{{ name }}" class="img-fluid">
+                <img src="{{ item.main_image.get_image_300x300.url }}" 
+                alt="{{ item.name }} - Main Image" 
+                class="img-fluid">
             </div>
             <div class="col-md-6 card-body d-flex flex-column p-4 item-info">
                 <div class="flex-grow-1">
