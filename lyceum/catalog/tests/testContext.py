@@ -80,12 +80,14 @@ class TestContext(TestCase):
             ordered=False,
         )
 
-    @parameterized.expand([
-        ("Опубликованный товар", True),
-        ("Тестовая опубликованная категория", True),
-        ("Опубликованный тэг", True),
-        ("Непубликованный тэг", False),
-    ])
+    @parameterized.expand(
+        [
+            ("Опубликованный товар", True),
+            ("Тестовая опубликованная категория", True),
+            ("Опубликованный тэг", True),
+            ("Непубликованный тэг", False),
+        ]
+    )
     def test_home_page_content(self, text, should_contain):
         if should_contain:
             self.assertContains(self.response, text)
