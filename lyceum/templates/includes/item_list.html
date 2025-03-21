@@ -1,7 +1,23 @@
-<div class="row row-cols-1 row-cols-xxl-2 g-4 justify-content-center">
-    {% for item in items %}
-        {% include 'includes/item_card.html' with item=item %}
-    {% empty %}
+{% with request.resolver_match.view_name as view_name %}
+    {% if grouped_items %}
+        {% for category_name, items in grouped_items %}
+            {% if view_name == 'catalog:item_list' %}
+                <hr class="mt-5">
+                <h3 class="mt-1 mb-0">{{ category_name }}</h3>
+                <div class="row row-cols-1 row-cols-xxl-2 g-4">
+                    {% for item in items %}
+                        {% include 'includes/item_card.html' with item=item %}
+                    {% endfor %}
+                </div>
+            {% endif %}
+        {% endfor %}
+    {% elif items %}
+        <div class="row row-cols-1 row-cols-xxl-2 g-4 justify-content-center">
+            {% for item in items %}
+                {% include 'includes/item_card.html' with item=item %}
+            {% endfor %}
+        </div>
+    {% else %}
         <p class="text-center">Нет доступных товаров.</p>
-    {% endfor %}
-</div>
+    {% endif %}
+{% endwith %}

@@ -2,11 +2,15 @@ from django.db.models import Prefetch
 from django.http import HttpResponse
 from django.shortcuts import get_object_or_404, render
 
+from itertools import groupby
+from operator import attrgetter
+
 from catalog.models import Item, ItemImages, Tag
 
 
 def item_list(request):
     template = "catalog/catalog.html"
+
     items = (
         Item.objects.filter(is_published=True, category__is_published=True)
         .select_related("category", "main_image")
@@ -25,8 +29,17 @@ def item_list(request):
         .order_by("category__name")
     )
 
+    grouped_items = []
+    for category_name, group in groupby(
+        items,
+        key=attrgetter("category.name"),
+    ):
+        group_list = list(group)
+        if group_list:
+            grouped_items.append((category_name, group_list))
+
     context = {
-        "items": items,
+        "grouped_items": grouped_items,
     }
     return render(request, template, context)
 
