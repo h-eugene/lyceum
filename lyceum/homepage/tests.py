@@ -5,8 +5,8 @@ from django.test import Client, TestCase
 from django.urls import reverse
 from parameterized import parameterized
 
-from lyceum.middleware import ReverseRussianWordsMiddleware
 from catalog.models import Category, Item, Tag
+from lyceum.middleware import ReverseRussianWordsMiddleware
 
 
 class TestStaticURL(TestCase):
@@ -89,19 +89,19 @@ class TestHomepageContext(TestCase):
     def setUp(self):
         super().setUp()
 
-        self.home_response = Client().get(reverse("homepage:main"))
-        self.home_items = self.home_response.context["items"]
+        self.response = Client().get(reverse("homepage:main"))
+        self.items = self.response.context["items"]
 
     def test_home_page_show_correct_context(self):
-        self.assertIn("items", self.home_response.context)
-        self.assertIsInstance(self.home_response.context["items"], QuerySet)
-        for item in self.home_response.context["items"]:
+        self.assertIn("items", self.response.context)
+        self.assertIsInstance(self.response.context["items"], QuerySet)
+        for item in self.response.context["items"]:
             self.assertIsInstance(item, Item)
 
     def test_home_page_items_count_and_content(self):
-        self.assertEqual(len(self.home_items), 1)
+        self.assertEqual(len(self.items), 1)
         self.assertQuerysetEqual(
-            self.home_items,
+            self.items,
             [self.published_item],
             ordered=False,
         )
@@ -112,13 +112,13 @@ class TestHomepageContext(TestCase):
             ("Тестовая опубликованная категория", True),
             ("Опубликованный тэг", True),
             ("Непубликованный тэг", False),
-        ]
+        ],
     )
     def test_home_page_content(self, text, should_contain):
         if should_contain:
-            self.assertContains(self.home_response, text)
+            self.assertContains(self.response, text)
         else:
-            self.assertNotContains(self.home_response, text)
+            self.assertNotContains(self.response, text)
 
 
 __all__ = []

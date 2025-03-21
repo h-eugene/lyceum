@@ -54,19 +54,21 @@ class TestCatalogContext(TestCase):
     def setUp(self):
         super().setUp()
 
-        self.catalog_response = Client().get(reverse("catalog:item_list"))
-        self.catalog_items = self.catalog_response.context["items"]
+        self.response = Client().get(reverse("catalog:item_list"))
+        self.items = self.response.context["items"]
 
     def test_catalog_page_show_correct_context(self):
-        self.assertIn("items", self.catalog_response.context)
-        self.assertIsInstance(self.catalog_response.context["items"], QuerySet)
-        for item in self.catalog_response.context["items"]:
+        self.assertIn("items", self.response.context)
+        self.assertIsInstance(self.response.context["items"], QuerySet)
+        for item in self.response.context["items"]:
             self.assertIsInstance(item, Item)
 
     def test_catalog_page_items_count_and_content(self):
-        self.assertEqual(len(self.catalog_items), 1)
+        response = Client().get(reverse("catalog:item_list"))
+        items = response.context["items"]
+        self.assertEqual(len(items), 1)
         self.assertQuerysetEqual(
-            self.catalog_items,
+            items,
             [self.published_item],
             ordered=False,
         )
@@ -79,13 +81,13 @@ class TestCatalogContext(TestCase):
             ("Непубликованный товар", False),
             ("Тестовая неопубликованная категория", False),
             ("Непубликованный тэг", False),
-        ]
+        ],
     )
     def test_catalog_page_content(self, text, should_contain):
         if should_contain:
-            self.assertContains(self.catalog_response, text)
+            self.assertContains(self.response, text)
         else:
-            self.assertNotContains(self.catalog_response, text)
+            self.assertNotContains(self.response, text)
 
 
 __all__ = []
