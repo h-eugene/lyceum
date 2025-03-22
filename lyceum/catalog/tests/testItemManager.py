@@ -1,6 +1,6 @@
 from django.test import TestCase
 
-from catalog.models import Category, Item, ItemImage, MainImage, Tag
+from catalog.models import Category, Item, ItemImages, ItemMainImage, Tag
 
 all = [
     "ItemManagerTests",
@@ -31,12 +31,12 @@ class ItemManagerTests(TestCase):
         cls.item1.tags.add(cls.tag)
         cls.item2.tags.add(cls.tag)
 
-        cls.main_image = MainImage.objects.create(
+        cls.main_image = ItemMainImage.objects.create(
             item=cls.item1,
             image="test.jpg",
         )
 
-        cls.itemimage = ItemImage.objects.create(
+        cls.itemimage = ItemImages.objects.create(
             item=cls.item1,
             image="test.jpg",
         )
