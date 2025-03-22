@@ -200,29 +200,36 @@ class ItemManager(models.Manager):
         queryset = (
             self.get_queryset()
             .filter(is_published=True, category__is_published=True)
-            .select_related("category", "main_image")
+            .select_related(
+                Item.category.field.name,
+                Item.main_image.related.name,
+            )
         )
 
         prefetch_list = [
             models.Prefetch(
-                "tags",
-                queryset=Tag.objects.filter(is_published=True).only("name"),
+                Item.tags.field.name,
+                queryset=Tag.objects.filter(is_published=True).only(
+                    Tag.name.field.name,
+                ),
             ),
         ]
 
         if with_images:
             prefetch_list.append(
                 models.Prefetch(
-                    "images",
-                    queryset=ItemImages.objects.only("image"),
+                    Item.images.field.remote_field.name,
+                    queryset=ItemImages.objects.only(
+                        ItemImages.image.field.name,
+                    ),
                 ),
             )
 
         return queryset.prefetch_related(*prefetch_list).only(
-            "name",
-            "text",
-            "category__name",
-            "main_image__image",
+            Item.name.field.name,
+            Item.text.field.name,
+            f"{Item.category.field.name}__{Category.name.field.name}",
+            Item.main_image.related.name,
         )
 
     def published(self):
