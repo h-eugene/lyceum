@@ -1,6 +1,3 @@
-from itertools import groupby
-from operator import attrgetter
-
 from django.http import HttpResponse
 from django.shortcuts import get_object_or_404, render
 
@@ -12,17 +9,8 @@ def item_list(request):
 
     items = Item.objects.published().order_by("category__name")
 
-    grouped_items = []
-    for category_name, group in groupby(
-        items,
-        key=attrgetter("category.name"),
-    ):
-        group_list = list(group)
-        if group_list: 
-            grouped_items.append((category_name, group_list))
-
     context = {
-        "grouped_items": grouped_items,
+        "items": items,
     }
     return render(request, template, context)
 

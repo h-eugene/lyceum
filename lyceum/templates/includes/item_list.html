@@ -1,22 +1,29 @@
 {% with request.resolver_match.view_name as view_name %}
-    {% if grouped_items %}
-        {% for category_name, items in grouped_items %}
-            {% if view_name == 'catalog:item_list' %}
-                <hr class="mt-5">
-                <h3 class="mt-1 mb-0">{{ category_name }}</h3>
-                <div class="row row-cols-1 row-cols-xxl-2 g-4">
-                    {% for item in items %}
-                        {% include 'includes/item_card.html' with item=item %}
-                    {% endfor %}
-                </div>
-            {% endif %}
-        {% endfor %}
-    {% elif items %}
-        <div class="row row-cols-1 row-cols-xxl-2 g-4 justify-content-center">
+    {% if items %}
+        {% if view_name == 'catalog:item_list' %}
             {% for item in items %}
+                {% ifchanged item.category.name %}
+                {% if not forloop.first %}
+                    </div>
+                {% endif %}
+                    <hr class="mt-5">
+                    <h3 class="mt-1 mb-0">{{ item.category.name }}</h3>
+                    <div class="row row-cols-1 row-cols-xxl-2 g-4">
+                {% endifchanged %}
+                
                 {% include 'includes/item_card.html' with item=item %}
+
+                {% if forloop.last %}
+                    </div>
+                {% endif %}
             {% endfor %}
-        </div>
+        {% else %}
+            <div class="row row-cols-1 row-cols-xxl-2 g-4 justify-content-center">
+                {% for item in items %}
+                    {% include 'includes/item_card.html' with item=item %}
+                {% endfor %}
+            </div>
+        {% endif %}
     {% else %}
         <p class="text-center">Нет доступных товаров.</p>
     {% endif %}
