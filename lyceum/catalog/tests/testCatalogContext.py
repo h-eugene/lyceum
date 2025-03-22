@@ -1,3 +1,4 @@
+from django.db.models import QuerySet
 from django.test import Client, TestCase
 from django.urls import reverse
 from parameterized import parameterized
@@ -54,16 +55,17 @@ class TestCatalogContext(TestCase):
         super().setUp()
 
         self.response = Client().get(reverse("catalog:item_list"))
-        self.grouped_items = self.response.context["grouped_items"]
+        self.items = self.response.context["items"]
 
     def test_catalog_page_show_correct_context(self):
-        self.assertIn("grouped_items", self.response.context)
-        for _, items in self.grouped_items:
-            for item in items:
-                self.assertIsInstance(item, Item)
+        self.assertIn("items", self.response.context)
+        self.assertIsInstance(self.response.context["items"], QuerySet)
+        for item in self.response.context["items"]:
+            self.assertIsInstance(item, Item)
 
     def test_catalog_page_items_count_and_content(self):
-        _, items = self.grouped_items[0]
+        response = Client().get(reverse("catalog:item_list"))
+        items = response.context["items"]
         self.assertEqual(len(items), 1)
         self.assertQuerysetEqual(
             items,
