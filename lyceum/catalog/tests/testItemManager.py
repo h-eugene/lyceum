@@ -2,10 +2,6 @@ from django.test import TestCase
 
 from catalog.models import Category, Item, ItemImages, ItemMainImage, Tag
 
-all = [
-    "ItemManagerTests",
-]
-
 
 class ItemManagerTests(TestCase):
     @classmethod
@@ -84,3 +80,6 @@ class ItemManagerTests(TestCase):
         self.assertEqual(item.category.name, "Test Category")
         self.assertEqual(item.tags.first().name, "Тестовый тег")
         self.assertIn("tags", item._prefetched_objects_cache)
+
+
+__all__ = []

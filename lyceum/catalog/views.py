@@ -1,14 +1,15 @@
+from itertools import groupby
+
 from django.http import HttpResponse
 from django.shortcuts import get_object_or_404, render
 
-from itertools import groupby
 from operator import attrgetter
 
 from catalog.models import Item
 
 
 def item_list(request):
-    template = "catalog/catalog.html"
+    template = "catalog/item_list.html"
 
     items = Item.objects.published().order_by("category__name")
 

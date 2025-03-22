@@ -215,19 +215,15 @@ class ItemManager(models.Manager):
                 models.Prefetch(
                     "images",
                     queryset=ItemImages.objects.only("image"),
-                )
+                ),
             )
 
-        queryset = queryset.prefetch_related(*prefetch_list)
-
-        queryset = queryset.only(
+        return queryset.prefetch_related(*prefetch_list).only(
             "name",
             "text",
             "category__name",
             "main_image__image",
         )
-
-        return queryset
 
     def published(self):
         return self.get_published_base()
