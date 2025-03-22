@@ -195,7 +195,50 @@ class ItemImages(models.Model):
         verbose_name_plural = "изображения"
 
 
+class ItemManager(models.Manager):
+    def get_published_base(self, with_images=False):
+        queryset = (
+            self.get_queryset()
+            .filter(is_published=True, category__is_published=True)
+            .select_related("category", "main_image")
+        )
+
+        prefetch_list = [
+            models.Prefetch(
+                "tags",
+                queryset=Tag.objects.filter(is_published=True).only("name"),
+            ),
+        ]
+
+        if with_images:
+            prefetch_list.append(
+                models.Prefetch(
+                    "images",
+                    queryset=ItemImages.objects.only("image"),
+                )
+            )
+
+        queryset = queryset.prefetch_related(*prefetch_list)
+
+        queryset = queryset.only(
+            "name",
+            "text",
+            "category__name",
+            "main_image__image",
+        )
+
+        return queryset
+
+    def published(self):
+        return self.get_published_base()
+
+    def on_main(self):
+        return self.get_published_base().filter(is_on_main=True)
+
+
 class Item(BaseModel):
+    objects = ItemManager()
+
     text = HTMLField(
         validators=[
             ValidateMustContain("Превосходно", "Роскошно"),
