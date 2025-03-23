@@ -33,6 +33,7 @@ class Tag(BaseModel):
     )
 
     class Meta:
+        ordering = ("name",)
         verbose_name = "тег"
         verbose_name_plural = "теги"
 
@@ -91,6 +92,7 @@ class Category(BaseModel):
     )
 
     class Meta:
+        ordering = ("name",)
         verbose_name = "категория"
         verbose_name_plural = "категории"
 
@@ -236,7 +238,11 @@ class ItemManager(models.Manager):
         return self.get_published_base()
 
     def on_main(self):
-        return self.get_published_base().filter(is_on_main=True)
+        return (
+            self.get_published_base()
+            .filter(is_on_main=True)
+            .order_by(f"{Item.name.field.name}")
+        )
 
 
 class Item(BaseModel):

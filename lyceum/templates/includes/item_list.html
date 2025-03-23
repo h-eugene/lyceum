@@ -2,13 +2,11 @@
     {% if items %}
         {% if view_name == 'catalog:item_list' %}
             {% for item in items %}
-                {% ifchanged item.category %}
+
+                {% ifchanged %}
                     {% if not forloop.first %}
                         </div>
                     {% endif %}
-                {% endifchanged %}
-                
-                {% ifchanged %}
                     <hr class="mt-5">
                     <h3 class="mt-1 mb-0">{{ item.category.name }}</h3>
                     <div class="row row-cols-1 row-cols-xxl-2 g-4">
