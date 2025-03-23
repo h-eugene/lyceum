@@ -61,4 +61,31 @@ def reg_expression(request, pk):
     return HttpResponse(pk)
 
 
+def new_items(request):
+    items = Item.objects.new_items()
+    context = {
+        "items": items,
+        "page_title": "Новинки",
+    }
+    return render(request, "catalog/item_list.html", context)
+
+
+def friday_items(request):
+    items = Item.objects.friday_items()
+    context = {
+        "items": items,
+        "page_title": "Пятница",
+    }
+    return render(request, "catalog/item_list.html", context)
+
+
+def unverified_items(request):
+    items = Item.objects.unverified_items()
+    context = {
+        "items": items,
+        "page_title": "Непроверенное",
+    }
+    return render(request, "catalog/item_list.html", context)
+
+
 __all__ = []

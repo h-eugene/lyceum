@@ -1,10 +1,12 @@
 {% extends 'base.html' %}
 
-{% block title %}FurFriends — Список питомцев{% endblock %}
+{% block title %}
+    FurFriends — {{ page_title|default:"Список товаров" }}
+{% endblock %}
 
 {% block content %}
 <div class="row justify-content-center py-4">
-    <h1 class="text-center mb-2 title">Список товаров</h1>
+    <h1 class="text-center mb-2 title">{{ page_title|default:"Список товаров" }}</h1>
     <div>
         {% for item in items %}
             {% ifchanged %}

@@ -20,6 +20,13 @@ urlpatterns = [
         catalog.views.reg_expression,
         name="item_detail_converter",
     ),
+    path("new/", catalog.views.new_items, name="new_items"),
+    path("friday/", catalog.views.friday_items, name="friday_items"),
+    path(
+        "unverified/",
+        catalog.views.unverified_items,
+        name="unverified_items",
+    ),
     re_path(
         r"^download/(?P<path>.*)$",
         catalog.views.download_image,

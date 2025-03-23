@@ -1,7 +1,10 @@
+import random
+from datetime import timedelta
+
 from django.core.exceptions import ValidationError
 from django.core.validators import MaxValueValidator, MinValueValidator
 from django.db import models
-from django.utils.safestring import mark_safe
+from django.utils import safestring, timezone
 from sorl.thumbnail import get_thumbnail
 from tinymce.models import HTMLField
 
@@ -144,7 +147,7 @@ class ItemMainImage(models.Model):
 
     def image_tmb(self):
         if self.image:
-            return mark_safe(
+            return safestring.mark_safe(
                 f'<img src="{self.get_image_300x300().url}" width="50">',
             )
         return "Нет изображения"
@@ -182,7 +185,7 @@ class ItemImages(models.Model):
 
     def image_tmb(self):
         if self.image:
-            return mark_safe(
+            return safestring.mark_safe(
                 f'<img src="{self.image.url}" width="50">',
             )
         return "Нет изображения"
@@ -196,6 +199,9 @@ class ItemImages(models.Model):
     class Meta:
         verbose_name = "изображение"
         verbose_name_plural = "изображения"
+
+
+ITEMS_PER_IMAGE = 5
 
 
 class ItemManager(models.Manager):
@@ -249,6 +255,27 @@ class ItemManager(models.Manager):
             .order_by(f"{Item.name.field.name}")
         )
 
+    def new_items(self):
+        one_week_ago = timezone.now() - timedelta(days=7)
+        items = list(self.published().filter(created_at__gte=one_week_ago))
+        if len(items) > ITEMS_PER_IMAGE:
+            items = random.sample(items, ITEMS_PER_IMAGE)
+        return items
+
+    def friday_items(self):
+        items = (
+            self.get_published_base()
+            .filter(updated_at__week_day=ITEMS_PER_IMAGE)
+            .order_by(
+                "-updated_at",
+                f"{Item.category.field.name}__{Category.name.field.name}",
+            )
+        )[:ITEMS_PER_IMAGE]
+        return items
+
+    def unverified_items(self):
+        return self.published()
+
 
 class Item(BaseModel):
     objects = ItemManager()
@@ -285,6 +312,9 @@ class Item(BaseModel):
         verbose_name="на главной странице",
         help_text="Если True, то товар отображается на главной странице",
     )
+
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
 
     class Meta:
         ordering = ("category__name",)
