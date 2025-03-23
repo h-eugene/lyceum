@@ -276,7 +276,7 @@ class Item(BaseModel):
     )
 
     class Meta:
-        ordering = ("name",)
+        ordering = ("category__name",)
         verbose_name = "товар"
         verbose_name_plural = "товары"
 

@@ -8,7 +8,7 @@ from catalog.models import Item
 
 def home(request):
     template = "homepage/main.html"
-    items = Item.objects.on_main()
+    items = Item.objects.on_main().order_by(f"{Item.name.field.name}")
 
     context = {
         "items": items,

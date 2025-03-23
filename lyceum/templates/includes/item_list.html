@@ -2,7 +2,7 @@
     {% if items %}
         {% if view_name == 'catalog:item_list' %}
             {% for item in items %}
-                {% ifchanged item.category.name %}
+                {% ifchanged item.category %}
                 {% if not forloop.first %}
                     </div>
                 {% endif %}
@@ -18,7 +18,7 @@
                 {% endif %}
             {% endfor %}
         {% else %}
-            <div class="row row-cols-1 row-cols-xxl-2 g-4 justify-content-center">
+            <div class="row row-cols-1 row-cols-xxl-2 g-4">
                 {% for item in items %}
                     {% include 'includes/item_card.html' with item=item %}
                 {% endfor %}

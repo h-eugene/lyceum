@@ -1,15 +1,13 @@
 from django.http import HttpResponse
 from django.shortcuts import get_object_or_404, render
 
-from catalog.models import Category, Item
+from catalog.models import Item
 
 
 def item_list(request):
     template = "catalog/item_list.html"
 
-    items = Item.objects.published().order_by(
-        f"{Item.category.field.name}__{Category.name.field.name}"
-    )
+    items = Item.objects.published()
 
     context = {
         "items": items,
