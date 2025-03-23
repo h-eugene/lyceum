@@ -68,10 +68,6 @@ html {
 
 }
 
-.item-image .img-fluid {
-    object-fit: cover;
-}
-
 @media (max-width: 767px) {
     .item-image {
         height: 50%; 
@@ -86,6 +82,7 @@ html {
 .item-detail-card .item-info {
     border-radius: 10px;
 }
+
 
 @media (max-width: 767px) {
     .item-detail-card .item-image {

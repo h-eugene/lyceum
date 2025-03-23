@@ -221,9 +221,10 @@ class ItemManager(models.Manager):
         if with_images:
             prefetch_list.append(
                 models.Prefetch(
-                    Item.images.field.remote_field.name,
+                    Item.images.field.related_query_name(),
                     queryset=ItemImages.objects.only(
                         ItemImages.image.field.name,
+                        ItemImages.item.field.name,
                     ),
                 ),
             )

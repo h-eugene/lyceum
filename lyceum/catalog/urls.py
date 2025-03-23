@@ -20,4 +20,9 @@ urlpatterns = [
         catalog.views.reg_expression,
         name="item_detail_converter",
     ),
+    re_path(
+        r"^download/(?P<path>.*)$",
+        catalog.views.download_image,
+        name="download_image",
+    ),
 ]
