@@ -237,7 +237,7 @@ class ItemManager(models.Manager):
 
     def published(self):
         return self.get_published_base().order_by(
-            "name",
+            Item.category.field.name,
         )
 
     def on_main(self):

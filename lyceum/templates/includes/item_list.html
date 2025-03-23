@@ -1,10 +1,30 @@
 {% with request.resolver_match.view_name as view_name %}
-    {% for item in items %}
-        {% ifchanged item.category.name %}
-            <h2>{{ item.category.name }}</h2>
-        {% endifchanged %}
-        <div class="col">
-            {% include "includes/item_card.html" %}
-        </div>
-    {% endfor %}
+    {% if items %}
+        {% if view_name == 'catalog:item_list' %}
+            <div>
+            {% for item in items %}
+                {% ifchanged %}
+                    </div>
+                    <hr class="mt-5">
+                    <h3 class="mt-1 mb-0">{{ item.category.name }}</h3>
+                    <div class="row row-cols-1 row-cols-xxl-2 g-4">
+                {% endifchanged %}
+
+                
+                {% include 'includes/item_card.html' with item=item %}
+
+                {% if forloop.last %}
+                    </div>
+                {% endif %}
+            {% endfor %}
+        {% else %}
+            <div class="row row-cols-1 row-cols-xxl-2 g-4">
+                {% for item in items %}
+                    {% include 'includes/item_card.html' with item=item %}
+                {% endfor %}
+            </div>
+        {% endif %}
+    {% else %}
+        <p class="text-center">Нет доступных товаров.</p>
+    {% endif %}
 {% endwith %}
