@@ -27,9 +27,4 @@ urlpatterns = [
         catalog.views.unverified_items,
         name="unverified_items",
     ),
-    re_path(
-        r"^download/(?P<path>.*)$",
-        catalog.views.download_image,
-        name="download_image",
-    ),
 ]

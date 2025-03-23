@@ -1,5 +1,5 @@
-import random
 from datetime import timedelta
+import random
 
 from django.core.exceptions import ValidationError
 from django.core.validators import MaxValueValidator, MinValueValidator
@@ -259,19 +259,15 @@ class ItemManager(models.Manager):
         one_week_ago = timezone.now() - timedelta(days=7)
         items = list(self.published().filter(created_at__gte=one_week_ago))
         if len(items) > ITEMS_PER_IMAGE:
-            items = random.sample(items, ITEMS_PER_IMAGE)
+            return random.sample(items, ITEMS_PER_IMAGE)
         return items
 
     def friday_items(self):
-        items = (
+        return (
             self.get_published_base()
             .filter(updated_at__week_day=ITEMS_PER_IMAGE)
-            .order_by(
-                "-updated_at",
-                f"{Item.category.field.name}__{Category.name.field.name}",
-            )
+            .order_by("-updated_at")
         )[:ITEMS_PER_IMAGE]
-        return items
 
     def unverified_items(self):
         return self.published()

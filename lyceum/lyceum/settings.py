@@ -20,6 +20,7 @@ ALLOWED_HOSTS = os.getenv("DJANGO_ALLOWED_HOSTS", "*").split(",")
 INSTALLED_APPS = [
     "about.apps.AboutConfig",
     "catalog.apps.CatalogConfig",
+    "download.apps.DownloadConfig",
     "core.apps.CoreConfig",
     "django_cleanup.apps.CleanupConfig",
     "django.contrib.admin",
