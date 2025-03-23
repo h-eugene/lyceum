@@ -5,6 +5,23 @@
 {% block content %}
 <div class="row justify-content-center py-4">
     <h1 class="text-center mb-2 title">Список товаров</h1>
-    {% include 'includes/items.html' %}
+    <div>
+        {% for item in items %}
+            {% ifchanged %}
+                </div>
+                <hr class="mt-5">
+                <h3 class="mt-1 mb-0">{{ item.category.name }}</h3>
+                <div class="row row-cols-1 row-cols-xxl-2 g-4">
+            {% endifchanged %}
+        
+            
+            {% include 'includes/item_card.html' with item=item %}
+        
+            {% if forloop.last %}
+                </div>
+            {% endif %}
+        {% empty %}
+        <p class="text-center">Нет доступных товаров.</p>
+        {% endfor %}
 </div>
 {% endblock %}
