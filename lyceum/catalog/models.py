@@ -1,10 +1,10 @@
-from datetime import timedelta
+from datetime import date, timedelta
 import random
 
 from django.core.exceptions import ValidationError
 from django.core.validators import MaxValueValidator, MinValueValidator
 from django.db import models
-from django.utils import safestring, timezone
+from django.utils.safestring import mark_safe
 from sorl.thumbnail import get_thumbnail
 from tinymce.models import HTMLField
 
@@ -147,7 +147,7 @@ class ItemMainImage(models.Model):
 
     def image_tmb(self):
         if self.image:
-            return safestring.mark_safe(
+            return mark_safe(
                 f'<img src="{self.get_image_300x300().url}" width="50">',
             )
         return "Нет изображения"
@@ -185,7 +185,7 @@ class ItemImages(models.Model):
 
     def image_tmb(self):
         if self.image:
-            return safestring.mark_safe(
+            return mark_safe(
                 f'<img src="{self.image.url}" width="50">',
             )
         return "Нет изображения"
@@ -256,21 +256,33 @@ class ItemManager(models.Manager):
         )
 
     def new_items(self):
-        one_week_ago = timezone.now() - timedelta(days=7)
-        items = list(self.published().filter(created_at__gte=one_week_ago))
-        if len(items) > ITEMS_PER_IMAGE:
-            return random.sample(items, ITEMS_PER_IMAGE)
-        return items
+        one_week_ago = date.today() - timedelta(days=7)
+        items_ids = list(
+            self.published()
+            .filter(created_at__gte=one_week_ago)
+            .values_list(Item.id.field.name, flat=True)
+        )
+
+        if len(items_ids) > ITEMS_PER_IMAGE:
+            items_ids = random.sample(items_ids, ITEMS_PER_IMAGE)
+        return self.published().filter(id__in=items_ids)
 
     def friday_items(self):
         return (
-            self.get_published_base()
-            .filter(updated_at__week_day=ITEMS_PER_IMAGE)
-            .order_by("-updated_at")
+            self.published()
+            .filter(updated_at__week_day=6)
+            .order_by(f"-{Item.updated_at.field.name}")
         )[:ITEMS_PER_IMAGE]
 
     def unverified_items(self):
-        return self.published()
+        return (self.on_main()
+                .filter(
+                    created_at__gte=models.F(Item.updated_at.field.name)
+                    - timedelta(seconds=1),
+                    created_at__lte=models.F(Item.updated_at.field.name)
+                    + timedelta(seconds=1),
+                )
+                .order_by("?"))[:ITEMS_PER_IMAGE]
 
 
 class Item(BaseModel):

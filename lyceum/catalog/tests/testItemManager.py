@@ -47,36 +47,36 @@ class ItemManagerTests(TestCase):
 
     def test_on_main_filter(self):
         items = Item.objects.on_main()
-        self.assertEqual(items.count(), 1)
-        self.assertEqual(items.first().name, "Item 1")
+        self.assertEqual(len(items), 1)
+        self.assertEqual(items[0].name, "Item 1")
 
     def test_published_filter(self):
         items = Item.objects.published()
-        self.assertEqual(items.count(), 2)
-        self.assertEqual(items.first().name, "Item 1")
+        self.assertEqual(len(items), 2)
+        self.assertEqual(items[0].name, "Item 1")
 
     def test_on_main_fields_not_loaded(self):
-        item = Item.objects.on_main().first()
+        item = Item.objects.on_main()[0]
         self.assertEqual(item.name, "Item 1")
         self.assertEqual(item.main_image.image, "test.jpg")
         self.assertNotIn("text", item._state.fields_cache)
         self.assertNotIn("images", item._state.fields_cache)
 
     def test_published_fields_not_loaded(self):
-        item = Item.objects.published().first()
+        item = Item.objects.published()[0]
         self.assertEqual(item.name, "Item 1")
         self.assertEqual(item.text, "Описание товара превосходно")
         self.assertEqual(item.main_image.image, "test.jpg")
         self.assertNotIn("images", item._state.fields_cache)
 
     def test_on_main_prefetched_objects(self):
-        item = Item.objects.on_main().first()
+        item = Item.objects.on_main()[0]
         self.assertEqual(item.category.name, "Test Category")
         self.assertEqual(item.tags.first().name, "Тестовый тег")
         self.assertIn("tags", item._prefetched_objects_cache)
 
     def test_published_prefetched_objects(self):
-        item = Item.objects.published().first()
+        item = Item.objects.published()[0]
         self.assertEqual(item.category.name, "Test Category")
         self.assertEqual(item.tags.first().name, "Тестовый тег")
         self.assertIn("tags", item._prefetched_objects_cache)

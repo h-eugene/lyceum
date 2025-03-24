@@ -11,6 +11,8 @@ admin.site.register(catalog.models.ItemImages)
 NAME_FIELD = catalog.models.Item.name.field.name
 IS_PUBLISHED_FIELD = catalog.models.Item.is_published.field.name
 TAGS_FIELD = catalog.models.Item.tags.field.name
+UPDATED_AT_FIELD = catalog.models.Item.updated_at.field.name
+CREATED_AT_FIELD = catalog.models.Item.created_at.field.name
 
 
 class ItemMainImageInline(admin.StackedInline):
@@ -43,6 +45,7 @@ class ItemAdmin(admin.ModelAdmin):
     list_display_links = [NAME_FIELD]
     filter_horizontal = [TAGS_FIELD]
     inlines = [ItemMainImageInline, ItemImagesInline]
+    readonly_fields = [UPDATED_AT_FIELD, CREATED_AT_FIELD]
 
 
 __all__ = []

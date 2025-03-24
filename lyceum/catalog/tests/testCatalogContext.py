@@ -59,8 +59,8 @@ class TestCatalogContext(TestCase):
 
     def test_catalog_page_show_correct_context(self):
         self.assertIn("items", self.response.context)
-        self.assertIsInstance(self.response.context["items"], QuerySet)
-        for item in self.response.context["items"]:
+        self.assertIsInstance(self.items, QuerySet)
+        for item in self.items:
             self.assertIsInstance(item, Item)
 
     def test_catalog_page_items_count_and_content(self):

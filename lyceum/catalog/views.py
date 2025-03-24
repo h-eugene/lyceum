@@ -33,29 +33,32 @@ def reg_expression(request, pk):
 
 def new_items(request):
     items = Item.objects.new_items()
+    template = "catalog/special.html"
     context = {
         "items": items,
         "page_title": "Новинки",
     }
-    return render(request, "catalog/item_list.html", context)
+    return render(request, template, context)
 
 
 def friday_items(request):
     items = Item.objects.friday_items()
+    template = "catalog/special.html"
     context = {
         "items": items,
         "page_title": "Пятница",
     }
-    return render(request, "catalog/item_list.html", context)
+    return render(request, template, context)
 
 
 def unverified_items(request):
     items = Item.objects.unverified_items()
+    template = "catalog/special.html"
     context = {
         "items": items,
         "page_title": "Непроверенное",
     }
-    return render(request, "catalog/item_list.html", context)
+    return render(request, template, context)
 
 
 __all__ = []
