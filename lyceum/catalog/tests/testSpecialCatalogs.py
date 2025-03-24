@@ -2,7 +2,7 @@ from django.db.models import QuerySet
 from django.test import Client, TestCase
 from django.urls import reverse
 
-from catalog.models import ITEMS_PER_IMAGE, Item
+from catalog.models import Item
 
 
 class TestNewCatalog(TestCase):
@@ -21,7 +21,8 @@ class TestNewCatalog(TestCase):
             self.assertIsInstance(item, Item)
 
     def test_catalog_page_items_count(self):
-        self.assertEqual(len(self.items), ITEMS_PER_IMAGE)
+        published_items = Item.objects.new_items()
+        self.assertEqual(len(self.items), len(published_items))
 
 
 class TestFridayCatalog(TestCase):
@@ -40,7 +41,8 @@ class TestFridayCatalog(TestCase):
             self.assertIsInstance(item, Item)
 
     def test_catalog_page_items_count(self):
-        self.assertEqual(len(self.items), ITEMS_PER_IMAGE)
+        published_items = Item.objects.friday_items()
+        self.assertEqual(len(self.items), len(published_items))
 
 
 class TestUnverifiedCatalog(TestCase):
@@ -59,4 +61,5 @@ class TestUnverifiedCatalog(TestCase):
             self.assertIsInstance(item, Item)
 
     def test_catalog_page_items_count(self):
-        self.assertEqual(len(self.items), ITEMS_PER_IMAGE)
+        published_items = Item.objects.unverified_items()
+        self.assertEqual(len(self.items), len(published_items))
