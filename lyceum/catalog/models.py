@@ -261,7 +261,7 @@ class ItemManager(models.Manager):
         items_ids = list(
             self.published()
             .filter(created_at__gte=one_week_ago)
-            .values_list(Item.id.field.name, flat=True)
+            .values_list(Item.id.field.name, flat=True),
         )
 
         if len(items_ids) > ITEMS_PER_IMAGE:
@@ -279,10 +279,14 @@ class ItemManager(models.Manager):
         return (
             self.on_main()
             .filter(
-                created_at__gte=models.F(Item.updated_at.field.name)
-                - timedelta(seconds=1),
-                created_at__lte=models.F(Item.updated_at.field.name)
-                + timedelta(seconds=1),
+                created_at__gte=(
+                    models.F(Item.updated_at.field.name)
+                    - timedelta(seconds=1),
+                ),
+                created_at__lte=(
+                    models.F(Item.updated_at.field.name)
+                    + timedelta(seconds=1),
+                ),
             )
             .order_by("?")
         )[:ITEMS_PER_IMAGE]

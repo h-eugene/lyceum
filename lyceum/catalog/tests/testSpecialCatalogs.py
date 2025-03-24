@@ -63,3 +63,6 @@ class TestUnverifiedCatalog(TestCase):
     def test_catalog_page_items_count(self):
         published_items = Item.objects.unverified_items()
         self.assertEqual(len(self.items), len(published_items))
+
+
+__all__ = []
