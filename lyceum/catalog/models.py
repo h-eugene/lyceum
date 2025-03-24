@@ -276,17 +276,13 @@ class ItemManager(models.Manager):
         )[:ITEMS_PER_IMAGE]
 
     def unverified_items(self):
+        lower = models.F(Item.updated_at.field.name) - timedelta(seconds=1)
+        upper = models.F(Item.updated_at.field.name) + timedelta(seconds=1)
         return (
             self.on_main()
             .filter(
-                created_at__gte=(
-                    models.F(Item.updated_at.field.name)
-                    - timedelta(seconds=1),
-                ),
-                created_at__lte=(
-                    models.F(Item.updated_at.field.name)
-                    + timedelta(seconds=1),
-                ),
+                created_at__gte=lower,
+                created_at__lte=upper,
             )
             .order_by("?")
         )[:ITEMS_PER_IMAGE]
