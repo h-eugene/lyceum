@@ -1,4 +1,5 @@
 from django.contrib import admin
+from django.utils.translation import gettext_lazy as _
 
 import catalog.models
 
@@ -32,9 +33,9 @@ class ItemAdmin(admin.ModelAdmin):
         if hasattr(obj, "main_image") and obj.main_image:
             return obj.main_image.image_tmb()
 
-        return "Нет изображения"
+        return _("No image")
 
-    get_main_image_tmb.short_description = "Превью"
+    get_main_image_tmb.short_description = _("Preview")
 
     list_display = [
         NAME_FIELD,
