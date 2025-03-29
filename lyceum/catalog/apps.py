@@ -7,5 +7,8 @@ class CatalogConfig(AppConfig):
     name = "catalog"
     verbose_name = _("Catalog")
 
+    def ready(self):
+        import catalog.signals
+
 
 __all__ = []

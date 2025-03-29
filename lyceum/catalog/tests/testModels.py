@@ -309,4 +309,4 @@ class RelationshipTests(TestCase):
         self.assertEqual(item.tags.count(), 1)
 
 
-__all__ = ["TagTests", "CategoryTests", "ItemTests", "RelationshipTests"]
+__all__ = []
