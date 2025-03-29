@@ -1,12 +1,12 @@
 {% extends "base.html" %}
 {% load static %}
 
-{% block title %}FurFriends — Магазин милых питомцев{% endblock %}
+{% block title %}JustStore — Просто магазин {% endblock %}
 
 {% block content %}
 <div class="row justify-content-center py-4">
-    <h1 class="text-center mb-4 title">Добро пожаловать в FurFriends!</h1>
-    <p class="text-center mb-3">Откройте мир милых котиков и енотов! Наш магазин предлагает уникальных питомцев для вашего счастья.</p>
+    <h1 class="text-center mb-4 title">Добро пожаловать в JustStore!</h1>
+    <p class="text-center mb-3">Откройте мир простого! Наш магазин предлагает простые вещи для вашего счастья.</p>
     <div class="row row-cols-1 row-cols-xxl-2 g-4 mt-1">
         {% for item in items %}
             {% include 'includes/item_card.html' with item=item %}
