@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
+{% load i18n %}
 
 {% block title %}JustStore — {{ item.name }}{% endblock %}
 
@@ -15,11 +16,11 @@
                              alt="{{ item.name }} - Main Image" 
                              class="img-fluid" height="600" width="600">
                             <a href="{% url 'download:download_image' item.main_image.image %}" class="btn btn-primary mt-2">
-                            Скачать основное изображение
+                            {% translate "Скачать основное изображение" %}
                         </a>
                     </div>
                 {% else %}
-                    <p>{{ item.name }} - Main Image</p>
+                    <p>{{ item.name }} - {% translate "Main Image" %}</p>
                 {% endif %}
             </div>
             <div class="col-md-6 card-body d-flex flex-column p-4 item-info">
@@ -52,7 +53,7 @@
                                                  class="d-block mx-auto img-fluid">
                                             <a href="{% url 'download:download_image' image.image.name %}" 
                                                class="btn btn-primary mt-2">
-                                                Скачать
+                                                {% translate "Скачать" %}
                                             </a>
                                         </div>
                                     </div>
@@ -70,11 +71,11 @@
                             </button>
                         </div>
                         {% else %}
-                            <p>No additional images available.</p>
+                            <p>{% translate "No additional images available." %}</p>
                         {% endif %}
                     </div>
                 </div>
-                <a href="{% url 'catalog:item_list' %}" class="btn btn-secondary mt-1">Вернуться к списку</a>
+                <a href="{% url 'catalog:item_list' %}" class="btn btn-secondary mt-1">>{% translate "Вернуться к списку" %}</a>
             </div>
         </div>
     </div>

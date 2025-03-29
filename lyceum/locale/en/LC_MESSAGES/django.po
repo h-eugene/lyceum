@@ -2,13 +2,11 @@
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-# 
-#, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-03-19 02:00+0300\n"
+"POT-Creation-Date: 2025-03-29 15:43+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,6 +16,78 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
+#: .\catalog\models.py:26 .\catalog\models.py:74
+msgid "slug"
+msgstr "slug"
+
+#: .\catalog\models.py:42
+msgid "admin tag"
+msgstr "tag"
+
+#: .\catalog\models.py:43 .\catalog\models.py:318
+msgid "admin tags"
+msgstr "tags"
+
+#: .\catalog\models.py:82
+msgid "weight"
+msgstr "weight"
+
+#: .\catalog\models.py:102 .\catalog\models.py:311
+msgid "admin category"
+msgstr "category"
+
+#: .\catalog\models.py:103
+msgid "admin categories"
+msgstr "categories"
+
+#: .\catalog\models.py:133 .\catalog\models.py:172 .\catalog\models.py:341
+msgid "admin item"
+msgstr "item"
+
+#: .\catalog\models.py:163
+msgid "admin main image"
+msgstr "main image"
+
+#: .\catalog\models.py:164
+msgid "admin main images"
+msgstr "main images"
+
+#: .\catalog\models.py:176 .\catalog\models.py:202
+msgid "admin image"
+msgstr "image"
+
+#: .\catalog\models.py:203
+msgid "admin images"
+msgstr "images"
+
+#: .\catalog\models.py:299
+msgid "admin text"
+msgstr "text"
+
+#: .\catalog\models.py:324
+msgid "is_on_main"
+msgstr "is on main"
+
+#: .\catalog\models.py:329
+msgid "admin created at"
+msgstr "created"
+
+#: .\catalog\models.py:334
+msgid "admin updated at"
+msgstr "updated"
+
+#: .\catalog\models.py:342
+msgid "admin items"
+msgstr "items"
+
+#: .\core\models.py:8
+msgid "admin name"
+msgstr "name"
+
+#: .\core\models.py:14
+msgid "admin is published"
+msgstr "is published"
+
 #: .\lyceum\settings.py:119
 msgid "English"
 msgstr "English"
@@ -25,6 +95,71 @@ msgstr "English"
 #: .\lyceum\settings.py:120
 msgid "Russian"
 msgstr "Russian"
+
+#: .\templates\about\about.html:4 .\templates\about\about.html:9
+msgid "О проекте"
+msgstr "About"
+
+#: .\templates\about\about.html:12
+msgid ""
+"Это учебный проект, созданный для демонстрации работы с Django и Bootstrap."
+msgstr ""
+"This is an educational project created to demonstrate working with Django "
+"and Bootstrap."
+
+#: .\templates\about\about.html:13
+msgid ""
+"Наш сайт помогает пользователям узнавать о продуктах и наслаждаться их "
+"красотой."
+msgstr "Our website helps users learn about products and enjoy their beauty."
+
+#: .\templates\base.html:9 .\templates\homepage\main.html:5
+msgid "Just Store"
+msgstr "Just Store"
+
+#: .\templates\catalog\item.html:19
+msgid "Скачать основное изображение"
+msgstr "Download main image"
+
+#: .\templates\catalog\item.html:23
+msgid "Main Image"
+msgstr "Main Image"
+
+#: .\templates\catalog\item.html:56
+msgid "Скачать"
+msgstr "Download"
+
+#: .\templates\catalog\item.html:74
+msgid "No additional images available."
+msgstr "No additional images available."
+
+#: .\templates\catalog\item.html:78
+msgid "Вернуться к списку"
+msgstr "Return to item list"
+
+#: .\templates\catalog\item_list.html:27 .\templates\catalog\special.html:15
+msgid "Нет доступных товаров."
+msgstr "No available items"
+
+#: .\templates\homepage\main.html:9
+msgid "Добро пожаловать в JustStore!"
+msgstr "Welcome to the JustStore"
+
+#: .\templates\homepage\main.html:10
+msgid ""
+"Откройте мир простого! Наш магазин предлагает простые вещи для вашего "
+"счастья."
+msgstr ""
+"Discover the world of the simple! Our store offers simple things for your "
+"happiness."
+
+#: .\templates\includes\footer.html:4
+msgid "Все права защищены."
+msgstr "All rights reserved."
+
+#: .\templates\includes\footer.html:4
+msgid "Политика конфиденциальности"
+msgstr "Privacy policy"
 
 #: .\templates\includes\header.html:19
 msgid "Home"
@@ -41,3 +176,11 @@ msgstr "Items"
 #: .\templates\includes\header.html:35
 msgid "Cart"
 msgstr "Cart"
+
+#: .\templates\includes\header.html:40
+msgid "Admin"
+msgstr "Admin"
+
+#: .\templates\includes\item_card.html:21
+msgid "Подробнее"
+msgstr "Details"

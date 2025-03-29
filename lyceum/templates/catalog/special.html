@@ -12,7 +12,7 @@
         {% for item in items %}
             {% include 'includes/item_card.html' with item=item %}
             {% empty %}
-            <p class="text-center">Нет доступных товаров.</p>
+            <p class="text-center">{% translate "Нет доступных товаров." %}</p>
         {% endfor %}
     </div>
 </div>
