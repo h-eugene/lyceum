@@ -2,12 +2,12 @@
 {% load i18n %}
 
 {% block title %}
-    JustStore — {{ page_title|default:"Список товаров" }}
+    JustStore — {{ page_title|default:"Item List" }}
 {% endblock %}
 
 {% block content %}
 <div class="row justify-content-center py-4">
-    <h1 class="text-center mb-2 title">{{ page_title|default:"Список товаров" }}</h1>
+    <h1 class="text-center mb-2 title">{{ page_title|default:"Item List" }}</h1>
     <div>
         {% for item in items %}
             {% ifchanged %}

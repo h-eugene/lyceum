@@ -32,6 +32,24 @@
                         </a>
                     </li>
                     <li class="nav-item">
+                        <a class="nav-link {% if view_name == 'catalog:new_items' %}active{% endif %}" 
+                        {% if view_name != 'catalog:new_items' %}href="{% url 'catalog:new_items' %}"{% endif %}>
+                        {% translate "New Items" %}
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link {% if view_name == 'catalog:friday_items' %}active{% endif %}" 
+                        {% if view_name != 'catalog:friday_items' %}href="{% url 'catalog:friday_items' %}"{% endif %}>
+                        {% translate "Friday Items" %}
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link {% if view_name == 'catalog:unverified_items' %}active{% endif %}" 
+                        {% if view_name != 'catalog:unverified_items' %}href="{% url 'catalog:unverified_items' %}"{% endif %}>
+                        {% translate "Unverified Items" %}
+                        </a>
+                    </li>
+                    <li class="nav-item">
                         <a class="nav-link" href="">{% translate "Cart" %}</a>
                     </li>
                     {% if request.user.is_authenticated and request.user.is_staff %}

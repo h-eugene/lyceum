@@ -1,5 +1,6 @@
 from django.http import HttpResponse
 from django.shortcuts import get_object_or_404, render
+from django.utils.translation import gettext_lazy as _
 
 from catalog.models import Item
 
@@ -23,6 +24,7 @@ def item_detail(request, pk):
     )
     context = {
         "item": item,
+        "page_title": _("Item List"),
     }
     return render(request, template, context)
 
@@ -36,7 +38,7 @@ def new_items(request):
     template = "catalog/special.html"
     context = {
         "items": items,
-        "page_title": "Новинки",
+        "page_title": _("New Items"),
     }
     return render(request, template, context)
 
@@ -46,7 +48,7 @@ def friday_items(request):
     template = "catalog/special.html"
     context = {
         "items": items,
-        "page_title": "Пятница",
+        "page_title": _("Friday Items"),
     }
     return render(request, template, context)
 
@@ -56,7 +58,7 @@ def unverified_items(request):
     template = "catalog/special.html"
     context = {
         "items": items,
-        "page_title": "Непроверенное",
+        "page_title": _("Unverified Items"),
     }
     return render(request, template, context)
 

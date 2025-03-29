@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-03-29 15:49+0300\n"
+"POT-Creation-Date: 2025-03-29 16:09+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -90,6 +90,22 @@ msgstr "обновлено"
 msgid "admin items"
 msgstr "товары"
 
+#: .\catalog\views.py:27
+msgid "Item List"
+msgstr "Товары"
+
+#: .\catalog\views.py:41 .\templates\includes\header.html:37
+msgid "New Items"
+msgstr "Новинки"
+
+#: .\catalog\views.py:51 .\templates\includes\header.html:43
+msgid "Friday Items"
+msgstr "Пятница"
+
+#: .\catalog\views.py:61 .\templates\includes\header.html:49
+msgid "Unverified Items"
+msgstr "Непроверенные"
+
 #: .\core\models.py:8
 msgid "admin name"
 msgstr "название"
@@ -148,7 +164,7 @@ msgstr "Нет доступных изображений"
 msgid "Вернуться к списку"
 msgstr "Вернуться к списку"
 
-#: .\templates\catalog\item_list.html:27 .\templates\catalog\special.html:15
+#: .\templates\catalog\item_list.html:27 .\templates\catalog\special.html:16
 msgid "Нет доступных товаров."
 msgstr "Нет доступных товаров."
 
@@ -184,11 +200,11 @@ msgstr "О проекте"
 msgid "Items"
 msgstr "Товары"
 
-#: .\templates\includes\header.html:35
+#: .\templates\includes\header.html:53
 msgid "Cart"
 msgstr "Корзина"
 
-#: .\templates\includes\header.html:40
+#: .\templates\includes\header.html:58
 msgid "Admin"
 msgstr "Админка"
 
