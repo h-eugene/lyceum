@@ -20,22 +20,20 @@ ALLOWED_HOSTS = os.getenv("DJANGO_ALLOWED_HOSTS", "*").split(",")
 INSTALLED_APPS = [
     "about.apps.AboutConfig",
     "catalog.apps.CatalogConfig",
-    "download.apps.DownloadConfig",
     "core.apps.CoreConfig",
-    "django_cleanup.apps.CleanupConfig",
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
     "django.contrib.sessions",
     "django.contrib.staticfiles",
     "django.contrib.messages",
+    "download.apps.DownloadConfig",
     "homepage.apps.HomepageConfig",
     "sorl.thumbnail",
     "tinymce",
+    "django_cleanup.apps.CleanupConfig",
 ]
 
-if DEBUG:
-    INSTALLED_APPS.append("debug_toolbar")
 
 ALLOW_REVERSE_TRUE_VALUES = {
     "true",
@@ -63,6 +61,7 @@ MIDDLEWARE = [
 
 
 if DEBUG:
+    INSTALLED_APPS.insert(-1, "debug_toolbar")
     MIDDLEWARE.insert(0, "debug_toolbar.middleware.DebugToolbarMiddleware")
 
 INTERNAL_IPS = [
@@ -114,11 +113,11 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 
-LANGUAGE_CODE = "ru"
+LANGUAGE_CODE = "ru-ru"
 
 LANGUAGES = [
-    ("en", _("English")),
-    ("ru", _("Russian")),
+    ("en-us", _("English")),
+    ("ru-ru", _("Russian")),
 ]
 
 LOCALE_PATHS = [BASE_DIR / "locale"]
