@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-04-02 12:59+0300\n"
+"POT-Creation-Date: 2025-04-02 13:39+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -26,63 +26,63 @@ msgstr "Превью"
 msgid "Catalog"
 msgstr "Каталог"
 
-#: .\catalog\models.py:19
+#: .\catalog\models.py:17
 msgid "admin tag"
 msgstr "тег"
 
-#: .\catalog\models.py:20 .\catalog\models.py:233
+#: .\catalog\models.py:18 .\catalog\models.py:192
 msgid "admin tags"
 msgstr "теги"
 
-#: .\catalog\models.py:27
+#: .\catalog\models.py:25
 msgid "weight"
 msgstr "вес"
 
-#: .\catalog\models.py:39 .\catalog\models.py:226
+#: .\catalog\models.py:37 .\catalog\models.py:185
 msgid "admin category"
 msgstr "категория"
 
-#: .\catalog\models.py:40
+#: .\catalog\models.py:38
 msgid "admin categories"
 msgstr "категории"
 
-#: .\catalog\models.py:48 .\catalog\models.py:87 .\catalog\models.py:256
+#: .\catalog\models.py:46 .\catalog\models.py:66 .\catalog\models.py:215
 msgid "admin item"
 msgstr "товар"
 
-#: .\catalog\models.py:78
+#: .\catalog\models.py:51 .\catalog\models.py:57
 msgid "admin main image"
 msgstr "основное изображение"
 
-#: .\catalog\models.py:79
+#: .\catalog\models.py:58
 msgid "admin main images"
 msgstr "основные изображения"
 
-#: .\catalog\models.py:91 .\catalog\models.py:117
+#: .\catalog\models.py:70 .\catalog\models.py:76
 msgid "admin image"
 msgstr "изображение"
 
-#: .\catalog\models.py:118
+#: .\catalog\models.py:77
 msgid "admin images"
 msgstr "изображения"
 
-#: .\catalog\models.py:214
+#: .\catalog\models.py:173
 msgid "admin text"
 msgstr "текст"
 
-#: .\catalog\models.py:239
+#: .\catalog\models.py:198
 msgid "is_on_main"
 msgstr "на главной странице"
 
-#: .\catalog\models.py:244
+#: .\catalog\models.py:203
 msgid "admin created at"
 msgstr "создано"
 
-#: .\catalog\models.py:249
+#: .\catalog\models.py:208
 msgid "admin updated at"
 msgstr "обновлено"
 
-#: .\catalog\models.py:257
+#: .\catalog\models.py:216
 msgid "admin items"
 msgstr "товары"
 
@@ -102,15 +102,15 @@ msgstr "Пятница"
 msgid "Unverified Items"
 msgstr "Непроверенные"
 
-#: .\core\models.py:12
+#: .\core\models.py:14
 msgid "admin name"
 msgstr "название"
 
-#: .\core\models.py:18
+#: .\core\models.py:20
 msgid "admin is published"
 msgstr "опубликовано"
 
-#: .\core\models.py:31
+#: .\core\models.py:33
 msgid "slug"
 msgstr "слаг"
 

@@ -4,16 +4,14 @@ import random
 from django.core.validators import MaxValueValidator, MinValueValidator
 from django.db import models
 from django.utils import timezone
-from django.utils.safestring import mark_safe
 from django.utils.translation import gettext_lazy as _
-from sorl.thumbnail import get_thumbnail
 from tinymce.models import HTMLField
 
 from catalog.validators import ValidateMustContain
-from core.models import BaseModel, ItemAttribute
+from core.models import BaseImage, BaseModel, BaseItemAttribute
 
 
-class Tag(ItemAttribute):
+class Tag(BaseItemAttribute):
     class Meta:
         ordering = ("slug",)
         verbose_name = _("admin tag")
@@ -21,7 +19,7 @@ class Tag(ItemAttribute):
         default_related_name = "tags"
 
 
-class Category(ItemAttribute):
+class Category(BaseItemAttribute):
     weight = models.PositiveIntegerField(
         default=100,
         verbose_name=_("weight"),
@@ -40,7 +38,7 @@ class Category(ItemAttribute):
         verbose_name_plural = _("admin categories")
 
 
-class ItemMainImage(models.Model):
+class ItemMainImage(BaseImage):
     item = models.OneToOneField(
         "Item",
         on_delete=models.CASCADE,
@@ -48,28 +46,9 @@ class ItemMainImage(models.Model):
         verbose_name=_("admin item"),
     )
 
-    image = models.ImageField(
-        upload_to="catalog/%Y/%m/%d/",
-        verbose_name="главное изображение",
-        help_text="Будет приведено к размерам 300x300",
-    )
-
-    def get_image_300x300(self):
-        return get_thumbnail(
-            self.image,
-            "300x300",
-            crop="center",
-            quality=100,
-        )
-
-    def image_tmb(self):
-        if self.image:
-            return mark_safe(
-                f'<img src="{self.get_image_300x300().url}" width="50">',
-            )
-        return "Нет изображения"
-
-    image_tmb.short_description = "превью"
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self._meta.get_field('image').verbose_name = _("admin main image")
 
     def __str__(self):
         return f"Главное изображение для {self.item}"
@@ -79,36 +58,16 @@ class ItemMainImage(models.Model):
         verbose_name_plural = _("admin main images")
 
 
-class ItemImages(models.Model):
+class ItemImages(BaseImage):
     item = models.ForeignKey(
         "Item",
         on_delete=models.CASCADE,
         related_name="images",
         verbose_name=_("admin item"),
     )
-    image = models.ImageField(
-        upload_to="catalog/%Y/%m/%d/",
-        verbose_name=_("admin image"),
-        help_text="Будет приведено к размерам 300x300",
-    )
-
-    def get_image_300x300(self):
-        return get_thumbnail(
-            self.image,
-            "300x300",
-            crop="center",
-            quality=51,
-        )
-
-    def image_tmb(self):
-        if self.image:
-            return mark_safe(
-                f'<img src="{self.image.url}" width="50">',
-            )
-        return "Нет изображения"
-
-    image_tmb.short_description = "превью"
-    image_tmb.allow_tags = True
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self._meta.get_field('image').verbose_name = _("admin image")
 
     def __str__(self):
         return f"Изображение для {self.item}"

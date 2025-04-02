@@ -1,0 +1,157 @@
+[
+{
+    "model": "catalog.tag",
+    "pk": 1,
+    "fields": {
+        "name": "Новый",
+        "is_published": true,
+        "slug": "New",
+        "normalized_name": "novyj"
+    }
+},
+{
+    "model": "catalog.tag",
+    "pk": 2,
+    "fields": {
+        "name": "Современный",
+        "is_published": true,
+        "slug": "Modern",
+        "normalized_name": "sovremennyj"
+    }
+},
+{
+    "model": "catalog.tag",
+    "pk": 3,
+    "fields": {
+        "name": "Умный",
+        "is_published": true,
+        "slug": "Smart",
+        "normalized_name": "umnyj"
+    }
+},
+{
+    "model": "catalog.tag",
+    "pk": 4,
+    "fields": {
+        "name": "Вкусный",
+        "is_published": true,
+        "slug": "Taste",
+        "normalized_name": "vkusnyj"
+    }
+},
+{
+    "model": "catalog.tag",
+    "pk": 5,
+    "fields": {
+        "name": "Свежий",
+        "is_published": true,
+        "slug": "Fresh",
+        "normalized_name": "svezhij"
+    }
+},
+{
+    "model": "catalog.category",
+    "pk": 1,
+    "fields": {
+        "name": "Электроника",
+        "is_published": true,
+        "slug": "Electronic",
+        "normalized_name": "elektronika",
+        "weight": 100
+    }
+},
+{
+    "model": "catalog.category",
+    "pk": 2,
+    "fields": {
+        "name": "Еда",
+        "is_published": true,
+        "slug": "food",
+        "normalized_name": "eda",
+        "weight": 100
+    }
+},
+{
+    "model": "catalog.itemmainimage",
+    "pk": 1,
+    "fields": {
+        "image": "catalog/2025/04/02/i_5.webp",
+        "item": 1
+    }
+},
+{
+    "model": "catalog.itemmainimage",
+    "pk": 2,
+    "fields": {
+        "image": "catalog/2025/04/02/orig.webp",
+        "item": 2
+    }
+},
+{
+    "model": "catalog.itemimages",
+    "pk": 1,
+    "fields": {
+        "image": "catalog/2025/04/02/i_5_yyNBygM.webp",
+        "item": 1
+    }
+},
+{
+    "model": "catalog.itemimages",
+    "pk": 2,
+    "fields": {
+        "image": "catalog/2025/04/02/6424945406.jpg",
+        "item": 1
+    }
+},
+{
+    "model": "catalog.itemimages",
+    "pk": 3,
+    "fields": {
+        "image": "catalog/2025/04/02/464644_O.jpg",
+        "item": 1
+    }
+},
+{
+    "model": "catalog.itemimages",
+    "pk": 5,
+    "fields": {
+        "image": "catalog/2025/04/02/464644_O_1.jpg",
+        "item": 2
+    }
+},
+{
+    "model": "catalog.item",
+    "pk": 1,
+    "fields": {
+        "name": "Iphone",
+        "is_published": true,
+        "text": "<p>Роскошно выглядит</p>",
+        "category": 2,
+        "is_on_main": true,
+        "created_at": "2025-04-02T10:52:16.004Z",
+        "updated_at": "2025-04-02T10:52:48.131Z",
+        "tags": [
+            2,
+            1,
+            3
+        ]
+    }
+},
+{
+    "model": "catalog.item",
+    "pk": 2,
+    "fields": {
+        "name": "Протеин Optimum Nutrition",
+        "is_published": true,
+        "text": "<p><strong>Optimum Nutrition&nbsp;</strong>предлагает превосходно усваивающийся протеин</p>",
+        "category": 2,
+        "is_on_main": true,
+        "created_at": "2025-04-02T10:54:03.829Z",
+        "updated_at": "2025-04-02T10:54:03.830Z",
+        "tags": [
+            2,
+            4
+        ]
+    }
+}
+]

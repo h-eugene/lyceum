@@ -1,6 +1,8 @@
 from django.core.exceptions import ValidationError
 from django.db import models
+from django.utils.safestring import mark_safe
 from django.utils.translation import gettext_lazy as _
+from sorl.thumbnail import get_thumbnail
 
 from core.normalization import normalize_name
 from core.validators import validate_slug
@@ -23,13 +25,14 @@ class BaseModel(models.Model):
         abstract = True
 
 
-class ItemAttribute(BaseModel):
+class BaseItemAttribute(BaseModel):
     slug = models.SlugField(
         max_length=200,
         unique=True,
         validators=[validate_slug],
         verbose_name=_("slug"),
-        help_text="Введите уникальный слаг. Допустимы латинские буквы, цифры, '-' и '_'.",
+        help_text="Введите уникальный слаг."
+        " Допустимы латинские буквы, цифры, '-' и '_'.",
     )
     normalized_name = models.CharField(
         max_length=200,
@@ -53,17 +56,48 @@ class ItemAttribute(BaseModel):
             if self.__class__.objects.filter(
                 normalized_name=normalized
             ).exists():
-                raise ValidationError(
-                    {
-                        "name": (
-                            f"{self._meta.verbose_name.title()} с нормализованным именем '{normalized}' уже существует."
-                        )
-                    }
-                )
+                raise ValidationError({
+                    "name": (
+                        f"{self._meta.verbose_name.title()} с "
+                        f"нормализованным именем '{normalized}' уже существует."
+                    )
+                })
         super().clean()
 
     def __str__(self):
         return self.name[:15]
+
+
+class BaseImage(models.Model):
+    image = models.ImageField(
+        upload_to="catalog/%Y/%m/%d/",
+        verbose_name="изображение",
+        help_text="Будет приведено к размерам 300x300",
+    )
+
+    def get_image_300x300(self):
+        return get_thumbnail(
+            self.image,
+            "300x300",
+            crop="center",
+            quality=100,
+        )
+
+    def image_tmb(self):
+        if self.image:
+            return mark_safe(
+                f'<img src="{self.get_image_300x300().url}" width="50">',
+            )
+        return "Нет изображения"
+
+    image_tmb.short_description = "превью"
+    image_tmb.allow_tags = True
+
+    def __str__(self):
+        return f"Изображение для {self.item}"
+
+    class Meta:
+        abstract = True
 
 
 __all__ = []
