@@ -2,7 +2,7 @@
 max-line-length = 79
 application-import-names = ["about", "catalog", "core", "download", "homepage"]
 import-order-style = "google"
-exclude = ["*migrations/"]
+exclude = ["*/migrations/"]
 inline-quotes = "double"
 
 
