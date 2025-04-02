@@ -1,0 +1,32 @@
+[tool.flake8]
+max-line-length = 79
+exclude = ["*migrations/"]
+inline-quotes = "double"
+multiline-quotes = "double" 
+docstring-quotes = "double"
+
+
+[tool.black]
+line-length = 79
+
+
+[tool.ruff]
+line-length = 79
+select = [
+    # pycodestyle
+    "E",
+    # Pyflakes
+    "F",
+    # pyupgrade
+    "UP",
+    # flake8-bugbear
+    "B",
+    # flake8-simplify
+    "SIM",
+    # isort
+    "I",
+]
+
+quote-style = "double"
+indent-style = "tab"
+docstring-code-format = true
