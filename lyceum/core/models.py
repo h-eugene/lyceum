@@ -5,7 +5,6 @@ from django.utils.translation import gettext_lazy as _
 from sorl.thumbnail import get_thumbnail
 
 from core.normalization import normalize_name
-from core.validators import validate_slug
 
 
 class BaseModel(models.Model):
@@ -29,7 +28,6 @@ class BaseItemAttribute(BaseModel):
     slug = models.SlugField(
         max_length=200,
         unique=True,
-        validators=[validate_slug],
         verbose_name=_("slug"),
         help_text="Введите уникальный слаг."
         " Допустимы латинские буквы, цифры, '-' и '_'.",
