@@ -51,14 +51,18 @@ class BaseItemAttribute(BaseModel):
     def clean(self):
         if not self.pk:
             normalized = normalize_name(self.name)
-            if self.__class__.objects.filter(normalized_name=normalized).exists():
-                raise ValidationError({
-                    "name": (
-                        f"{self._meta.verbose_name.title()} с "
-                        f"нормализованным именем '{normalized}'"
-                        " уже существует."
-                    )
-                })
+            if self.__class__.objects.filter(
+                normalized_name=normalized
+            ).exists():
+                raise ValidationError(
+                    {
+                        "name": (
+                            f"{self._meta.verbose_name.title()} с "
+                            f"нормализованным именем '{normalized}'"
+                            " уже существует."
+                        )
+                    }
+                )
         super().clean()
 
     def __str__(self):
