@@ -48,7 +48,7 @@ class ItemMainImage(BaseImage):
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        self._meta.get_field('image').verbose_name = _("admin main image")
+        self._meta.get_field("image").verbose_name = _("admin main image")
 
     def __str__(self):
         return f"Главное изображение для {self.item}"
@@ -65,9 +65,10 @@ class ItemImages(BaseImage):
         related_name="images",
         verbose_name=_("admin item"),
     )
+
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        self._meta.get_field('image').verbose_name = _("admin image")
+        self._meta.get_field("image").verbose_name = _("admin image")
 
     def __str__(self):
         return f"Изображение для {self.item}"

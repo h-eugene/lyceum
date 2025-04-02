@@ -73,7 +73,8 @@ class Migration(migrations.Migration):
                                 1, message="Вес должен быть не менее 1."
                             ),
                             django.core.validators.MaxValueValidator(
-                                32767, message="Вес должен быть не более 32767."
+                                32767,
+                                message="Вес должен быть не более 32767.",
                             ),
                         ],
                         verbose_name="weight",
@@ -138,13 +139,17 @@ class Migration(migrations.Migration):
                 (
                     "created_at",
                     models.DateTimeField(
-                        auto_now_add=True, null=True, verbose_name="admin created at"
+                        auto_now_add=True,
+                        null=True,
+                        verbose_name="admin created at",
                     ),
                 ),
                 (
                     "updated_at",
                     models.DateTimeField(
-                        auto_now=True, null=True, verbose_name="admin updated at"
+                        auto_now=True,
+                        null=True,
+                        verbose_name="admin updated at",
                     ),
                 ),
                 (
