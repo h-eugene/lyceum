@@ -8,7 +8,7 @@ class CatalogConfig(AppConfig):
     verbose_name = _("Catalog")
 
     def ready(self):
-        import catalog.signals
+        import catalog.signals  # noqa: F401
 
 
 __all__ = []
