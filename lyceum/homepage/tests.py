@@ -9,7 +9,6 @@ from catalog.models import Category, Item, Tag
 
 
 class TestStaticURL(TestCase):
-
     def test_homepage_endpoint_status(self):
         client = Client()
 

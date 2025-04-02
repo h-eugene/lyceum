@@ -6,14 +6,14 @@ flake8:
   stage: linting
   image: registry.gitlab.com/pipeline-components/flake8:latest
   script:
-    - flake8 .
+    - flake8 --verbose .\lyceum
 
 
 black:
   stage: linting
   image: registry.gitlab.com/pipeline-components/black:latest
   script:
-    - black . --check --diff -l 79 --preview
+    - black --check --verbose .\lyceum
 
 django:
   stage: testing
