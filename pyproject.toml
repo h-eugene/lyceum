@@ -1,9 +1,13 @@
-[tool.lint.flake8]
+[tool.flake8]
 max-line-length = 79
-application-import-names = ["about", "catalog", "core", "download", "homepage"]
+application-import-names = ["about", "catalog", 
+                            "core", "download", 
+                            "homepage", "lyceum",]
 import-order-style = "google"
-exclude = ["*/migrations/"]
+exclude = ["**/migrations/"]
 inline-quotes = "double"
+multiline-quotes = "double" 
+docstring-quotes = "double"
 
 
 
@@ -28,11 +32,10 @@ select = [
     "B",
     # flake8-simplify
     "SIM",
-    # isort
-    "I",
 ]
+
 
 [tool.ruff.format]
 quote-style = "double"
-indent-style = "tab"
+indent-style = "space"
 docstring-code-format = true

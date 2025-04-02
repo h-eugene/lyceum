@@ -5,7 +5,7 @@ from tinymce.models import HTMLField
 
 from catalog.managers import ItemManager
 from catalog.validators import ValidateMustContain
-from core.models import BaseImage, BaseModel, BaseItemAttribute
+from core.models import BaseImage, BaseItemAttribute, BaseModel
 
 
 class Tag(BaseItemAttribute):
