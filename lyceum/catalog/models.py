@@ -1,7 +1,6 @@
 from datetime import timedelta
 import random
 
-from django.core.exceptions import ValidationError
 from django.core.validators import MaxValueValidator, MinValueValidator
 from django.db import models
 from django.utils import timezone
@@ -10,119 +9,35 @@ from django.utils.translation import gettext_lazy as _
 from sorl.thumbnail import get_thumbnail
 from tinymce.models import HTMLField
 
-from catalog.normalization import normalize_name
-from catalog.validators import (
-    validate_slug,
-    ValidateMustContain,
-)
-from core.models import BaseModel
+from catalog.validators import ValidateMustContain
+from core.models import BaseModel, ItemAttribute
 
 
-class Tag(BaseModel):
-    slug = models.SlugField(
-        max_length=200,
-        unique=True,
-        validators=[validate_slug],
-        verbose_name=_("slug"),
-        help_text=(
-            "Введите уникальный слаг. Допустимы "
-            "латинские буквы, цифры, '-' и '_'."
-        ),
-    )
-    normalized_name = models.CharField(
-        max_length=200,
-        unique=False,
-        editable=False,
-        verbose_name="нормализованное имя",
-        help_text="Автоматически нормализованное имя для уникальности.",
-    )
-
+class Tag(ItemAttribute):
     class Meta:
         ordering = ("slug",)
         verbose_name = _("admin tag")
         verbose_name_plural = _("admin tags")
         default_related_name = "tags"
 
-    def __str__(self):
-        return self.name[:15]
 
-    def save(self, *args, **kwargs):
-        if not self.normalized_name or self.name != self.normalized_name:
-            self.normalized_name = normalize_name(self.name)
-        super().save(*args, **kwargs)
-
-    def clean(self):
-        if not self.pk:
-            normalized = normalize_name(self.name)
-            if Tag.objects.filter(normalized_name=normalized).exists():
-                raise ValidationError(
-                    {
-                        "name": (
-                            f"Тег с нормализованным именем '{normalized}'"
-                            " уже существует."
-                        ),
-                    },
-                )
-        super().clean()
-
-
-class Category(BaseModel):
-    slug = models.SlugField(
-        max_length=200,
-        unique=True,
-        validators=[validate_slug],
-        verbose_name=_("slug"),
-        help_text=(
-            "Введите уникальный слаг. Допустимы "
-            "латинские буквы, цифры, '-' и '_'."
-        ),
-    )
+class Category(ItemAttribute):
     weight = models.PositiveIntegerField(
         default=100,
         verbose_name=_("weight"),
         validators=[
             MinValueValidator(1, message="Вес должен быть не менее 1."),
             MaxValueValidator(
-                32767,
-                message="Вес должен быть не более 32767.",
+                32767, message="Вес должен быть не более 32767."
             ),
         ],
-        help_text=("Вес категории от 1 до 32767 (по умолчанию 100)."),
-    )
-    normalized_name = models.CharField(
-        max_length=150,
-        unique=False,
-        editable=False,
-        verbose_name="нормализованное имя",
-        help_text="Автоматически нормализованное имя для уникальности.",
+        help_text="Вес категории от 1 до 32767 (по умолчанию 100).",
     )
 
     class Meta:
         ordering = ("weight",)
         verbose_name = _("admin category")
         verbose_name_plural = _("admin categories")
-
-    def __str__(self):
-        return self.name[:15]
-
-    def save(self, *args, **kwargs):
-        if not self.normalized_name or self.name != self.normalized_name:
-            self.normalized_name = normalize_name(self.name)
-        super().save(*args, **kwargs)
-
-    def clean(self):
-        if not self.pk:
-            normalized = normalize_name(self.name)
-            if Category.objects.filter(normalized_name=normalized).exists():
-                raise ValidationError(
-                    {
-                        "name": (
-                            "Категория с нормализованным "
-                            f"именем '{normalized}' уже существует."
-                        ),
-                    },
-                )
-        super().clean()
 
 
 class ItemMainImage(models.Model):

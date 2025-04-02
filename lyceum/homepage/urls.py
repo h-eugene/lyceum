@@ -6,5 +6,7 @@ app_name = "homepage"
 
 urlpatterns = [
     django.urls.path("", homepage.views.home, name="main"),
-    django.urls.re_path(r"^(?:.*/)?coffee/$", homepage.views.coffee, name="coffee"),
+    django.urls.re_path(
+        r"^(?:.*/)?coffee/$", homepage.views.coffee, name="coffee"
+    ),
 ]

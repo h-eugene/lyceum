@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-03-29 16:09+0300\n"
+"POT-Creation-Date: 2025-04-02 12:59+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -26,67 +26,63 @@ msgstr "Превью"
 msgid "Catalog"
 msgstr "Каталог"
 
-#: .\catalog\models.py:26 .\catalog\models.py:74
-msgid "slug"
-msgstr "слаг"
-
-#: .\catalog\models.py:42
+#: .\catalog\models.py:19
 msgid "admin tag"
 msgstr "тег"
 
-#: .\catalog\models.py:43 .\catalog\models.py:318
+#: .\catalog\models.py:20 .\catalog\models.py:233
 msgid "admin tags"
 msgstr "теги"
 
-#: .\catalog\models.py:82
+#: .\catalog\models.py:27
 msgid "weight"
 msgstr "вес"
 
-#: .\catalog\models.py:102 .\catalog\models.py:311
+#: .\catalog\models.py:39 .\catalog\models.py:226
 msgid "admin category"
 msgstr "категория"
 
-#: .\catalog\models.py:103
+#: .\catalog\models.py:40
 msgid "admin categories"
 msgstr "категории"
 
-#: .\catalog\models.py:133 .\catalog\models.py:172 .\catalog\models.py:341
+#: .\catalog\models.py:48 .\catalog\models.py:87 .\catalog\models.py:256
 msgid "admin item"
 msgstr "товар"
 
-#: .\catalog\models.py:163
+#: .\catalog\models.py:78
 msgid "admin main image"
 msgstr "основное изображение"
 
-#: .\catalog\models.py:164
+#: .\catalog\models.py:79
 msgid "admin main images"
 msgstr "основные изображения"
 
-#: .\catalog\models.py:176 .\catalog\models.py:202
+#: .\catalog\models.py:91 .\catalog\models.py:117
 msgid "admin image"
 msgstr "изображение"
 
-#: .\catalog\models.py:203
+#: .\catalog\models.py:118
 msgid "admin images"
 msgstr "изображения"
 
-#: .\catalog\models.py:299
+#: .\catalog\models.py:214
 msgid "admin text"
 msgstr "текст"
 
-#: .\catalog\models.py:324
+#: .\catalog\models.py:239
 msgid "is_on_main"
 msgstr "на главной странице"
 
-#: .\catalog\models.py:329
+#: .\catalog\models.py:244
 msgid "admin created at"
 msgstr "создано"
 
-#: .\catalog\models.py:334
+#: .\catalog\models.py:249
 msgid "admin updated at"
 msgstr "обновлено"
 
-#: .\catalog\models.py:342
+#: .\catalog\models.py:257
 msgid "admin items"
 msgstr "товары"
 
@@ -106,13 +102,17 @@ msgstr "Пятница"
 msgid "Unverified Items"
 msgstr "Непроверенные"
 
-#: .\core\models.py:8
+#: .\core\models.py:12
 msgid "admin name"
 msgstr "название"
 
-#: .\core\models.py:14
+#: .\core\models.py:18
 msgid "admin is published"
 msgstr "опубликовано"
+
+#: .\core\models.py:31
+msgid "slug"
+msgstr "слаг"
 
 #: .\lyceum\settings.py:119
 msgid "English"
@@ -197,8 +197,8 @@ msgid "About"
 msgstr "О проекте"
 
 #: .\templates\includes\header.html:31
-msgid "Items"
-msgstr "Товары"
+msgid "All Items"
+msgstr "Все товары"
 
 #: .\templates\includes\header.html:53
 msgid "Cart"

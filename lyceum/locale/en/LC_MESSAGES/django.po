@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-03-29 16:09+0300\n"
+"POT-Creation-Date: 2025-04-02 12:59+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -28,67 +28,63 @@ msgstr "Preview"
 msgid "Catalog"
 msgstr "Catalog"
 
-#: .\catalog\models.py:26 .\catalog\models.py:74
-msgid "slug"
-msgstr "slug"
-
-#: .\catalog\models.py:42
+#: .\catalog\models.py:19
 msgid "admin tag"
 msgstr "tag"
 
-#: .\catalog\models.py:43 .\catalog\models.py:318
+#: .\catalog\models.py:20 .\catalog\models.py:233
 msgid "admin tags"
 msgstr "tags"
 
-#: .\catalog\models.py:82
+#: .\catalog\models.py:27
 msgid "weight"
 msgstr "weight"
 
-#: .\catalog\models.py:102 .\catalog\models.py:311
+#: .\catalog\models.py:39 .\catalog\models.py:226
 msgid "admin category"
 msgstr "category"
 
-#: .\catalog\models.py:103
+#: .\catalog\models.py:40
 msgid "admin categories"
 msgstr "categories"
 
-#: .\catalog\models.py:133 .\catalog\models.py:172 .\catalog\models.py:341
+#: .\catalog\models.py:48 .\catalog\models.py:87 .\catalog\models.py:256
 msgid "admin item"
 msgstr "item"
 
-#: .\catalog\models.py:163
+#: .\catalog\models.py:78
 msgid "admin main image"
 msgstr "main image"
 
-#: .\catalog\models.py:164
+#: .\catalog\models.py:79
 msgid "admin main images"
 msgstr "main images"
 
-#: .\catalog\models.py:176 .\catalog\models.py:202
+#: .\catalog\models.py:91 .\catalog\models.py:117
 msgid "admin image"
 msgstr "image"
 
-#: .\catalog\models.py:203
+#: .\catalog\models.py:118
 msgid "admin images"
 msgstr "images"
 
-#: .\catalog\models.py:299
+#: .\catalog\models.py:214
 msgid "admin text"
 msgstr "text"
 
-#: .\catalog\models.py:324
+#: .\catalog\models.py:239
 msgid "is_on_main"
 msgstr "is on main"
 
-#: .\catalog\models.py:329
+#: .\catalog\models.py:244
 msgid "admin created at"
 msgstr "created"
 
-#: .\catalog\models.py:334
+#: .\catalog\models.py:249
 msgid "admin updated at"
 msgstr "updated"
 
-#: .\catalog\models.py:342
+#: .\catalog\models.py:257
 msgid "admin items"
 msgstr "items"
 
@@ -108,13 +104,17 @@ msgstr "Friday Items"
 msgid "Unverified Items"
 msgstr "Unverified Items"
 
-#: .\core\models.py:8
+#: .\core\models.py:12
 msgid "admin name"
 msgstr "name"
 
-#: .\core\models.py:14
+#: .\core\models.py:18
 msgid "admin is published"
 msgstr "is published"
+
+#: .\core\models.py:31
+msgid "slug"
+msgstr "slug"
 
 #: .\lyceum\settings.py:119
 msgid "English"
@@ -198,8 +198,8 @@ msgid "About"
 msgstr "About"
 
 #: .\templates\includes\header.html:31
-msgid "Items"
-msgstr "Items"
+msgid "All Items"
+msgstr "All Items"
 
 #: .\templates\includes\header.html:53
 msgid "Cart"
