@@ -4,7 +4,7 @@ application-import-names = ["about", "catalog",
                             "core", "download", 
                             "homepage", "lyceum",]
 import-order-style = "google"
-exclude = ["*/migrations/"]
+exclude = ["**/migrations/"]
 inline-quotes = "double"
 multiline-quotes = "double" 
 docstring-quotes = "double"
