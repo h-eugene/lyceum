@@ -8,9 +8,7 @@ from parameterized import parameterized
 from catalog.models import Category, Item, Tag
 
 
-
 class TestStaticURL(TestCase):
-
 
     def test_homepage_endpoint_status(self):
         client = Client()
@@ -25,7 +23,6 @@ class TestStaticURL(TestCase):
         response = client.get(url)
 
         self.assertEqual(response.status_code, HTTPStatus.IM_A_TEAPOT)
-
 
 
 class TestHomepageContext(TestCase):
