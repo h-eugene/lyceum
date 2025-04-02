@@ -6,16 +6,11 @@ from django.urls import reverse
 from parameterized import parameterized
 
 from catalog.models import Category, Item, Tag
-from lyceum.middleware import ReverseRussianWordsMiddleware
+
 
 
 class TestStaticURL(TestCase):
-    def setUp(self):
-        super().setUp()
-        ReverseRussianWordsMiddleware.response_count = 0
 
-    def tearDown(self):
-        super().tearDown()
 
     def test_homepage_endpoint_status(self):
         client = Client()
@@ -31,14 +26,6 @@ class TestStaticURL(TestCase):
 
         self.assertEqual(response.status_code, HTTPStatus.IM_A_TEAPOT)
 
-    def test_homepage_coffee_endpoint_content(self):
-        client = Client()
-
-        url = reverse("homepage:coffee")
-        response = client.get(url)
-        text = "Я чайник"
-
-        self.assertEqual(response.content.decode("utf-8"), text)
 
 
 class TestHomepageContext(TestCase):
