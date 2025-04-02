@@ -1,7 +1,8 @@
 from django.db.models.signals import post_delete
 from django.dispatch import receiver
 from sorl.thumbnail import delete
-from catalog.models import ItemMainImage, ItemImages
+
+from catalog.models import ItemImages, ItemMainImage
 
 
 @receiver(post_delete, sender=ItemMainImage)

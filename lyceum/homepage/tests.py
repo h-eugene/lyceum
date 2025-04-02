@@ -1,11 +1,10 @@
 from http import HTTPStatus
 
+from catalog.models import Category, Item, Tag
 from django.db.models import QuerySet
 from django.test import Client, TestCase
 from django.urls import reverse
 from parameterized import parameterized
-
-from catalog.models import Category, Item, Tag
 
 
 class TestStaticURL(TestCase):
