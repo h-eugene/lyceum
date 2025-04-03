@@ -1,3 +1,7 @@
+variables:
+  PYTHONIOENCODING: "utf-8"
+  LANG: "C.UTF-8"
+
 stages:
   - linting
   - testing
