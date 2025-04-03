@@ -6,7 +6,7 @@ from catalog.models import Item
 
 
 class TestNewCatalog(TestCase):
-    fixtures = ["fixtures/data.json"]
+    # fixtures = ["fixtures/data.json"]
 
     def setUp(self):
         super().setUp()
@@ -26,7 +26,7 @@ class TestNewCatalog(TestCase):
 
 
 class TestFridayCatalog(TestCase):
-    fixtures = ["fixtures/data.json"]
+    # fixtures = ["fixtures/data.json"]
 
     def setUp(self):
         super().setUp()
@@ -46,7 +46,7 @@ class TestFridayCatalog(TestCase):
 
 
 class TestUnverifiedCatalog(TestCase):
-    fixtures = ["fixtures/data.json"]
+    # fixtures = ["fixtures/data.json"]
 
     def setUp(self):
         super().setUp()
