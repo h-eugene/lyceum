@@ -43,7 +43,7 @@ ALLOW_REVERSE_TRUE_VALUES = {
     "",
 }
 ALLOW_REVERSE = (
-    os.getenv("DJANGO_ALLOW_REVERSE", "true").lower()
+    os.getenv("DJANGO_ALLOW_REVERSE", "false").lower()
     in ALLOW_REVERSE_TRUE_VALUES
 )
 
