@@ -70,7 +70,6 @@ python manage.py migrate
 ### **6️⃣ Загрузка тестовых данных (фикстуры)**
 Чтобы загрузить тестовые данные, используйте фикстуру `fixtures/data.json`:
 ```sh
-cd lyceum
 python manage.py loaddata fixtures/data.json
 ```
 Эта фикстура содержит начальные данные для тегов, категорий и товаров, соответствующие моделям проекта.
@@ -79,14 +78,6 @@ python manage.py loaddata fixtures/data.json
 
 ### **7️⃣ Настройка локализации**
 Проект поддерживает английский (en) и русский (ru) языки:
-
-Создайте файлы переводов:
-```sh
-mkdir locale
-django-admin makemessages -all
-```
-
-Отредактируйте locale/ru/LC_MESSAGES/django.po, добавив переводы для меню и других статических элементов.
 
 Скомпилируйте переводы:
 ```sh

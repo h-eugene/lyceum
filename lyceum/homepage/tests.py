@@ -99,10 +99,10 @@ class TestHomepageContext(TestCase):
     )
     def test_home_page_content(self, text, should_contain):
         if should_contain:
-            self.assertContains(self.response, text)
-            print(self.response.content.decode())
+            self.assertIn(text, self.response.content.decode())
         else:
-            self.assertNotContains(self.response, text)
+            self.assertNotIn(text, self.response.content.decode())
+
 
 
 __all__ = []
