@@ -127,8 +127,5 @@ class Item(BaseModel):
         verbose_name = _("admin item")
         verbose_name_plural = _("admin items")
 
-    def __str__(self):
-        return self.name[:15]
-
 
 __all__ = []
