@@ -104,5 +104,4 @@ class TestHomepageContext(TestCase):
             self.assertNotIn(text, self.response.content.decode())
 
 
-
 __all__ = []
